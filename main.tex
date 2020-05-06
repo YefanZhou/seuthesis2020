@@ -13,13 +13,14 @@
 \usepackage{algorithm}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
-\usepackage{subfigure}
 \usepackage{stmaryrd}
 \usepackage{placeins}
 \usepackage{makecell}
-\usepackage{graphicx,subfigure}
+\usepackage{graphicx,subcaption}
+\usepackage{booktabs}
 \newtheorem{theorem}{定义}
 \usepackage{xcolor}
+
 \newcommand\TODO[1]{\textcolor{blue}{#1}}
 
 \floatname{algorithm}{算法}
@@ -335,13 +336,138 @@ Earth Mover's Distance \\
 
 \FloatBarrier
 \subsubsection{机制探究}
-%\begin{figure}
-%	\begin{subfigure}[t]{0.3\linewidth} \centering 
-%     \includegraphics[width=\columnwidth]{figs/T-SNE-class.png}
-%     \caption{With labels}\label{fig:T-SNE1}
-%   \end{subfigure}
-%\end{figure}
+\begin{figure}
+	\begin{subfigure}[t]{0.3\linewidth} \centering 
+     \includegraphics[width=\columnwidth]{figs/T-SNE-class.png}
+     \caption{With labels}\label{fig:T-SNE1}
+   \end{subfigure}
+   \begin{subfigure}[t]{0.3\linewidth} \centering
+    \includegraphics[width=\columnwidth]{figs/T-SNE-noclass.png}
+    \caption{Without labels}\label{fig:T-SNE2}
+  \end{subfigure}
+  \hspace{0.05\linewidth}
+  \begin{subfigure}[t]{0.2\linewidth} \centering
+    \includegraphics[width=\columnwidth]{figs/label-or-not.png}
+    \caption{Chamfer loss}\label{fig:T-SNE3}
+  \end{subfigure}
+  \caption{\small T-SNE and Chamfer loss of the same network trained with or without label information. The network trained without label information does not show a clear tendency to form clusters while yielding smaller Chamfer loss.}\label{fig:T-SNE}
+\end{figure}
 
+\chapter{机制探究}
+\section{理论分析}
+\begin{figure}
+    \centering
+    \includegraphics[width=.95\textwidth]{figs/drawing-1.pdf}
+    \caption{\small When the training images are less clustered than the training shapes (as shown in subfigure (a)), the learned model shows the tendency of recognition.}
+    \label{fig:clustering_tendency}
+\end{figure}
+\section{实验设计与数据集生成}
+\begin{figure}
+	\begin{tabular}{c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}}
+	    sphere & & & & & $\Longleftrightarrow$ & & & & & cube \\
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric0.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric1.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric2.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric3.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric4.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric5.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric6.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric7.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric8.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric9.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric10.png} \\    	
+	\end{tabular}
+	\caption{\small Base dataset \# 1: interpolation between a sphere and a cube.}
+    \label{fig:cube-sphere} \vspace{-4mm}
+\end{figure}
+
+\begin{figure}
+	\begin{subfigure}[t]{0.45\linewidth} \centering 
+     \includegraphics[width=\columnwidth]{figs/five-clusters.png}
+     \caption{\small Dataset 1.1.n (n = 1, 2, $\ldots $7). Different subsampled datasets are generated to have different clustering tendencies. }\label{fig:five-clusters}
+   \end{subfigure}\hspace{0.05\textwidth}
+   \begin{subfigure}[t]{0.45\linewidth} \centering
+     \includegraphics[width=\columnwidth]{figs/two-clusters.png}
+     \caption{Dataset 1.2.n (n = 1, 2, $\ldots $7). The dot markers represent image distribution, while the cross markers represent point cloud distribution.}\label{fig:two-clusters}
+   \end{subfigure}
+   \caption{\small Coverage of two subsampled data sets 1.1.n and 1.2.n.}
+\end{figure}
+
+\section{实验结果}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-1.png}
+    \caption{\small Training-vs-prediction silhouette scores. Only Case 1 (the points with large dataset indices shown in the bottom-left figure) shows high tendency towards recognition.}
+    \label{fig:silhouette-dataset-1.png}
+\end{figure}
+
+\begin{figure}[ht!]
+    \begin{centering}
+        \begin{tabular}{cccc|cccc}
+        \toprule
+         &Images & GT & Recons. & Images & GT & Recons.& \\
+        \toprule
+        1.1.1 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_1_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_1_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_1_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_1_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_1_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_1_3.png}& 1.2.1\\
+        %& DI = 1 & & & DI = 1 & \\
+        %\midrule
+        1.1.2 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_2_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_2_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_2_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_2_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_2_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_2_3.png}& 1.2.2\\
+        %& DI = 2 & & & DI = 2 & \\
+        %\midrule
+        1.1.3 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_3_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_3_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_3_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_3_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_3_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_3_3.png} & 1.2.3\\
+        %& DI = 3 & & & DI = 3 & \\
+        %\midrule
+        1.1.4 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_4_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_4_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_4_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_4_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_4_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_4_3.png} & 1.2.4\\
+        %& DI = 4 & & & DI = 4 & \\
+        %\midrule
+        1.1.5 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_5_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_5_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_5_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_5_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_5_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_5_3.png}& 1.2.5\\
+        %& DI = 5 & & & DI = 5 & \\
+        %\midrule
+        1.1.6 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_6_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_6_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_6_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_6_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_6_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_6_3.png}& 1.2.6\\
+        %& DI = 6 & & & DI = 6 & \\
+        %\midrule
+        1.1.7 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_7_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_7_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_7_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_7_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_7_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_2by10_7_3.png} & 1.2.7\\
+        %& DI = 7 & & & DI = 7 & \\
+        \bottomrule  
+        \end{tabular}  \vspace{-2mm}
+        \caption{\small Distance matrices. Blue represents small distance and red represents large distance. {\bf (Left)} predicted shapes of subsampled dataset 1.1 are not clustered. {\bf (Right)} predicted shapes of subsampled dataset 1.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 7.}
+        \label{fig:cluster_visualization}
+    \end{centering}
+    \end{figure}
 
 
 \end{Main} % 结束正文
