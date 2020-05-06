@@ -3,44 +3,46 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: thuthesis.bst
 Database file #1: seuthesis.bib
-You've used 14 entries,
+Warning--empty journal in poczos2013distribution
+You've used 37 entries,
             2313 wiz_defined-function locations,
-            581 strings with 6515 characters,
-and the built_in function-call counts, 9571 in all, are:
-= -- 1001
-> -- 222
-< -- 12
-+ -- 104
-- -- 52
-* -- 692
-:= -- 1198
-add.period$ -- 43
-call.type$ -- 14
-change.case$ -- 14
+            692 strings with 12040 characters,
+and the built_in function-call counts, 28764 in all, are:
+= -- 3018
+> -- 597
+< -- 27
++ -- 280
+- -- 140
+* -- 2287
+:= -- 3576
+add.period$ -- 115
+call.type$ -- 37
+change.case$ -- 37
 chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 708
-empty$ -- 951
-format.name$ -- 66
-if$ -- 2250
+cite$ -- 38
+duplicate$ -- 2299
+empty$ -- 2920
+format.name$ -- 177
+if$ -- 6675
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 99
-num.names$ -- 14
-pop$ -- 73
+int.to.str$ -- 37
+missing$ -- 37
+newline$ -- 251
+num.names$ -- 37
+pop$ -- 183
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 270
+skip$ -- 643
 stack$ -- 0
-substring$ -- 1304
-swap$ -- 128
-text.length$ -- 12
+substring$ -- 4264
+swap$ -- 281
+text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 104
-width$ -- 16
-write$ -- 181
+warning$ -- 1
+while$ -- 271
+width$ -- 39
+write$ -- 469
+(There was 1 warning)

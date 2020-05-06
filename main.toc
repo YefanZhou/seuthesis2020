@@ -16,10 +16,20 @@
 \contentsline {section}{\numberline {2.1}问题描述}{5}{section.2.1}% 
 \contentsline {section}{\numberline {2.2}识别或重建}{6}{section.2.2}% 
 \contentsline {section}{\numberline {2.3}数据集的聚类趋势}{6}{section.2.3}% 
-\contentsline {chapter}{参考文献}{7}{chapter*.5}% 
+\contentsline {chapter}{\numberline {3}模型方法}{8}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}基准模型}{8}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}非深度学习方法}{8}{subsection.3.1.1}% 
+\contentsline {subsection}{\numberline {3.1.2}深度学习方法}{8}{subsection.3.1.2}% 
+\contentsline {subsection}{\numberline {3.1.3}模型分析}{8}{subsection.3.1.3}% 
+\contentsline {section}{\numberline {3.2}模型优化}{8}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}架构优化}{8}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}实验结果与分析}{8}{subsection.3.2.2}% 
+\contentsline {subsubsection}{\numberline {3.2.2.1}重建效果}{8}{subsubsection.3.2.2.1}% 
+\contentsline {subsubsection}{\numberline {3.2.2.2}机制探究}{12}{subsubsection.3.2.2.2}% 
+\contentsline {chapter}{参考文献}{13}{chapter*.9}% 
 \ttl@change@i {\@ne }{chapter}{0pt}{\vspace {.5\baselineskip }\normalfont \bfseries }{附录 \thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[10pt]{$\cdot $}\contentspage }\relax 
 \ttl@change@v {chapter}{}{}{}\relax 
-\contentsline {chapter}{\numberline {A}{\LaTeX }实验}{8}{appendix.A}% 
-\contentsline {chapter}{\numberline {B}MATLAB实验}{9}{appendix.B}% 
-\contentsline {chapter}{致\hspace *{2em}谢}{10}{section*.6}% 
+\contentsline {chapter}{\numberline {A}{\LaTeX }实验}{16}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}MATLAB实验}{17}{appendix.B}% 
+\contentsline {chapter}{致\hspace *{2em}谢}{18}{section*.10}% 
 \contentsfinish 

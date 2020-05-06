@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.11.7)  6 MAY 2020 16:51
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.11.7)  6 MAY 2020 22:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -986,21 +986,28 @@ Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 \symstmry=\mathgroup9
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen279
+\c@nlinenum=\count332
+\TeXr@lab=\toks32
 )
-\c@theorem=\count332
+\c@theorem=\count333
  (/usr/local/texlive/2019/texmf-dist/tex/xelatex/xecjk/xeCJKfntef.sty
 Package: xeCJKfntef 2019/04/07 v3.7.2 xeCJK font effect
  (/usr/local/texlive/2019/texmf-dist/tex/latex/cjk/texinput/CJKfntef.sty
 Package: CJKfntef 2015/04/18 4.8.4
 \CJK@fntefSkip=\skip99
-\CJK@nest=\count333
-\CJK@fntefDimen=\dimen279
+\CJK@nest=\count334
+\CJK@fntefDimen=\dimen280
 \CJK@underdotBox=\box90
 \CJK@ULbox=\box91
-\CJK@underanyskip=\dimen280
+\CJK@underanyskip=\dimen281
 )
 \l__xeCJK_space_skip=\skip100
-\c__xeCJK_ulem-begin_node_dim=\dimen281
+\c__xeCJK_ulem-begin_node_dim=\dimen282
 \c__xeCJK_null_box=\box92
 \l__xeCJK_fntef_box=\box93
 \l__xeCJK_under_symbol_box=\box94
@@ -1008,25 +1015,25 @@ Package: CJKfntef 2015/04/18 4.8.4
 ) (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-Package tocbasic Info: usage of `tocbibind' detected on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+Package tocbasic Info: usage of `tocbibind' detected on input line 30.
 
 
 Package tocbasic Warning: `tocbibind' redefinition of `\listoffigures'
@@ -1046,17 +1053,17 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box95
-Package hyperref Info: Link coloring ON on input line 27.
+Package hyperref Info: Link coloring ON on input line 30.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count334
+\c@section@level=\count335
 )
-LaTeX Info: Redefining \ref on input line 27.
-LaTeX Info: Redefining \pageref on input line 27.
-LaTeX Info: Redefining \nameref on input line 27.
+LaTeX Info: Redefining \ref on input line 30.
+LaTeX Info: Redefining \pageref on input line 30.
+LaTeX Info: Redefining \nameref on input line 30.
  (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -1067,12 +1074,12 @@ Class scrbook Info: loading recommended package `bookmark'.
 (scrbook)           You can avoid loading `bookmark' with KOMA-Script option
 (scrbook)           `bookmarkpackage=false' before \begin{document} and
 (scrbook)           you can avoid this message with `\usepackage{bookmark}'
-(scrbook)           before \begin{document} on input line 27.
+(scrbook)           before \begin{document} on input line 30.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
  (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2016/05/17 v1.26 bookmark driver for dvipdfm (HO)
-\BKM@id=\count335
+\BKM@id=\count336
 ))
 [seuthesis]: Load seuthesis-utf8.cfg successfully!
 (./seuthesis-utf8.cfg
@@ -1122,7 +1129,7 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 44.
+(hyperref)                removing `\@ifnextchar' on input line 47.
 
 File: figures/seu-bachelor.png Graphic file (type bmp)
 <figures/seu-bachelor.png>
@@ -1189,57 +1196,57 @@ Package fontspec Info: Font family 'simfang.ttf(0)' created for font
 (fontspec)             <->"[./font/simfang.ttf]/OT:script=hani;language=DFLT;embolden=4;slant=0.167;mapping=tex-text;"
 (fontspec)             - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 
-LaTeX Font Info:    Calculating math sizes for size <28> on input line 44.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 44.
+LaTeX Font Info:    Calculating math sizes for size <28> on input line 47.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 47.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 44.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 47.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 44.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 47.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 44.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 47.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <28> on input line 44.
+(Font)              <28> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <19.59991> on input line 44.
+(Font)              <19.59991> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14> on input line 44.
-LaTeX Font Info:    Try loading font information for U+msa on input line 44.
+(Font)              <14> on input line 47.
+LaTeX Font Info:    Try loading font information for U+msa on input line 47.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 44.
+LaTeX Font Info:    Try loading font information for U+msb on input line 47.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 44.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 47.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <28> not available
-(Font)              size <24.88> substituted on input line 44.
+(Font)              size <24.88> substituted on input line 47.
 
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <19.59991> not available
-(Font)              size <20.74> substituted on input line 44.
+(Font)              size <20.74> substituted on input line 47.
 
-LaTeX Font Info:    Calculating math sizes for size <15.75> on input line 44.
+LaTeX Font Info:    Calculating math sizes for size <15.75> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <15.75> on input line 44.
+(Font)              <15.75> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11.02495> on input line 44.
+(Font)              <11.02495> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.875> on input line 44.
+(Font)              <7.875> on input line 47.
 
 LaTeX Font Warning: Font shape `U/stmry/m/n' in size <15.75> not available
-(Font)              size <14.4> substituted on input line 44.
+(Font)              size <14.4> substituted on input line 47.
 
 
 Package xeCJK Warning: Unknown CJK family `\CJKsfdefault' is being ignored.
@@ -1247,12 +1254,12 @@ Package xeCJK Warning: Unknown CJK family `\CJKsfdefault' is being ignored.
 (xeCJK)                Try to use `\setCJKsansfont[...]{...}' to define it.
 
 
-Overfull \hbox (2.625pt too wide) detected at line 44
+Overfull \hbox (2.625pt too wide) detected at line 47
  []
  []
 
 
-Overfull \hbox (2.625pt too wide) detected at line 44
+Overfull \hbox (2.625pt too wide) detected at line 47
  []
  []
 
@@ -1261,11 +1268,11 @@ Overfull \hbox (2.625pt too wide) detected at line 44
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 44.
+(Font)              <12> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 44.
+(Font)              <8> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 44.
+(Font)              <6> on input line 47.
  [2
 
 ] [1
@@ -1289,6 +1296,13 @@ Package tocbasic Info: Using my definition of `\numberline' on input line 14.
 Package tocbasic Info: Using my definition of `\numberline' on input line 16.
 Package tocbasic Info: Using my definition of `\numberline' on input line 17.
 Package tocbasic Info: Using my definition of `\numberline' on input line 18.
+Package tocbasic Info: Using my definition of `\numberline' on input line 20.
+Package tocbasic Info: Using my definition of `\numberline' on input line 21.
+Package tocbasic Info: Using my definition of `\numberline' on input line 22.
+Package tocbasic Info: Using my definition of `\numberline' on input line 23.
+Package tocbasic Info: Using my definition of `\numberline' on input line 24.
+Package tocbasic Info: Using my definition of `\numberline' on input line 25.
+Package tocbasic Info: Using my definition of `\numberline' on input line 26.
 )
 \tf@toc=\write5
 \openout5 = `main.toc'.
@@ -1329,30 +1343,119 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `TU/times.ttf(0)/m/sl' in size <12> not available
-(Font)              Font shape `TU/times.ttf(0)/m/it' tried instead on input line 178.
- [6] (./main.bbl) [7
+(Font)              Font shape `TU/times.ttf(0)/m/it' tried instead on input line 181.
+LaTeX Font Info:    Font shape `TU/simsun.ttf(0)/m/sl' in size <12> not available
+(Font)              Font shape `TU/simsun.ttf(0)/m/it' tried instead on input line 209.
+ [6] [7]
+chapter 3.
+File: figs/chamfer-compare.png Graphic file (type bmp)
+<figs/chamfer-compare.png>
+File: figs/F-compare.png Graphic file (type bmp)
+<figs/F-compare.png>
+File: figs/CD_per_shape.png Graphic file (type bmp)
+<figs/CD_per_shape.png>
+File: figs/EMD_per_shape.png Graphic file (type bmp)
+<figs/EMD_per_shape.png>
+
+Overfull \hbox (1.1657pt too wide) in paragraph at lines 282--288
+ [][] 
+ []
+
+File: figs/real_dataset/Image/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0.png Graphic file (type bmp)
+<figs/real_dataset/Image/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0.png>
+File: figs/real_dataset/GT/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_gt.png Graphic file (type bmp)
+<figs/real_dataset/GT/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_gt.png>
+File: figs/real_dataset/AE_label/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE_label/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_fine.png>
+File: figs/real_dataset/AE/ashcan_66d96d2428184442ba6cf6cbb9f4c2bb_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE/ashcan_66d96d2428184442ba6cf6cbb9f4c2bb_fine.png>
+File: figs/real_dataset/oracle/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_oracle.png Graphic file (type bmp)
+<figs/real_dataset/oracle/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_oracle.png>
+File: figs/real_dataset/Image/bag_8569a0c606bbba73d9985ad45fbb635e.png Graphic file (type bmp)
+<figs/real_dataset/Image/bag_8569a0c606bbba73d9985ad45fbb635e.png>
+File: figs/real_dataset/GT/bag_8569a0c606bbba73d9985ad45fbb635e.png Graphic file (type bmp)
+<figs/real_dataset/GT/bag_8569a0c606bbba73d9985ad45fbb635e.png>
+File: figs/real_dataset/AE_label/bag_8569a0c606bbba73d9985ad45fbb635e_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE_label/bag_8569a0c606bbba73d9985ad45fbb635e_fine.png>
+File: figs/real_dataset/AE/bag_8569a0c606bbba73d9985ad45fbb635e.png Graphic file (type bmp)
+<figs/real_dataset/AE/bag_8569a0c606bbba73d9985ad45fbb635e.png>
+File: figs/real_dataset/oracle/bag_8569a0c606bbba73d9985ad45fbb635e.png Graphic file (type bmp)
+<figs/real_dataset/oracle/bag_8569a0c606bbba73d9985ad45fbb635e.png>
+File: figs/real_dataset/Image/bench_17ebf60b6ba61ae949e6f7df978f3373.png Graphic file (type bmp)
+<figs/real_dataset/Image/bench_17ebf60b6ba61ae949e6f7df978f3373.png>
+File: figs/real_dataset/GT/bench_17ebf60b6ba61ae949e6f7df978f3373_gt.png Graphic file (type bmp)
+<figs/real_dataset/GT/bench_17ebf60b6ba61ae949e6f7df978f3373_gt.png>
+File: figs/real_dataset/AE_label/bench_17ebf60b6ba61ae949e6f7df978f3373_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE_label/bench_17ebf60b6ba61ae949e6f7df978f3373_fine.png>
+File: figs/real_dataset/AE/bench_17ebf60b6ba61ae949e6f7df978f3373_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE/bench_17ebf60b6ba61ae949e6f7df978f3373_fine.png>
+File: figs/real_dataset/oracle/bench_17ebf60b6ba61ae949e6f7df978f3373_oracle.png Graphic file (type bmp)
+<figs/real_dataset/oracle/bench_17ebf60b6ba61ae949e6f7df978f3373_oracle.png>
+File: figs/real_dataset/Image/bottle_ab3795042c759b6798646029ad91cbbd.png Graphic file (type bmp)
+<figs/real_dataset/Image/bottle_ab3795042c759b6798646029ad91cbbd.png>
+File: figs/real_dataset/GT/bottle_ab3795042c759b6798646029ad91cbbd_gt.png Graphic file (type bmp)
+<figs/real_dataset/GT/bottle_ab3795042c759b6798646029ad91cbbd_gt.png>
+File: figs/real_dataset/AE_label/bottle_ab3795042c759b6798646029ad91cbbd_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE_label/bottle_ab3795042c759b6798646029ad91cbbd_fine.png>
+File: figs/real_dataset/AE/bottle_ab3795042c759b6798646029ad91cbbd_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE/bottle_ab3795042c759b6798646029ad91cbbd_fine.png>
+File: figs/real_dataset/oracle/bottle_3b956918a41da89c325e6e8eb2c67fd8_oracle.png Graphic file (type bmp)
+<figs/real_dataset/oracle/bottle_3b956918a41da89c325e6e8eb2c67fd8_oracle.png>
+File: figs/real_dataset/Image/car_8b049c92888475f67c3c6f82a395b347.png Graphic file (type bmp)
+<figs/real_dataset/Image/car_8b049c92888475f67c3c6f82a395b347.png>
+File: figs/real_dataset/GT/car_8b049c92888475f67c3c6f82a395b347.png Graphic file (type bmp)
+<figs/real_dataset/GT/car_8b049c92888475f67c3c6f82a395b347.png>
+File: figs/real_dataset/AE_label/car_8b049c92888475f67c3c6f82a395b347_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE_label/car_8b049c92888475f67c3c6f82a395b347_fine.png>
+File: figs/real_dataset/AE/car_8b049c92888475f67c3c6f82a395b347.png Graphic file (type bmp)
+<figs/real_dataset/AE/car_8b049c92888475f67c3c6f82a395b347.png>
+File: figs/real_dataset/oracle/car_8b049c92888475f67c3c6f82a395b347.png Graphic file (type bmp)
+<figs/real_dataset/oracle/car_8b049c92888475f67c3c6f82a395b347.png>
+File: figs/real_dataset/Image/jar_d56098d4d83f5976a2c59a4d90e63212.png Graphic file (type bmp)
+<figs/real_dataset/Image/jar_d56098d4d83f5976a2c59a4d90e63212.png>
+File: figs/real_dataset/GT/jar_d56098d4d83f5976a2c59a4d90e63212_gt.png Graphic file (type bmp)
+<figs/real_dataset/GT/jar_d56098d4d83f5976a2c59a4d90e63212_gt.png>
+File: figs/real_dataset/AE_label/jar_d56098d4d83f5976a2c59a4d90e63212_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE_label/jar_d56098d4d83f5976a2c59a4d90e63212_fine.png>
+File: figs/real_dataset/AE/jar_d56098d4d83f5976a2c59a4d90e63212_fine.png Graphic file (type bmp)
+<figs/real_dataset/AE/jar_d56098d4d83f5976a2c59a4d90e63212_fine.png>
+File: figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png Graphic file (type bmp)
+<figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png>
+
+Overfull \hbox (1.16646pt too wide) in paragraph at lines 293--332
+[][] 
+ []
 
 
-]
-chapter A.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [8
+
+] [9] [10] [11] [12
+
+] (./main.bbl [13
+
+
+] [14]) [15]
+chapter A.
+[16
 
 
 ]
 chapter B.
-[9
+[17
 
-] [10
+] [18
 
 
 
 ]
 No file main.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 234.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 234.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 377.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 377.
 (./main.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 234.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 234.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 377.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 377.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
 
@@ -1360,17 +1463,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.12pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 234.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 377.
  )
-(\end occurred when \iftrue on line 58 was incomplete)
-(\end occurred when \iftrue on line 46 was incomplete) 
+(\end occurred when \iftrue on line 61 was incomplete)
+(\end occurred when \iftrue on line 49 was incomplete) 
 Here is how much of TeX's memory you used:
- 29933 strings out of 492916
- 589062 string characters out of 6133345
- 815070 words of memory out of 5000000
- 33624 multiletter control sequences out of 15000+600000
- 611142 words of font info for 171 fonts, out of 8000000 for 9000
+ 30340 strings out of 492916
+ 601491 string characters out of 6133345
+ 818954 words of memory out of 5000000
+ 33988 multiletter control sequences out of 15000+600000
+ 611174 words of font info for 175 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 63i,11n,77p,9174b,689s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,15n,77p,9174b,782s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (15 pages).
+Output written on main.pdf (23 pages).

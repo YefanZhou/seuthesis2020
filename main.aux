@@ -27,6 +27,9 @@
 \citation{kingma2014adam}
 \citation{tatarchenko2019single}
 \citation{arpit2017closer}
+\citation{fan2017point}
+\citation{yang2018foldingnet}
+\citation{tatarchenko2019single}
 \HyPL@Entry{5<</S/D>>}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}绪论}{1}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -35,8 +38,26 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}课题的背景和意义}{1}{section.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}研究现状}{1}{section.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}相关模型}{1}{subsection.1.2.1}\protected@file@percent }
+\citation{chang2015shapenet}
+\citation{Yi2017LargeScale3S}
+\citation{tatarchenko2019single}
+\citation{chang2015shapenet}
+\citation{arpit2017closer}
+\citation{arpit2017closer}
+\citation{tatarchenko2019single}
+\citation{kanazawa2018learning,pontes2018image2mesh,kurenkov2018deformnet}
+\citation{li2018single,gwak2017weakly,sinha2017surfnet,li2018point,wu2018learning,yang20173d,yang2019pointflow}
+\citation{wu2016learning,girdhar2016learning}
+\citation{tulsiani2017learning,niu2018im2struct,sung2017complementme}
+\citation{sun2018pointgrow,choy20163d}
+\citation{wu2016learning,achlioptas2017learning,yang2018foldingnet}
+\citation{oliva2013distribution,poczos2013distribution}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}相关数据集}{2}{subsection.1.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}神经网络学习机制}{2}{subsection.1.2.3}\protected@file@percent }
+\citation{tatarchenko2019single}
+\citation{wang2008adaptive}
+\citation{van2015using}
+\citation{chang2015shapenet}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}本文研究内容}{3}{section.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}课题关键问题以及难点}{3}{subsection.1.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}主要贡献}{3}{subsection.1.3.2}\protected@file@percent }
@@ -50,11 +71,36 @@
 \newlabel{eq:precision}{{2.3}{5}{问题描述}{equation.2.1.3}{}}
 \newlabel{eq:recall}{{2.4}{5}{问题描述}{equation.2.1.4}{}}
 \newlabel{eq:f-score}{{2.5}{5}{问题描述}{equation.2.1.5}{}}
+\citation{tatarchenko2019single}
+\citation{van2015using}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}识别或重建}{6}{section.2.2}\protected@file@percent }
 \newlabel{def:recognition}{{1}{6}{识别或重建}{theorem.1}{}}
 \newlabel{def:reconstruction}{{2}{6}{识别或重建}{theorem.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}数据集的聚类趋势}{6}{section.2.3}\protected@file@percent }
 \newlabel{sec:metric_on_dataset}{{2.3}{6}{数据集的聚类趋势}{section.2.3}{}}
+\citation{wang2008adaptive}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}模型方法}{8}{chapter.3}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}基准模型}{8}{section.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}非深度学习方法}{8}{subsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}深度学习方法}{8}{subsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}模型分析}{8}{subsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}模型优化}{8}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}架构优化}{8}{subsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}实验结果与分析}{8}{subsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}重建效果}{8}{subsubsection.3.2.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-1}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.\relax }}{9}{figure.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:compare-Oracle-NN}{{3{}-1}{9}{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.\relax }{figure.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Evaluation metrics of shape reconstruction. The averaged chamfer distance and Earth mover's distance across all shapes are reported.\relax }}{9}{table.caption.6}\protected@file@percent }
+\newlabel{tab:evaluation}{{3.1}{9}{Evaluation metrics of shape reconstruction. The averaged chamfer distance and Earth mover's distance across all shapes are reported.\relax }{table.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-2}{\ignorespaces Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. \relax }}{10}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:metric_per_class}{{3{}-2}{10}{Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. \relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-3}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. \relax }}{11}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:visualize_KC}{{3{}-3}{11}{\small Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. \relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}机制探究}{12}{subsubsection.3.2.2.2}\protected@file@percent }
 \bibdata{seuthesis}
 \bibcite{li2018point}{{1}{}{{}}{{}}}
 \bibcite{park2019deepsdf}{{2}{}{{}}{{}}}
@@ -70,18 +116,41 @@
 \bibcite{kingma2014adam}{{12}{}{{}}{{}}}
 \bibcite{tatarchenko2019single}{{13}{}{{}}{{}}}
 \bibcite{arpit2017closer}{{14}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{参考文献}{7}{chapter*.5}\protected@file@percent }
+\bibcite{chang2015shapenet}{{15}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{参考文献}{13}{chapter*.9}\protected@file@percent }
+\bibcite{Yi2017LargeScale3S}{{16}{}{{}}{{}}}
+\bibcite{kanazawa2018learning}{{17}{}{{}}{{}}}
+\bibcite{pontes2018image2mesh}{{18}{}{{}}{{}}}
+\bibcite{kurenkov2018deformnet}{{19}{}{{}}{{}}}
+\bibcite{li2018single}{{20}{}{{}}{{}}}
+\bibcite{gwak2017weakly}{{21}{}{{}}{{}}}
+\bibcite{sinha2017surfnet}{{22}{}{{}}{{}}}
+\bibcite{wu2018learning}{{23}{}{{}}{{}}}
+\bibcite{yang20173d}{{24}{}{{}}{{}}}
+\bibcite{yang2019pointflow}{{25}{}{{}}{{}}}
+\bibcite{wu2016learning}{{26}{}{{}}{{}}}
+\bibcite{girdhar2016learning}{{27}{}{{}}{{}}}
+\bibcite{tulsiani2017learning}{{28}{}{{}}{{}}}
+\bibcite{niu2018im2struct}{{29}{}{{}}{{}}}
+\bibcite{sung2017complementme}{{30}{}{{}}{{}}}
+\bibcite{sun2018pointgrow}{{31}{}{{}}{{}}}
+\bibcite{choy20163d}{{32}{}{{}}{{}}}
+\bibcite{achlioptas2017learning}{{33}{}{{}}{{}}}
+\bibcite{oliva2013distribution}{{34}{}{{}}{{}}}
+\bibcite{poczos2013distribution}{{35}{}{{}}{{}}}
+\bibcite{wang2008adaptive}{{36}{}{{}}{{}}}
+\bibcite{van2015using}{{37}{}{{}}{{}}}
 \@writefile{toc}{\ttl@change@i {\@ne }{chapter}{0pt}{\vspace {.5\baselineskip }\normalfont \bfseries }{附录 \thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[10pt]{$\cdot $}\contentspage }\relax }
 \@writefile{toc}{\ttl@change@v {chapter}{}{}{}\relax }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}{\LaTeX  }实验}{8}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}{\LaTeX  }实验}{16}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}MATLAB实验}{9}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}MATLAB实验}{17}{appendix.B}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{致\hspace  *{2em}谢}{10}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{致\hspace  *{2em}谢}{18}{section*.10}\protected@file@percent }
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
 \ttl@finishall
 \global\csname @altsecnumformattrue\endcsname
