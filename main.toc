@@ -1,7 +1,7 @@
 \thispagestyle {seunoheadstyle}
-\contentsline {chapter}{摘\hspace *{2em}要}{I}{section*.1}% 
-\contentsline {chapter}{ABSTRACT}{II}{section*.2}% 
-\contentsline {chapter}{目\hspace *{2em}录}{III}{section*.3}% 
+\contentsline {chapter}{摘\hspace *{2em}要}{1}{section*.1}% 
+\contentsline {chapter}{ABSTRACT}{2}{section*.2}% 
+\contentsline {chapter}{目\hspace *{2em}录}{3}{section*.3}% 
 \contentsline {chapter}{\numberline {1}前言}{1}{chapter.1}% 
 \contentsline {section}{\numberline {1.1}数学公式}{1}{section.1.1}% 
 \contentsline {subsection}{\numberline {1.1.1}简单的数学公式}{1}{subsection.1.1.1}% 

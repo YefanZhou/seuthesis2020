@@ -15,6 +15,9 @@
 \usepackage{algpseudocode}
 \usepackage{subfigure}
 
+
+
+
 \floatname{algorithm}{算法}
 \renewcommand{\algorithmicrequire}{\textbf{输入:}}
 \renewcommand{\algorithmicensure}{\textbf{输出:}}
@@ -24,11 +27,11 @@
 \categorynumber{000} % 分类采用《中国图书资料分类法》
 \UDC{000}            %《国际十进分类法UDC》的类号
 \secretlevel{公开}    %学位论文密级分为"公开"、"内部"、"秘密"和"机密"四种
-\studentid{04016999}   %学号要完整，前面的零不能省略。
+\studentid{04216747}   %学号要完整，前面的零不能省略。
 
-\title{东南大学本科毕业设计\LaTeX 模板}{}{SEU Thesis \LaTeX Template}{subtitle}
-\author{林志 \& 侯宏卫}{Zhi Lin \& Hongwei Hou}
-\advisor{神秘教授}{副教授}{No Name}{Associate Prof.}
+\title{基于深度学习的三维重建和点云生成}{}{SEU Thesis \LaTeX Template}{subtitle}
+\author{周烨凡}{Yefan Zhou}
+\advisor{杨绿溪}{教授}{No Name}{Prof.}
 \department{信息科学与工程学院}{Radio}
 \major[12em]{信息工程}
 \duration{2020年1月-2020年5月}
@@ -37,20 +40,28 @@
 
 
 
-\maketitle
+%\maketitle
 
-\begin{abstract}{希腊字母，腓尼基字母，语言，深度学习}
-注意！注意！注意！\LaTeX 读作latehe拉泰赫！
+\begin{abstract}{三维重建，点云，深度学习，数据挖掘}
 
-希腊字母源自腓尼基字母。腓尼基字母只有辅音，从右向左写。希腊语的元音发达，希腊人增添了元音字母。因为希腊人的书写工具是蜡板，有时前一行从右向左写完后顺势就从左向右写，变成所谓“耕地”式书写，后来逐渐演变成全部从左向右写。字母的方向也颠倒了。罗马人引进希腊字母，略微改变变为拉丁字母，在世界广为流行。希腊字母广泛应用到学术领域，如数学等。
+    单视角三维物体形状重建(Single-view 3D Reconstruction)是三维视觉领域一直以来的核心问题之一。由于拟合非线性方程和学习模式的有效性，深度神经网络被期望在重建三维非线性形状的任务中表现出色。本课题探究了深度神经网络在三维重建任务中的有效性和内在机制，主要的工作和创新如下：
+        
+        \begin{enumerate}
+            \item[1.] 针对基于自编码器结构的深度神经网络多次训练结果差异较大的问题，提出采用多任务训练对编码器进行初始化，以及引入残差层增加解码器网络深度这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了优于基于检索的非学习方法Oracle Nearest Neighbor的结果。
+            \item[2.] 为了衡量三维数据集的聚类程度，提出了基于affinity propagation和silhouette score的度量标准，该方法得到的量化结果与数据集降维后的可视化结果吻合。
+            \item[3.] 提出了影响三维重建任务中深度神经网络内在机制的主要因素是数据集的本质特征：当训练集中的三维形状集有相比于图片集更高的聚类程度的结构时，在这个数据集上训练的深度神经网络更有可能会执行识别机制而非重建机制，并定性和定量的证明了这一强相关性。
+        \end{enumerate}
+    最后，本文分析了上述结论对三维重建任务中的数据收集和神经网络训练的指导意义。
+    \end{abstract}
 
-希腊字母是希腊语所使用的字母，是世界上最早的有元音的字母，也广泛使用于数学、物理、生物、天文等学科。俄语等使用的西里尔字母也是由希腊字母演变而成。希腊字母进入了许多语言的词汇中，英语单字“alphabet”（字母表），源自拉丁语“alphabetum”，源自希腊语“αλφαβητον”，即为前两个希腊字母α（“Alpha”）及β（“Beta”）所合成，三角洲（“Delta”）这个词就来自希腊字母Δ，因为Δ是三角形。
-\end{abstract}
-
-\begin{englishabstract}{Greek Alphabet, Phoenician Alphabet, Language, Deep Learning}
-The Greek alphabet has been used to write the Greek language since the late 9th century BC or early 8th century BC It was derived from the earlier Phoenician alphabet, and was the first alphabetic script to have distinct letters for vowels as well as consonants. It is the ancestor of the Latin and Cyrillic scripts.Apart from its use in writing the Greek language, in both its ancient and its modern forms, the Greek alphabet today also serves as a source of technical symbols and labels in many domains of mathematics, science and other fields.
-
-In its classical and modern forms, the alphabet has 24 letters, ordered from alpha to omega. Like Latin and Cyrillic, Greek originally had only a single form of each letter; it developed the letter case distinction between upper-case and lower-case forms in parallel with Latin during the modern era.
+\begin{englishabstract}{3D Reconstruction, Point Cloud, Deep Learning, Data mining}
+    Single-view 3D reconstruction is one of the elementary tasks in the field of 3D vision. Due to the effectiveness in learning and approximating non-linear function, deep neural networks are expected to perform well on the task of reconstructing 3D nonlinear shapes. This paper investigates the effectiveness and internal mechanism of deep neural network in 3D reconstruction task. The main contribution and innovation are summarized as follows:
+    \begin{enumerate}
+        \item[1.] For the problem that the variance of multiple training results of deep neural network based on autoencoder structure is too large, it proposes to leverage multi-task training to initiate the encoder and introduce residual layer to deepen the decoder in order to optimize network architecture. These methods are trained and tested on ShapeNet public dataset and they outperform the non-learning method based on retrieve, namely Oracle Nearest Neighbor. 
+        \item[2.] Define novel way to measure clustering coefficient of 3D reconstruction dataset based on affinity propagation and silhouette score, the quantitative results of this metric is corresponding to qualitative results of visualization of dataset in low dimension.
+        \item[3.] It claims that the bias of internal mechanism of network is mainly affected by the intrinsic properties of dataset: when the training set of 3D shapes has a more clustered structure than images, the deep neural networks trained on this dataset become more likely to perform recognition than reconstruction, and it proves the strong correlation between the deep neural networks and dataset property both qualitatively and quantitatively.
+    \end{enumerate}
+    Finally, this paper analyzes the significance of the above conclusions for data collection and neural network training.
 \end{englishabstract}
 
 \tableofcontents
