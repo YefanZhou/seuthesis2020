@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: thuthesis.bst
 Database file #1: seuthesis.bib
-You've used 2 entries,
+You've used 14 entries,
             2313 wiz_defined-function locations,
-            525 strings with 3730 characters,
-and the built_in function-call counts, 865 in all, are:
-= -- 86
-> -- 21
-< -- 1
-+ -- 10
-- -- 5
-* -- 54
-:= -- 117
-add.period$ -- 5
-call.type$ -- 2
-change.case$ -- 2
+            581 strings with 6515 characters,
+and the built_in function-call counts, 9571 in all, are:
+= -- 1001
+> -- 222
+< -- 12
++ -- 104
+- -- 52
+* -- 692
+:= -- 1198
+add.period$ -- 43
+call.type$ -- 14
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 58
-empty$ -- 92
-format.name$ -- 6
-if$ -- 203
+cite$ -- 14
+duplicate$ -- 708
+empty$ -- 951
+format.name$ -- 66
+if$ -- 2250
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 1
-newline$ -- 15
-num.names$ -- 2
-pop$ -- 12
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 99
+num.names$ -- 14
+pop$ -- 73
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 24
+skip$ -- 270
 stack$ -- 0
-substring$ -- 94
-swap$ -- 11
-text.length$ -- 1
+substring$ -- 1304
+swap$ -- 128
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 10
-width$ -- 3
-write$ -- 25
+while$ -- 104
+width$ -- 16
+write$ -- 181

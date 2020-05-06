@@ -1,16 +1,114 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{Yao:2015ix}
-Yao D, Zhao P, Yu C, et~al.
-\newblock {Sparse Online Relative Similarity Learning}.
-\newblock  2015 IEEE International Conference on Data Mining (ICDM). IEEE,
-  2015.
-\newblock  529--538
+\bibitem{li2018point}
+Li C~L, Zaheer M, Zhang Y, et~al.
+\newblock Point cloud gan[J].
+\newblock arXiv preprint arXiv:1810.05795, 2018.
 \thudot
 
-\bibitem{seucover}
-hbsjzzxgssb.
-\newblock 东南大学学位论文封面, 2007
+\bibitem{park2019deepsdf}
+Park J~J, Florence P, Straub J, et~al.
+\newblock Deepsdf: Learning continuous signed distance functions for shape
+  representation.
+\newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
+  Recognition, 2019.
+\newblock  165--174
+\thudot
+
+\bibitem{fan2017point}
+Fan H, Su H, Guibas L~J.
+\newblock A point set generation network for 3d object reconstruction from a
+  single image.
+\newblock  Proceedings of the IEEE conference on computer vision and pattern
+  recognition, 2017.
+\newblock  605--613
+\thudot
+
+\bibitem{tatarchenko2017octree}
+Tatarchenko M, Dosovitskiy A, Brox T.
+\newblock Octree generating networks: Efficient convolutional architectures for
+  high-resolution 3d outputs.
+\newblock  Proceedings of the IEEE International Conference on Computer Vision,
+  2017.
+\newblock  2088--2096
+\thudot
+
+\bibitem{groueix2018papier}
+Groueix T, Fisher M, Kim V~G, et~al.
+\newblock A papier-m{\^a}ch{\'e} approach to learning 3d surface generation.
+\newblock  Proceedings of the IEEE conference on computer vision and pattern
+  recognition, 2018.
+\newblock  216--224
+\thudot
+
+\bibitem{yang2018foldingnet}
+Yang Y, Feng C, Shen Y, et~al.
+\newblock Foldingnet: Point cloud auto-encoder via deep grid deformation.
+\newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
+  Recognition, 2018.
+\newblock  206--215
+\thudot
+
+\bibitem{wang2018pixel2mesh}
+Wang N, Zhang Y, Li Z, et~al.
+\newblock Pixel2mesh: Generating 3d mesh models from single rgb images.
+\newblock  Proceedings of the European Conference on Computer Vision (ECCV),
+  2018.
+\newblock  52--67
+\thudot
+
+\bibitem{sun2018pix3d}
+Sun X, Wu J, Zhang X, et~al.
+\newblock Pix3d: Dataset and methods for single-image 3d shape modeling.
+\newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
+  Recognition, 2018.
+\newblock  2974--2983
+\thudot
+
+\bibitem{tulsiani2017multi}
+Tulsiani S, Zhou T, Efros A~A, et~al.
+\newblock Multi-view supervision for single-view reconstruction via
+  differentiable ray consistency.
+\newblock  Proceedings of the IEEE conference on computer vision and pattern
+  recognition, 2017.
+\newblock  2626--2634
+\thudot
+
+\bibitem{wu2017marrnet}
+Wu J, Wang Y, Xue T, et~al.
+\newblock Marrnet: 3d shape reconstruction via 2.5 d sketches.
+\newblock  Advances in neural information processing systems, 2017.
+\newblock  540--550
+\thudot
+
+\bibitem{yan2016perspective}
+Yan X, Yang J, Yumer E, et~al.
+\newblock Perspective transformer nets: Learning single-view 3d object
+  reconstruction without 3d supervision.
+\newblock  Advances in neural information processing systems, 2016.
+\newblock  1696--1704
+\thudot
+
+\bibitem{kingma2014adam}
+Kingma D~P, Ba J.
+\newblock Adam: A method for stochastic optimization[J].
+\newblock arXiv preprint arXiv:1412.6980, 2014.
+\thudot
+
+\bibitem{tatarchenko2019single}
+Tatarchenko M, Richter S~R, Ranftl R, et~al.
+\newblock What do single-view 3d reconstruction networks learn?
+\newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
+  Recognition, 2019.
+\newblock  3405--3414
+\thudot
+
+\bibitem{arpit2017closer}
+Arpit D, Jastrz{\k{e}}bski S, Ballas N, et~al.
+\newblock A closer look at memorization in deep networks.
+\newblock  Proceedings of the 34th International Conference on Machine
+  Learning-Volume 70. JMLR. org, 2017.
+\newblock  233--242
 \thudot
 
 \end{thebibliography}
