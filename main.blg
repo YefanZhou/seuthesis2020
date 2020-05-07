@@ -3,46 +3,47 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: thuthesis.bst
 Database file #1: seuthesis.bib
+Warning--I didn't find a database entry for "OracleNN"
 Warning--empty journal in poczos2013distribution
-You've used 37 entries,
+You've used 38 entries,
             2313 wiz_defined-function locations,
-            692 strings with 12040 characters,
-and the built_in function-call counts, 28764 in all, are:
-= -- 3018
-> -- 597
+            702 strings with 12363 characters,
+and the built_in function-call counts, 29748 in all, are:
+= -- 3118
+> -- 614
 < -- 27
-+ -- 280
-- -- 140
-* -- 2287
-:= -- 3576
-add.period$ -- 115
-call.type$ -- 37
-change.case$ -- 37
++ -- 288
+- -- 144
+* -- 2384
+:= -- 3699
+add.period$ -- 117
+call.type$ -- 38
+change.case$ -- 38
 chr.to.int$ -- 0
-cite$ -- 38
-duplicate$ -- 2299
-empty$ -- 2920
-format.name$ -- 177
-if$ -- 6675
+cite$ -- 39
+duplicate$ -- 2391
+empty$ -- 3026
+format.name$ -- 182
+if$ -- 6894
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 37
-newline$ -- 251
-num.names$ -- 37
-pop$ -- 183
+int.to.str$ -- 38
+missing$ -- 38
+newline$ -- 257
+num.names$ -- 38
+pop$ -- 186
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 643
+skip$ -- 652
 stack$ -- 0
-substring$ -- 4264
+substring$ -- 4432
 swap$ -- 281
 text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 271
-width$ -- 39
-write$ -- 469
-(There was 1 warning)
+while$ -- 277
+width$ -- 40
+write$ -- 481
+(There were 2 warnings)

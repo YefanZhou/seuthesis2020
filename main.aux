@@ -79,56 +79,63 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}数据集的聚类趋势}{6}{section.2.3}\protected@file@percent }
 \newlabel{sec:metric_on_dataset}{{2.3}{6}{数据集的聚类趋势}{section.2.3}{}}
 \citation{wang2008adaptive}
+\citation{tatarchenko2019single}
+\citation{10.1145/2816795.2818071}
+\citation{tatarchenko2019single}
+\citation{OracleNN}
+\citation{OracleNN}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}模型方法}{8}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}基准模型}{8}{section.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}非深度学习方法}{8}{subsection.3.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}深度学习方法}{8}{subsection.3.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}模型分析}{8}{subsection.3.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}模型优化}{8}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}架构优化}{8}{subsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}实验结果与分析}{8}{subsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}重建效果}{8}{subsubsection.3.2.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3{}-1}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.\relax }}{9}{figure.caption.5}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:compare-Oracle-NN}{{3{}-1}{9}{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.\relax }{figure.caption.5}{}}
+\newlabel{OracleNN}{{\caption@xref {OracleNN}{ on input line 269}}{9}{非深度学习方法}{subsection.3.1.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Oracle Nearest Neighbor\relax }}{9}{algorithm.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}深度学习方法}{9}{subsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}模型分析}{9}{subsection.3.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}模型优化}{9}{section.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}架构优化}{9}{subsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}实验结果与分析}{9}{subsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.1}重建效果}{9}{subsubsection.3.2.2.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Evaluation metrics of shape reconstruction. The averaged chamfer distance and Earth mover's distance across all shapes are reported.\relax }}{9}{table.caption.6}\protected@file@percent }
 \newlabel{tab:evaluation}{{3.1}{9}{Evaluation metrics of shape reconstruction. The averaged chamfer distance and Earth mover's distance across all shapes are reported.\relax }{table.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3{}-2}{\ignorespaces Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. \relax }}{10}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:metric_per_class}{{3{}-2}{10}{Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. \relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3{}-3}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. \relax }}{11}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:visualize_KC}{{3{}-3}{11}{\small Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. \relax }{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}机制探究}{12}{subsubsection.3.2.2.2}\protected@file@percent }
-\newlabel{fig:T-SNE1}{{3{}-4a}{12}{With labels\relax }{figure.caption.9}{}}
-\newlabel{sub@fig:T-SNE1}{{a}{12}{With labels\relax }{figure.caption.9}{}}
-\newlabel{fig:T-SNE2}{{3{}-4b}{12}{Without labels\relax }{figure.caption.9}{}}
-\newlabel{sub@fig:T-SNE2}{{b}{12}{Without labels\relax }{figure.caption.9}{}}
-\newlabel{fig:T-SNE3}{{3{}-4c}{12}{Chamfer loss\relax }{figure.caption.9}{}}
-\newlabel{sub@fig:T-SNE3}{{c}{12}{Chamfer loss\relax }{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3{}-4}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}T-SNE and Chamfer loss of the same network trained with or without label information. The network trained without label information does not show a clear tendency to form clusters while yielding smaller Chamfer loss.\relax }}{12}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:T-SNE}{{3{}-4}{12}{\small T-SNE and Chamfer loss of the same network trained with or without label information. The network trained without label information does not show a clear tendency to form clusters while yielding smaller Chamfer loss.\relax }{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}机制探究}{13}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-1}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.\relax }}{10}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:compare-Oracle-NN}{{3{}-1}{10}{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-2}{\ignorespaces Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. \relax }}{11}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:metric_per_class}{{3{}-2}{11}{Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. \relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-3}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. \relax }}{12}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:visualize_KC}{{3{}-3}{12}{\small Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. \relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2.2}机制探究}{13}{subsubsection.3.2.2.2}\protected@file@percent }
+\newlabel{fig:T-SNE1}{{3{}-4a}{13}{With labels\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:T-SNE1}{{a}{13}{With labels\relax }{figure.caption.9}{}}
+\newlabel{fig:T-SNE2}{{3{}-4b}{13}{Without labels\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:T-SNE2}{{b}{13}{Without labels\relax }{figure.caption.9}{}}
+\newlabel{fig:T-SNE3}{{3{}-4c}{13}{Chamfer loss\relax }{figure.caption.9}{}}
+\newlabel{sub@fig:T-SNE3}{{c}{13}{Chamfer loss\relax }{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3{}-4}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}T-SNE and Chamfer loss of the same network trained with or without label information. The network trained without label information does not show a clear tendency to form clusters while yielding smaller Chamfer loss.\relax }}{13}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:T-SNE}{{3{}-4}{13}{\small T-SNE and Chamfer loss of the same network trained with or without label information. The network trained without label information does not show a clear tendency to form clusters while yielding smaller Chamfer loss.\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}机制探究}{14}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}理论分析}{13}{section.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4{}-1}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}When the training images are less clustered than the training shapes (as shown in subfigure (a)), the learned model shows the tendency of recognition.\relax }}{13}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:clustering_tendency}{{4{}-1}{13}{\small When the training images are less clustered than the training shapes (as shown in subfigure (a)), the learned model shows the tendency of recognition.\relax }{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}实验设计与数据集生成}{13}{section.4.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4{}-2}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Base dataset \# 1: interpolation between a sphere and a cube.\relax }}{13}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:cube-sphere}{{4{}-2}{13}{\small Base dataset \# 1: interpolation between a sphere and a cube.\relax }{figure.caption.11}{}}
-\newlabel{fig:five-clusters}{{4{}-3a}{13}{\small Dataset 1.1.n (n = 1, 2, $\ldots $7). Different subsampled datasets are generated to have different clustering tendencies. \relax }{figure.caption.12}{}}
-\newlabel{sub@fig:five-clusters}{{a}{13}{\small Dataset 1.1.n (n = 1, 2, $\ldots $7). Different subsampled datasets are generated to have different clustering tendencies. \relax }{figure.caption.12}{}}
-\newlabel{fig:two-clusters}{{4{}-3b}{13}{Dataset 1.2.n (n = 1, 2, $\ldots $7). The dot markers represent image distribution, while the cross markers represent point cloud distribution.\relax }{figure.caption.12}{}}
-\newlabel{sub@fig:two-clusters}{{b}{13}{Dataset 1.2.n (n = 1, 2, $\ldots $7). The dot markers represent image distribution, while the cross markers represent point cloud distribution.\relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4{}-3}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Coverage of two subsampled data sets 1.1.n and 1.2.n.\relax }}{13}{figure.caption.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}实验结果}{13}{section.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4{}-4}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Training-vs-prediction silhouette scores. Only Case 1 (the points with large dataset indices shown in the bottom-left figure) shows high tendency towards recognition.\relax }}{14}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:silhouette-dataset-1.png}{{4{}-4}{14}{\small Training-vs-prediction silhouette scores. Only Case 1 (the points with large dataset indices shown in the bottom-left figure) shows high tendency towards recognition.\relax }{figure.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4{}-5}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Distance matrices. Blue represents small distance and red represents large distance. {\bf  (Left)} predicted shapes of subsampled dataset 1.1 are not clustered. {\bf  (Right)} predicted shapes of subsampled dataset 1.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 7.\relax }}{15}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:cluster_visualization}{{4{}-5}{15}{\small Distance matrices. Blue represents small distance and red represents large distance. {\bf (Left)} predicted shapes of subsampled dataset 1.1 are not clustered. {\bf (Right)} predicted shapes of subsampled dataset 1.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 7.\relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}理论分析}{14}{section.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4{}-1}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}When the training images are less clustered than the training shapes (as shown in subfigure (a)), the learned model shows the tendency of recognition.\relax }}{14}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:clustering_tendency}{{4{}-1}{14}{\small When the training images are less clustered than the training shapes (as shown in subfigure (a)), the learned model shows the tendency of recognition.\relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}实验设计与数据集生成}{14}{section.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4{}-2}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Base dataset \# 1: interpolation between a sphere and a cube.\relax }}{14}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:cube-sphere}{{4{}-2}{14}{\small Base dataset \# 1: interpolation between a sphere and a cube.\relax }{figure.caption.11}{}}
+\newlabel{fig:five-clusters}{{4{}-3a}{14}{\small Dataset 1.1.n (n = 1, 2, $\ldots $7). Different subsampled datasets are generated to have different clustering tendencies. \relax }{figure.caption.12}{}}
+\newlabel{sub@fig:five-clusters}{{a}{14}{\small Dataset 1.1.n (n = 1, 2, $\ldots $7). Different subsampled datasets are generated to have different clustering tendencies. \relax }{figure.caption.12}{}}
+\newlabel{fig:two-clusters}{{4{}-3b}{14}{Dataset 1.2.n (n = 1, 2, $\ldots $7). The dot markers represent image distribution, while the cross markers represent point cloud distribution.\relax }{figure.caption.12}{}}
+\newlabel{sub@fig:two-clusters}{{b}{14}{Dataset 1.2.n (n = 1, 2, $\ldots $7). The dot markers represent image distribution, while the cross markers represent point cloud distribution.\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4{}-3}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Coverage of two subsampled data sets 1.1.n and 1.2.n.\relax }}{14}{figure.caption.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}实验结果}{14}{section.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4{}-4}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Training-vs-prediction silhouette scores. Only Case 1 (the points with large dataset indices shown in the bottom-left figure) shows high tendency towards recognition.\relax }}{15}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:silhouette-dataset-1.png}{{4{}-4}{15}{\small Training-vs-prediction silhouette scores. Only Case 1 (the points with large dataset indices shown in the bottom-left figure) shows high tendency towards recognition.\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4{}-5}{\ignorespaces \relax \fontsize  {10}{12}\selectfont  \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 4.5\p@ plus2\p@ minus\p@ \topsep 9\p@ plus3\p@ minus5\p@ \itemsep 4.5\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {sml}Distance matrices. Blue represents small distance and red represents large distance. {\bf  (Left)} predicted shapes of subsampled dataset 1.1 are not clustered. {\bf  (Right)} predicted shapes of subsampled dataset 1.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 7.\relax }}{16}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:cluster_visualization}{{4{}-5}{16}{\small Distance matrices. Blue represents small distance and red represents large distance. {\bf (Left)} predicted shapes of subsampled dataset 1.1 are not clustered. {\bf (Right)} predicted shapes of subsampled dataset 1.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 7.\relax }{figure.caption.14}{}}
 \bibdata{seuthesis}
 \bibcite{li2018point}{{1}{}{{}}{{}}}
 \bibcite{park2019deepsdf}{{2}{}{{}}{{}}}
@@ -145,7 +152,7 @@
 \bibcite{tatarchenko2019single}{{13}{}{{}}{{}}}
 \bibcite{arpit2017closer}{{14}{}{{}}{{}}}
 \bibcite{chang2015shapenet}{{15}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{参考文献}{16}{chapter*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{参考文献}{17}{chapter*.15}\protected@file@percent }
 \bibcite{Yi2017LargeScale3S}{{16}{}{{}}{{}}}
 \bibcite{kanazawa2018learning}{{17}{}{{}}{{}}}
 \bibcite{pontes2018image2mesh}{{18}{}{{}}{{}}}
@@ -168,17 +175,18 @@
 \bibcite{poczos2013distribution}{{35}{}{{}}{{}}}
 \bibcite{wang2008adaptive}{{36}{}{{}}{{}}}
 \bibcite{van2015using}{{37}{}{{}}{{}}}
+\bibcite{10.1145/2816795.2818071}{{38}{}{{}}{{}}}
 \@writefile{toc}{\ttl@change@i {\@ne }{chapter}{0pt}{\vspace {.5\baselineskip }\normalfont \bfseries }{附录 \thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[10pt]{$\cdot $}\contentspage }\relax }
 \@writefile{toc}{\ttl@change@v {chapter}{}{}{}\relax }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}{\LaTeX  }实验}{19}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}{\LaTeX  }实验}{20}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}MATLAB实验}{20}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}MATLAB实验}{21}{appendix.B}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{致\hspace  *{2em}谢}{21}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{致\hspace  *{2em}谢}{22}{section*.16}\protected@file@percent }
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
 \ttl@finishall
 \global\csname @altsecnumformattrue\endcsname

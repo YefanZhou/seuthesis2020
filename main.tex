@@ -20,6 +20,7 @@
 \usepackage{booktabs}
 \newtheorem{theorem}{定义}
 \usepackage{xcolor}
+%\usepackage{algorithm,algpseudocode}
 
 \newcommand\TODO[1]{\textcolor{blue}{#1}}
 
@@ -248,6 +249,45 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
 \section{基准模型}
 \subsection{非深度学习方法}
 \TODO{介绍一下三兄弟，可以的话把Oracle-NN写成算法}
+论文~\cite{tatarchenko2019single}中提出了以下三个基于识别机制的非深度学习模型：
+\begin{itemize}
+    \item \textit{Clustering}:通过对样本点云集使用聚类算法，将一组点云集划分为多个集群，每个集群内部计算一个平均
+    三维形状，接着训练一个基于输入图片预测特定集群的分类器，将集群的平均三维形状作为预测结果。
+    \item \textit{Retrieval}:借鉴了现有的基于图片检索对应物体的三维形状的方法~\cite{10.1145/2816795.2818071},在测试
+    时，根据输入图片检索训练集中对应的三维点云，直接提取出来作为预测结果。
+    \item \textit{Oracle-Nearest-Neighbor}：该模型在预测时，在训练集中直接搜索与标签点云损失最小的训练点云，将其
+    作为预测结果。因为该模型在搜索最近点云时需要标签点云，而实际测试时只有对应的二维图片作为输入，所以在实践中是不可能
+    实现的。
+\end{itemize}
+
+因为在论文\cite{tatarchenko2019single}中Oracle-Nearest-Neighbor的水平超过了所有当前最先进的
+深度学习模型，而且它是表征任何实际基于检索的非深度学习方法的性能极限的理论基准。所以我们将其当做本课题的非深度学习基准模型, 并进行这样的实现\cite{OracleNN}。
+在将该模型应用到ShapeNet时我们发现，因为测试集有10000个样本，训练集有35000个样本，如果这样计算，复杂度很高，需要在GPU上消耗大概一周时间，占用了大量的计算资源。
+于是考虑利用数据集自带的类标签，共计55个类，如车，床，椅子等，在每个类内数据集中运行模型\cite{OracleNN}，大约10小时完成。
+
+\begin{algorithm}
+    \label{OracleNN}
+    \caption{Oracle Nearest Neighbor}
+    \begin{algorithmic}[1] %每行显示行号
+        \Require ${T^{n}_{i=0}}$测试集，${D^{t}_{j=0}}$训练集
+        \Ensure ${R^{n}_{k=0}}$预测结果
+        \State $i \gets 0$
+        \State $k \gets 0$
+        \While{$i<n$}
+            \State $index \gets 0$
+            \State $mindis \gets inf$
+            \State $j \gets 0$
+            \While{$j<t$}
+                \State $dis \gets Dis(T_i, D_j)$
+                    \If{$dis < mindis$}
+                        \State $index \gets j$
+                    \EndIf
+            \EndWhile
+        \State $R_{k=i} \gets D_{j=index}$
+        \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{深度学习方法}
 \TODO{先画流程图，可以的话画一下比较炫酷的图}
 \subsection{模型分析}
