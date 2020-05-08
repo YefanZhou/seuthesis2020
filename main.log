@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.11.7)  9 MAY 2020 01:15
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.11.7)  9 MAY 2020 01:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1368,7 +1368,7 @@ File: figs/F-compare.png Graphic file (type bmp)
 File: figs/CD_per_shape.png Graphic file (type bmp)
 <figs/CD_per_shape.png>
 
-Overfull \hbox (1.1657pt too wide) in paragraph at lines 363--367
+Overfull \hbox (1.1657pt too wide) in paragraph at lines 365--369
  [][] 
  []
 
@@ -1433,7 +1433,7 @@ File: figs/real_dataset/AE/jar_d56098d4d83f5976a2c59a4d90e63212_fine.png Graphic
 File: figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png Graphic file (type bmp)
 <figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png>
 
-Overfull \hbox (1.16646pt too wide) in paragraph at lines 372--411
+Overfull \hbox (1.16646pt too wide) in paragraph at lines 374--413
 [][] 
  []
 
@@ -1476,18 +1476,18 @@ File: figs/Isometric9.png Graphic file (type bmp)
 File: figs/Isometric10.png Graphic file (type bmp)
 <figs/Isometric10.png>
 
-Overfull \hbox (1.14363pt too wide) in paragraph at lines 444--458
+Overfull \hbox (1.14363pt too wide) in paragraph at lines 446--460
 [][] 
  []
 
 File: figs/five-clusters.png Graphic file (type bmp)
 <figs/five-clusters.png>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 465.
+(Font)              <10> on input line 467.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 465.
+(Font)              <7> on input line 467.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 465.
+(Font)              <5> on input line 467.
 File: figs/two-clusters.png Graphic file (type bmp)
 <figs/two-clusters.png>
 File: figs/silhouette-dataset-1.png Graphic file (type bmp)
@@ -1580,7 +1580,7 @@ File: figs/toyset_matrices/cluster_2by10_7_2.png Graphic file (type bmp)
 File: figs/toyset_matrices/cluster_2by10_7_3.png Graphic file (type bmp)
 <figs/toyset_matrices/cluster_2by10_7_3.png>
 
-Overfull \hbox (4.75073pt too wide) in paragraph at lines 484--545
+Overfull \hbox (4.75073pt too wide) in paragraph at lines 486--547
  [][] 
  []
 
@@ -1603,7 +1603,7 @@ Class scrbook Warning: deprecated old font command `\bf' used.
 (scrbook)              Otherwise you should reconfigure or replace the
 (scrbook)              package. If you have used the old font command
 (scrbook)              `\bf' yourself you should replace it, e.g., by
-(scrbook)              `\normalfont \bfseries ' on input line 545.
+(scrbook)              `\normalfont \bfseries ' on input line 547.
 
 
 Class scrbook Warning: deprecated old font command `\bf' used.
@@ -1624,7 +1624,7 @@ Class scrbook Warning: deprecated old font command `\bf' used.
 (scrbook)              Otherwise you should reconfigure or replace the
 (scrbook)              package. If you have used the old font command
 (scrbook)              `\bf' yourself you should replace it, e.g., by
-(scrbook)              `\normalfont \bfseries ' on input line 545.
+(scrbook)              `\normalfont \bfseries ' on input line 547.
 
 [14
 
