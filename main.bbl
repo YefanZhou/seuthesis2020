@@ -290,4 +290,11 @@ Li Y, Su H, Qi C~R, et~al.
 \newblock ACM Trans. Graph., 2015, 34(6)
 \thudot
 
+\bibitem{He_2016}
+He K, Zhang X, Ren S, et~al.
+\newblock Deep residual learning for image recognition[J].
+\newblock 2016 IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR), 2016.
+\thudot
+
 \end{thebibliography}

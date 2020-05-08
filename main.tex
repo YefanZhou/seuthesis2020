@@ -261,13 +261,13 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
 \end{itemize}
 
 因为在论文\cite{tatarchenko2019single}中Oracle-Nearest-Neighbor的水平超过了所有当前最先进的
-深度学习模型，而且它是表征任何实际基于检索的非深度学习方法的性能极限的理论基准。所以我们将其当做本课题的非深度学习基准模型, 并进行这样的实现\cite{OracleNN}。
-在将该模型应用到ShapeNet时我们发现，因为测试集有10000个样本，训练集有35000个样本，如果这样计算，复杂度很高，需要在GPU上消耗大概一周时间，占用了大量的计算资源。
-于是考虑利用数据集自带的类标签，共计55个类，如车，床，椅子等，在每个类内数据集中运行模型\cite{OracleNN}，大约10小时完成。
+深度学习模型，而且它是表征任何实际基于检索的非深度学习方法的性能极限的理论基准。所以我们将其当做本课题的非深度学习基准模型, 并进行这样的实现\ref{alg:orcalenn}。
+我们发现在将该模型应用到ShapeNet时，因为测试集有10000个样本，训练集有35000个样本，如果这样计算，复杂度很高，需要在GPU上消耗大概一周时间，占用了大量的计算资源。
+于是考虑利用数据集自带的类标签，共计55个类，如车，床，椅子等，在每个类内数据集中运行该算法\ref{alg:orcalenn}，大约10小时完成。
 
 \begin{algorithm}
-    \label{OracleNN}
     \caption{Oracle Nearest Neighbor}
+    \label{alg:orcalenn}
     \begin{algorithmic}[1] %每行显示行号
         \Require ${T^{n}_{i=0}}$测试集，${D^{t}_{j=0}}$训练集
         \Ensure ${R^{n}_{k=0}}$预测结果
@@ -278,24 +278,61 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
             \State $mindis \gets inf$
             \State $j \gets 0$
             \While{$j<t$}
-                \State $dis \gets Dis(T_i, D_j)$
+                \State $dis \gets Distance(T_i, D_j)$
                     \If{$dis < mindis$}
                         \State $index \gets j$
+                        \State $mindis \gets dis$
                     \EndIf
+                \State $j \gets j+1$
             \EndWhile
         \State $R_{k=i} \gets D_{j=index}$
+        \State $i \gets i+1$
         \EndWhile
     \end{algorithmic}
 \end{algorithm}
 
 \subsection{深度学习方法}
 \TODO{先画流程图，可以的话画一下比较炫酷的图}
-\subsection{模型分析}
-\TODO{用表格pose出OracleNN和baseline的结果比较，可以的话画一下}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\textwidth]{figs/model/ae_baseline_grid.png} 
+    \caption{基于“编码器-解码器”架构的深度神经网络基准模型}
+    \label{fig:ae_baseline}
+\end{figure}
+根据论文PSGN~\cite{fan2017point}提出的基于“编码器-解码器”架构的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
+\begin{itemize}
+\item 编码器：采用ResNet-18~\cite{He_2016}的卷积层架构作为接受二维图像输入并提取图像特征的编码器, 具体来说，移除ResNet-18最后一层用来分类的全连接层，将一维特征层直接输出作为码字。
+\item 特征连接：模型中存储有一个预先初始化好的二维正方形网格点云，长宽在[-1,1]之间，由$m \times 2$的矩阵表示。在将码字输入解码器之前，
+我们先将其复制$m$次，然后将$m \times 512$矩阵（码字）与$m \times 2$矩阵（二维网格）连接起来，连接的结果是大小为$m \times 514$的矩阵。
+\item 解码器：采用FoldingNet解码器\cite{yang2018foldingnet}作为从码字恢复到点云结构的解码器，具体来说，这个解码器由两个感知器构成，每个感知器由三层全连接层构成。
+\end{itemize}
+该基准模型的关键部分是提出的解码器使用两个连续的3层感知器将固定的2D网格扭曲为输入点云的形状。这个过程称为折叠操作，实质上形成了通用的二维到三维映射。
+为了直观地解释为什么这种折叠操作是通用的二维到三维的映射，请用矩阵$U$表示输入的二维网格点。$U$的每一行都是一个
+二维网格点。用$U_i$表示$U$的第$i$行，用$\theta$表示编码器输出的码字。然后，在特征连接之后，解码器的输入矩阵的
+第$i$行为$[u_i,\theta]$,由于感知器并行应用于输入矩阵的每一行，因此输出矩阵的第$i$行可以写成$f([u_i,\theta])$,其中
+$f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$的参数化高维函数，码字$\theta$是指导功能结构（折叠操作）的参数。由于多层感知器
+擅长拟合非线性函数，因此它们可以在二维网格上执行精细的折叠操作。
 
+\subsection{实验结果与分析}
+\TODO{用表格pose出OracleNN和baseline的结果比较，可以的话画一下}
+\begin{table}
+    \centering
+    \caption{基准模型的评估结果}
+    \begin{tabular}{cc} 
+    \hline
+    模型         & Chamfer Distance        \\ 
+    \hline
+    Oracle NN  & 0.0719                  \\
+    自编码器（基准模型） & 0.0806 \\
+    \hline
+    \end{tabular}
+    \end{table}
+网络很容易陷入局部最优，而且可以看到损失收敛的很早，这说明网络的学习能力不强。因此需要好的初始化和更深的网络结构来提高收敛能力。
 \section{模型优化}
 \subsection{架构优化}
 \subsection{实验结果与分析}
+
+
 \subsubsection{重建效果}
 \begin{figure}[!htb]
     \centering
@@ -307,26 +344,27 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
 
 \begin{table}
     \centering
-    \begin{tabular}{|c@{}|c@{}|c@{}|} \hline
-    Model &  Chamfer distance   &  Earth mover's distance\\ \hline
-    Auto-encoder w/ label &  0.0716  & 0.0486 \\
-    Auto-encoder & 0.0768 & 0.0463 \\
-    Oracle & 0.0746 & 0.0319 \\ \hline
+    \caption{优化模型的评估结果}
+    \begin{tabular}{ccc} 
+    \hline
+    模型                      & Chamfer Distance \\
+    \hline
+    自编码器（基准模型）            & 0.0806     \\
+    自编码器（弱标签信息）           & 0.0716                             \\
+    自编码器（残差层解码器）         & 0.0768                         \\
+    Oracle NN & 0.0719                           \\
+    \hline
     \end{tabular}
-    \vspace{2mm}
-    \caption{Evaluation metrics of shape reconstruction. The averaged chamfer distance and Earth mover's distance across all shapes are reported.}
-    \label{tab:evaluation}
 \end{table}
+
 
 \begin{figure}
 \centering
 \begin{tabular}{c@{}}
 \includegraphics[width=0.99\columnwidth]{figs/CD_per_shape.png} \\
 Chamfer Distance \\
-\includegraphics[width=0.99\columnwidth]{figs/EMD_per_shape.png} \\
-Earth Mover's Distance \\
 \end{tabular}
-\caption{Evaluation metrics of reconstruction. We report chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. }
+\caption{Evaluation metrics of reconstruction.  chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. }
 \label{fig:metric_per_class}
 \end{figure}
 
