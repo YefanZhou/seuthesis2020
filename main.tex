@@ -246,8 +246,13 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
     而且，没有标签的重建效果比有标签的重建效果要更好。
 \end{itemize}
 
+在这个章节，我们使用的数据集均为ShapeNet, 共计55个类，52430个样本，训练集\/验证集\/测试集按照70\%\/10\%\/20\%随机采样划分。图片大小为$224 \times 224 $,
+每个三维点云有1024个三维点构成。
+
+
 \section{基准模型}
-\subsection{非深度学习方法}
+\subsection{模型介绍}
+\subsubsection{非深度学习方法}
 \TODO{介绍一下三兄弟，可以的话把Oracle-NN写成算法}
 论文~\cite{tatarchenko2019single}中提出了以下三个基于识别机制的非深度学习模型：
 \begin{itemize}
@@ -291,12 +296,12 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{深度学习方法}
+\subsubsection{深度学习方法}
 \TODO{先画流程图，可以的话画一下比较炫酷的图}
 \begin{figure}
     \centering
     \includegraphics[width=0.99\textwidth]{figs/model/ae_baseline_grid.png} 
-    \caption{基于“编码器-解码器”架构的深度神经网络基准模型}
+    \caption{基于自编码器架构的深度神经网络基准模型}
     \label{fig:ae_baseline}
 \end{figure}
 根据论文PSGN~\cite{fan2017point}提出的基于“编码器-解码器”架构的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
@@ -315,8 +320,17 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 
 \subsection{实验结果与分析}
 \TODO{用表格pose出OracleNN和baseline的结果比较，可以的话画一下}
+我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并对此进行分析。
+对于非深度学习基准模型Oracle Nearest Neighbor, 我们展示了所有重建样本的损失平均值。
+对于基于自编码器架构的深度学习基准模型，我们使用Adam优化器，训练了100个周期，使其达到收敛，并对超参数进行调参，总共进行了8次训练，最终展示了最优的
+重建效果。如表\ref{table:metric_per_baseline}。
+
+网络很容易陷入局部最优，而且可以看到损失收敛的很早，这说明网络的学习能力不强。这是因为我们的损失函数
+是三维点云相关的，并不能显示的指导编码器来学习某种图像特征，我们尝试了用码字放入图片解码器中，发现并没有图片恢复出来，
+我们也尝试将码字经过T-SNE可视化，发现没有良好的分类效果。因此需要好的初始化和更深的网络结构来提高收敛能力。
 \begin{table}
     \centering
+    \label{table:metric_per_baseline}
     \caption{基准模型的评估结果}
     \begin{tabular}{cc} 
     \hline
@@ -327,9 +341,16 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     \hline
     \end{tabular}
     \end{table}
-网络很容易陷入局部最优，而且可以看到损失收敛的很早，这说明网络的学习能力不强。这是因为我们的损失函数
-是三维点云相关的，并不能显示的指导编码器来学习某种图像特征，我们尝试了用码字放入图片解码器中，发现并没有图片恢复出来，
-我们也尝试将码字经过TSNE可视化，发现没有良好的分类效果。因此需要好的初始化和更深的网络结构来提高收敛能力。
+
+\begin{figure}[!htb]
+        \centering
+        \includegraphics[width=.40\textwidth]{figs/model/ae_trainingloss.png}
+        \includegraphics[width=.40\textwidth]{figs/model/ae_testloss.png}
+        \caption{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.}
+        \label{fig:compare-Oracle-NN}
+\end{figure}
+
+\FloatBarrier
 \section{模型优化}
 \subsection{架构优化}
 \subsection{实验结果与分析}
@@ -338,7 +359,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \subsubsection{重建效果}
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=.40\textwidth]{figs/chamfer-compare.png}
+    \includegraphics[width=.40\textwidth]{figs/chamfer-compare_roman.png}
     \includegraphics[width=.40\textwidth]{figs/F-compare.png}
     \caption{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.}
     \label{fig:compare-Oracle-NN}
