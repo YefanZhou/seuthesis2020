@@ -152,7 +152,7 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
 两个指标被用来测量重建结果$\widehat{S} = f(I)$与标签点云$S$之间的差异，称为Chamfer Distance和F-score。
 
 \noindent
-\textbf{Chamfer distance.}Chamfer Distane通过搜索另一个点集中最近点来测试一个点集到另一个点集的整体距离。
+\textbf{Chamfer distance.}\label{sec:chamfer}Chamfer Distane通过搜索另一个点集中最近点来测试一个点集到另一个点集的整体距离。
 \begin{equation}\label{eqn:chamfer}
 	d_{CH}(S,\widehat{S}) = \frac{1}{|S|}\sum\limits_{\mathbf{x}\in S}\min_{\widehat{\mathbf{x}}\in \widehat{S}}\|\mathbf{x}-\widehat{\mathbf{x}}\|_2 + 
     \frac{1}{|\widehat{S}|}\sum\limits_{\widehat{\mathbf{x}}\in \widehat{S}}\min_{\mathbf{x}\in S}\|\widehat{\mathbf{x}} - \mathbf{x}\|_2.
@@ -160,7 +160,7 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
 尽管Chamfer Distance是运算高效且方便的，它会被很小一部分异常点的强烈影响。所以我们也要如[26]建议的那样采用F-score来预测点集。
 
 \noindent
-\textbf{F-score.}另外一个衡量形状重建的指标是F-score, 该指标是精确度和回忆度的调和平均数。在给定相应的标签$S$，且在固定的距离阈值$d$内，重建点云$\widehat{S}$
+\textbf{F-score.}\label{sec:fscore}另外一个衡量形状重建的指标是F-score, 该指标是精确度和回忆度的调和平均数。在给定相应的标签$S$，且在固定的距离阈值$d$内，重建点云$\widehat{S}$
 的精确度$\textit{Prec}$为定义为：
 
 \begin{equation} \label{eq:precision}
@@ -321,7 +321,8 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 
 \subsection{实验结果与分析}
 
-我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并对此进行分析。
+在这个部分，我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并指出深度学习基准模型的问题。
+
 对于非深度学习基准模型Oracle-NN, 我们展示了所有重建样本的损失平均值作为量化的评估结果。
 对于基于自编码器架构的深度学习基准模型，我们以Chamfer Distance\footnote[2]{Chamfer Distance数值越小说明重建效果越好}作为损失函数，使用Adam优化器，训练了100个周期，使其达到收敛，并对超参数进行调参，总共进行了8次训练，最终展示了
 由所有重建样本的损失平均值表示的最优重建效果。两个模型的最优结果展示在表\ref{table:metric_per_baseline}。从这个结果中我们可以看出，在最优平均损失方面，Oracle NN
@@ -338,7 +339,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     编码器提取的特征码字并不具有区分图像类别的特征，虽然这不能证明编码器完全没有提取有助于三维重建的图像信息。
 \end{itemize}
 
-基于上述对神经网络基准模型的问题分析，我们将在下文对网络初始化以及梯度过小等问题提出优化方案。
+基于上述对神经网络基准模型的问题分析，我们将在下文对网络初始化和梯度过小等问题提出优化方案。
 \begin{table}
     \centering
     \caption{基准模型的评估结果}
@@ -354,6 +355,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \end{table}
 
 \begin{figure}[!htb]
+    \centering
        \begin{subfigure}[t]{0.49\linewidth} \centering 
          \includegraphics[width=\columnwidth]{figs/model/ae_trainingloss.png}
          \caption{训练集损失}\label{fig:trainingloss}
@@ -369,27 +371,53 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \FloatBarrier
 \section{模型优化}
 \subsection{架构优化}
-在这个部分，我们提出加入弱标签信息进行多任务训练，以及引入残差层这两种方法优化神经网络架构。
+在这个部分，我们介绍用残差层改进译码器以及加入弱标签信息进行编码器初始化这两种方法的实现细节以及使用这两种方法的原因。
 \begin{itemize}
-    \item 针对如何给网络提供更优初始化，以及给予编码器显性优化的问题，我们提出加入弱标签信息来进行初始化的方法。在训练的前5个时期，在预测重建点云的同时将码字从中间层
-抽出进行一次图像分类训练，在第6个时期以及之后取消这一操作。这一技巧能帮助编码器获得一个较好的初始化，
-使得各个类别的码字具有类别独特性，帮助译码器进行类内重建，而类内的三维形状之间有很高的相似度，所以能较快的提高整体准确率。
+    \item 针对如何给网络参数提供良好的初始化，以及给编码器显性优化指导的问题，我们提出加入弱标签信息进行多任务训练以达到初始化的方法。
+    在训练的前5个周期，提供类标签给网络，在预测重建点云的同时将码字从中间层抽出进行图像分类训练，如图\ref{fig:class_init}。在第6个周期以及之后取消
+    这图片分类训练，只进行三维点云重建训练。这一创新方法的启发来自于图像深度学习领域常用的技巧，即使用预训练的网络参数
+    进行网络初始化，比如在某个工程问题上需要进行图像识别，常见操作是把神经网络在ImageNet上训练到收敛后，再把网络在实际数据集上训练进行微调，
+    我们没有采用这种预训练参数进行初始化的方法，一是因为ShapeNet的图片是由三维网格渲染而成的合成图片，ImageNet有一部分来自现实世界图片，
+    这两个数据域的分布不同，因此需要考虑域适应的问题。二是因为在ShapeNet上预先训练图像分类网络，增加三维重建的步骤和所需的计算资源，因此我们考虑使用弱标签信息来
+    简化预训练初始化的流程。
+    \begin{figure}
+        \centering
+        \begin{tabular}{c@{}}
+        \includegraphics[width=0.99\columnwidth]{figs/model/ae_baseline_class.png}
+        \end{tabular}
+        \caption{引入弱标签信息进行初始化}
+        \label{fig:class_init}
+    \end{figure}
 
-    \item 针对深度神经网络梯度过小和消失的问题，我们在基准模型\ref{fig:ae_baseline}的译码器中引入残差层，将每个三层全连接层感知器改为
-    由三个残差块组成的感知器，如图\ref{fig:resnet_decoder}残差块内部每个激活函数之前进行批处理归一化，译码器部分的参数量是之前的两倍，保留译码器之前编码器和特征连接结构不变。
-    根据图像分类领域深度学习的经验，残差层和批处理归一化都能有效的解决反向传播中梯度过小和消失的问题，且可以在此基础上增加网络深度，提高重建能力。
+    \item 针对深度神经网络梯度过小和消失的问题，我们用残差层改进基准模型\ref{fig:ae_baseline}的译码器，将三层全连接层感知器改为
+    由三个残差块组成的感知器，如图\ref{fig:resnet_decoder}。且残差块内部全连接层之间进行批处理归一化，改进后译码器的参数量是基准模型译码器的两倍，
+    保留译码器之前编码器和特征连接结构不变。根据图像分类领域深度学习的经验，残差层和批处理归一化都能有效的解决反向传播中梯度过小和消失的问题，
+    且可以在此基础上增加网络深度，提高重建能力。
 
 \begin{figure}
     \centering
     \begin{tabular}{c@{}}
     \includegraphics[width=0.99\columnwidth]{figs/model/resnet_decoder.png}
     \end{tabular}
-    \caption{Evaluation metrics of reconstruction.  chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. }
+    \caption{用残差层改进译码器}
     \label{fig:resnet_decoder}
 \end{figure}
 
 \end{itemize}
+\FloatBarrier
 \subsection{实验结果与分析}
+在这个部分，我们展示了将上述两种方法分别应用于优化网络，会在Chamfer Distance\ref{sec:chamfer}和 F-score\ref{sec:fscore}两个指标上取得接近甚至超过Oracle-NN的重建效果。
+同时，我们进一步对深度神经网络的内在机制进行探究，展示了一个标准的三维重建深度神经网络在公开数据集ShapeNet上倾向于执行重建任务而不是识别任务。
+
+\subsubsection{重建效果}
+表\ref{table:metric_optimal_baseline}汇报了基准模型，两种优化模型以及Oracle NN的最优平均重建损失（Chamfer Distance),
+数值越小说明重建效果越好，我们可以看到加入弱标签信息进行初始化后，基于自编码器的深度神经网络的重建水平（0.0716）优于Oracle NN（0.0719），使用残差层译码器后，
+神经网络的水平（0.0768）也得到了显著提高。特别的，我们将两个优化模型和Oracle NN的Chamfer Distance表示在图\ref{fig:chamfer-compare},
+从该图可以直观的看出，标准的基于自编码器的深度神经网络模型与Oracle-NN呈现出近乎相同的重建效果，且Oracle NN（基于识别机制的非学习模型的理论极限）在测试时需要不应获得的标签信息。
+
+除了Chamfer Distance这个指标外，我们还使用了F-score这个指标，将测试结果展现在\ref{fig:fscore-compare}，这个指标下的模型比较结果与Chamfer Distance的比较
+一致。因此，我们可以确定的得出结论：弱标签初始化与残差层改进都成功提高了深度神经网络在ShapeNet整体数据集的平均重建效果，
+前者上超过了基于识别机制的非学习模型的理论极限，后者接近了这一理论极限。
 
 \begin{table}
     \centering
@@ -400,37 +428,50 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     \hline
     自编码器（基准模型）            & 0.0806     \\
     自编码器（弱标签信息）           & 0.0716                             \\
-    自编码器（残差层解码器）         & 0.0768                         \\
+    自编码器（残差层译码器）         & 0.0768                         \\
     Oracle NN & 0.0719                           \\
     \hline
     \end{tabular}
+    \label{table:metric_optimal_baseline}
 \end{table}
 
-
-\subsubsection{重建效果}
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=.40\textwidth]{figs/chamfer-compare_roman.png}
-    \includegraphics[width=.40\textwidth]{figs/F-compare.png}
-    \caption{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.}
+    \begin{subfigure}[t]{0.49\linewidth} \centering 
+        \includegraphics[width=\columnwidth]{figs/chamfer-compare_roman.png}
+        \caption{各模型的Chamfer Distance比较}\label{fig:chamfer-compare}
+      \end{subfigure}
+     \begin{subfigure}[t]{0.49\linewidth} \centering
+         \includegraphics[width=\columnwidth]{figs/F-compare_roman.png}
+         \caption{各模型的F-score比较}\label{fig:fscore-compare}
+     \end{subfigure}
+    \caption{\small 优化深度学习模型与非深度学习模型各指标比较}
     \label{fig:compare-Oracle-NN}
 \end{figure}
 
+在平均重建效果之外，我们还考虑了每个类的重建效果的统计特性，如图\ref{fig:metric_per_class}。我们可以看到基于自编码器的三维重建神经网络在不同的类的
+重建效果一致，波动较小。而Oracle NN在一些类如tower，呈现出非常差的重建效果，出现了各个类重建效果不一致的情况。这个问题同样也在模型预测结果可视化中呈现出来，如图
+\ref{fig:visualize_KC}第四行，我们可以看到Oracle NN预测出了在三维形状层面上非常不合理的点云。结合ShapeNet数据集的分布TODO{附录}，我们可以看到有一些类的样本量很少，
+Oracle NN在样本量少的类内进行搜索时，有很大概率无法找到与预测点云相近的训练点云，因此会在这些类出现比较差的重建效果。
 
+
+综上所述，我们可以看出基于识别机制的非深度学习模型的局限性，此类模型缺少对训练数据集分布的鲁棒性，当训练集无法在低维度层面解释测试集需要的形状特征时（即当训练集中没有和测试样本在损失距离上相近的点云时），
+该类模型的方法效果远差于深度学习模型。
 
 \begin{figure}
 \centering
 \begin{tabular}{c@{}}
-\includegraphics[width=0.99\columnwidth]{figs/CD_per_shape.png} \\
+\includegraphics[width=0.99\columnwidth]{figs/CD_per_shape_roman.png} \\
 Chamfer Distance \\
 \end{tabular}
-\caption{Evaluation metrics of reconstruction.  chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. }
+\caption{每个类的重建评价指标，X轴每一列代表一个类的Chamfer Distance统计。实心点代表类内所有样本指标平均值，
+上边沿虚线代表类内所有样本指标最大值，下边沿虚线代表类内所有样本指标最小值。}
 \label{fig:metric_per_class}
 \end{figure}
 
 \begin{figure}[!h]
     \begin{tabular}{c@{}c@{}c@{}c@{}c@{}}
-    Input & GT & \makecell[c]{Auto-encoder \\(weak label info)} & Auto-encoder & Oracle NN\\
+    输入图片 & 标签点云 & \makecell[c]{自编码器 \\(弱标签信息)} & \makecell[c]{自编码器 \\（残差层译码器)} & Oracle NN\\
     	\includegraphics[width=0.11\columnwidth,height=2cm]{figs/real_dataset/Image/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0.png} &
     	\includegraphics[width=0.22\columnwidth,height=2cm]{figs/real_dataset/GT/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_gt.png} &
     	\includegraphics[width=0.22\columnwidth,height=2cm]{figs/real_dataset/AE_label/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_fine.png} &
@@ -468,7 +509,7 @@ Chamfer Distance \\
     	\includegraphics[width=0.22\columnwidth,height=2cm]{figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png}
     	\\
     \end{tabular}
-    \caption{\small Qualitative results show that standard auto-encoders achieve comparable reconstruction performance to Oracle-NN. }
+    \caption{\small 模型预测结果的可视化}
     \label{fig:visualize_KC}
 \end{figure}
 
