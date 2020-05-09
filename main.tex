@@ -53,7 +53,7 @@
     单视角三维物体形状重建(Single-view 3D Reconstruction)是三维视觉领域一直以来的核心问题之一。由于拟合非线性方程和学习模式的有效性，深度神经网络被期望在重建三维非线性形状的任务中表现出色。本课题探究了深度神经网络在三维重建任务中的有效性和内在机制，主要的工作和创新如下：
         
         \begin{enumerate}
-            \item[1.] 针对基于自编码器结构的深度神经网络多次训练结果差异较大的问题，提出采用多任务训练对编码器进行初始化，以及引入残差层增加解码器网络深度这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了优于基于检索的非学习方法Oracle Nearest Neighbor的结果。
+            \item[1.] 针对基于自编码器结构的深度神经网络梯度过小等问题，提出采用多任务训练对编码器进行初始化，以及引入残差层这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了优于基于检索的非学习方法Oracle Nearest Neighbor的结果。
             \item[2.] 为了衡量三维数据集的聚类程度，提出了基于affinity propagation和silhouette score的度量标准，该方法得到的量化结果与数据集降维后的可视化结果吻合。
             \item[3.] 提出了影响三维重建任务中深度神经网络内在机制的主要因素是数据集的本质特征：当训练集中的三维形状集有相比于图片集更高的聚类程度的结构时，在这个数据集上训练的深度神经网络更有可能会执行识别机制而非重建机制，并定性和定量的证明了这一强相关性。
         \end{enumerate}
@@ -63,7 +63,7 @@
 \begin{englishabstract}{3D Reconstruction, Point Cloud, Deep Learning, Data mining}
     Single-view 3D reconstruction is one of the elementary tasks in the field of 3D vision. Due to the effectiveness in learning and approximating non-linear function, deep neural networks are expected to perform well on the task of reconstructing 3D nonlinear shapes. This paper investigates the effectiveness and internal mechanism of deep neural network in 3D reconstruction task. The main contribution and innovation are summarized as follows:
     \begin{enumerate}
-        \item[1.] For the problem that the variance of multiple training results of deep neural network based on autoencoder structure is too large, it proposes to leverage multi-task training to initiate the encoder and introduce residual layer to deepen the decoder in order to optimize network architecture. These methods are trained and tested on ShapeNet public dataset and they outperform the non-learning method based on retrieve, namely Oracle Nearest Neighbor. 
+        \item[1.] For the problem that the variance of multiple training results of deep neural network based on auto-encoder structure is too large, it proposes to leverage multi-task training to initiate the encoder and introduce residual layer to deepen the decoder in order to optimize network architecture. These methods are trained and tested on ShapeNet public dataset and they outperform the non-learning method based on retrieve, namely Oracle Nearest Neighbor. 
         \item[2.] Define novel way to measure clustering coefficient of 3D reconstruction dataset based on affinity propagation and silhouette score, the quantitative results of this metric is corresponding to qualitative results of visualization of dataset in low dimension.
         \item[3.] It claims that the bias of internal mechanism of network is mainly affected by the intrinsic properties of dataset: when the training set of 3D shapes has a more clustered structure than images, the deep neural networks trained on this dataset become more likely to perform recognition than reconstruction, and it proves the strong correlation between the deep neural networks and dataset property both qualitatively and quantitatively.
     \end{enumerate}
@@ -246,26 +246,26 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
     而且，没有标签的重建效果比有标签的重建效果要更好。
 \end{itemize}
 
-在这个章节，我们使用的数据集均为ShapeNet, 共计55个类，52430个样本，训练集\/验证集\/测试集按照70\%\/10\%\/20\%随机采样划分。图片大小为$224 \times 224 $,
+在这个章节，我们使用的数据集均为ShapeNet, 共计55个类，52430个样本，训练集/验证集/测试集按照70\%/10\%/20\%随机采样划分。图片大小为$224 \times 224 $,
 每个三维点云有1024个三维点构成。
 
 
 \section{基准模型}
 \subsection{模型介绍}
 \subsubsection{非深度学习方法}
-\TODO{介绍一下三兄弟，可以的话把Oracle-NN写成算法}
+
 论文~\cite{tatarchenko2019single}中提出了以下三个基于识别机制的非深度学习模型：
 \begin{itemize}
     \item \textit{Clustering}:通过对样本点云集使用聚类算法，将一组点云集划分为多个集群，每个集群内部计算一个平均
     三维形状，接着训练一个基于输入图片预测特定集群的分类器，将集群的平均三维形状作为预测结果。
     \item \textit{Retrieval}:借鉴了现有的基于图片检索对应物体的三维形状的方法~\cite{10.1145/2816795.2818071},在测试
     时，根据输入图片检索训练集中对应的三维点云，直接提取出来作为预测结果。
-    \item \textit{Oracle-Nearest-Neighbor}：该模型在预测时，在训练集中直接搜索与标签点云损失最小的训练点云，将其
+    \item \textit{Oracle-Nearest-Neighbor\footnote[1]{下文缩写为Oracle-NN}}：该模型在预测时，在训练集中直接搜索与标签点云损失最小的训练点云，将其
     作为预测结果。因为该模型在搜索最近点云时需要标签点云，而实际测试时只有对应的二维图片作为输入，所以在实践中是不可能
     实现的。
 \end{itemize}
 
-因为在论文\cite{tatarchenko2019single}中Oracle-Nearest-Neighbor的水平超过了所有当前最先进的
+因为论文\cite{tatarchenko2019single}的实验结果表明Oracle NN的水平超过了所有当前最先进的
 深度学习模型，而且它是表征任何实际基于检索的非深度学习方法的性能极限的理论基准。所以我们将其当做本课题的非深度学习基准模型, 并进行这样的实现\ref{alg:orcalenn}。
 我们发现在将该模型应用到ShapeNet时，因为测试集有10000个样本，训练集有35000个样本，如果这样计算，复杂度很高，需要在GPU上消耗大概一周时间，占用了大量的计算资源。
 于是考虑利用数据集自带的类标签，共计55个类，如车，床，椅子等，在每个类内数据集中运行该算法\ref{alg:orcalenn}，大约10小时完成。
@@ -304,13 +304,14 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
     \caption{基于自编码器架构的深度神经网络基准模型}
     \label{fig:ae_baseline}
 \end{figure}
-根据论文PSGN~\cite{fan2017point}提出的基于“编码器-解码器”架构的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
+根据论文PSGN~\cite{fan2017point}提出的基于“编码器-解码器”架构\footnote[1]{下文简称为“自编码器”或“auto-encoder”}的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
 \begin{itemize}
 \item 编码器：采用ResNet-18~\cite{He_2016}的卷积层架构作为接受二维图像输入并提取图像特征的编码器, 具体来说，移除ResNet-18最后一层用来分类的全连接层，将一维特征层直接输出作为码字。
 \item 特征连接：模型中存储有一个预先初始化好的二维正方形网格点云，长宽在[-1,1]之间，由$m \times 2$的矩阵表示。在将码字输入解码器之前，
 我们先将其复制$m$次，然后将$m \times 512$矩阵（码字）与$m \times 2$矩阵（二维网格）连接起来，连接的结果是大小为$m \times 514$的矩阵。
 \item 解码器：采用FoldingNet解码器\cite{yang2018foldingnet}作为从码字恢复到点云结构的解码器，具体来说，这个解码器由两个感知器构成，每个感知器由三层全连接层构成。
 \end{itemize}
+
 该基准模型的关键部分是提出的解码器使用两个连续的3层感知器将固定的2D网格扭曲为输入点云的形状。这个过程称为折叠操作，实质上形成了通用的二维到三维映射。
 为了直观地解释为什么这种折叠操作是通用的二维到三维的映射，请用矩阵$U$表示输入的二维网格点。$U$的每一行都是一个
 二维网格点。用$U_i$表示$U$的第$i$行，用$\theta$表示编码器输出的码字。然后，在特征连接之后，解码器的输入矩阵的
@@ -319,19 +320,29 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 擅长拟合非线性函数，因此它们可以在二维网格上执行精细的折叠操作。
 
 \subsection{实验结果与分析}
-\TODO{用表格pose出OracleNN和baseline的结果比较，可以的话画一下}
-我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并对此进行分析。
-对于非深度学习基准模型Oracle Nearest Neighbor, 我们展示了所有重建样本的损失平均值。
-对于基于自编码器架构的深度学习基准模型，我们使用Adam优化器，训练了100个周期，使其达到收敛，并对超参数进行调参，总共进行了8次训练，最终展示了最优的
-重建效果。如表\ref{table:metric_per_baseline}。
 
-网络很容易陷入局部最优，而且可以看到损失收敛的很早，这说明网络的学习能力不强。这是因为我们的损失函数
-是三维点云相关的，并不能显示的指导编码器来学习某种图像特征，我们尝试了用码字放入图片解码器中，发现并没有图片恢复出来，
-我们也尝试将码字经过T-SNE可视化，发现没有良好的分类效果。因此需要好的初始化和更深的网络结构来提高收敛能力。
+我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并对此进行分析。
+对于非深度学习基准模型Oracle-NN, 我们展示了所有重建样本的损失平均值作为量化的评估结果。
+对于基于自编码器架构的深度学习基准模型，我们以Chamfer Distance\footnote[2]{Chamfer Distance数值越小说明重建效果越好}作为损失函数，使用Adam优化器，训练了100个周期，使其达到收敛，并对超参数进行调参，总共进行了8次训练，最终展示了
+由所有重建样本的损失平均值表示的最优重建效果。两个模型的最优结果展示在表\ref{table:metric_per_baseline}。从这个结果中我们可以看出，在最优平均损失方面，Oracle NN
+超过了深度神经网络，这一结果与论文\cite{tatarchenko2019single}中展示的两者之间的差距相吻合，而且正如前文所展示的，Oracle-NN是一个理论上的基于识别机制的基准模型，
+无法应用于实际任务，所以这一优越结果是被预计的。但是，在训练的过程中，我们发现了神经网络基准模型的一些问题，这意味着有可能通过一些优化或者训练技巧来继续缩小这一差距。
+结合图\ref{fig:lossplot}展示的在不同学习率下的两次训练过程的损失变化, 对主要问题的分析如下：
+\begin{itemize}
+    \item 神经网络训练状态不稳定。首先可以看出，学习率仅发生了三倍的变化，
+        就使得网络陷入了与最优效果相差较大的局部最优，且Adam优化器也没有能使得网络跳出这个点。在正常情况下，网络不应该对超参数有如此高的敏感程度。同时，这也说明重建任务也许对
+        参数初始化有比较高的要求。
+    \item 神经网络架构的学习能力较弱。如图\ref{fig:testloss}所示，两个网络分别在第30周期和第60周期收敛，收敛过早说明当前的网络可能出现了训练过程中梯度过小的问题。
+    \item 神经网络的编码器缺少显性的梯度优化。从理论角度来说，网络损失函数仅描述两个三维点云的相似程度，因此有理由怀疑该函数传播的梯度并不能给予对二维图片进行处理的
+    编码器足够的优化指导，使其提取需要的图片特征。从实验角度来说，我们将编码器输出的码字进行了T-SNE降维可视化，如图\ref{fig:T-SNE2},可以看出
+    编码器提取的特征码字并不具有区分图像类别的特征，虽然这不能证明编码器完全没有提取有助于三维重建的图像信息。
+\end{itemize}
+
+基于上述对神经网络基准模型的问题分析，我们将在下文对网络初始化以及梯度过小等问题提出优化方案。
 \begin{table}
     \centering
-    \label{table:metric_per_baseline}
     \caption{基准模型的评估结果}
+    \label{table:metric_per_baseline}
     \begin{tabular}{cc} 
     \hline
     模型         & Chamfer Distance        \\ 
@@ -340,30 +351,45 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     自编码器（基准模型） & 0.0806 \\
     \hline
     \end{tabular}
-    \end{table}
+\end{table}
 
 \begin{figure}[!htb]
-        \centering
-        \includegraphics[width=.40\textwidth]{figs/model/ae_trainingloss.png}
-        \includegraphics[width=.40\textwidth]{figs/model/ae_testloss.png}
-        \caption{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.}
-        \label{fig:compare-Oracle-NN}
+       \begin{subfigure}[t]{0.49\linewidth} \centering 
+         \includegraphics[width=\columnwidth]{figs/model/ae_trainingloss.png}
+         \caption{训练集损失}\label{fig:trainingloss}
+       \end{subfigure}
+      \begin{subfigure}[t]{0.49\linewidth} \centering
+          \includegraphics[width=\columnwidth]{figs//model/ae_testloss.png}
+          \caption{测试集损失}\label{fig:testloss}
+      \end{subfigure}
+       \caption{\small 深度神经网络基准模型的两次训练过程。蓝色与橙色指同一网络在不同优化器学习率下的训练，绿色指非深度学习基准模型的量化结果}
+    \label{fig:lossplot}
 \end{figure}
 
 \FloatBarrier
 \section{模型优化}
 \subsection{架构优化}
-\subsection{实验结果与分析}
+在这个部分，我们提出加入弱标签信息进行多任务训练，以及引入残差层这两种方法优化神经网络架构。
+\begin{itemize}
+    \item 针对如何给网络提供更优初始化，以及给予编码器显性优化的问题，我们提出加入弱标签信息来进行初始化的方法。在训练的前5个时期，在预测重建点云的同时将码字从中间层
+抽出进行一次图像分类训练，在第6个时期以及之后取消这一操作。这一技巧能帮助编码器获得一个较好的初始化，
+使得各个类别的码字具有类别独特性，帮助译码器进行类内重建，而类内的三维形状之间有很高的相似度，所以能较快的提高整体准确率。
 
+    \item 针对深度神经网络梯度过小和消失的问题，我们在基准模型\ref{fig:ae_baseline}的译码器中引入残差层，将每个三层全连接层感知器改为
+    由三个残差块组成的感知器，如图\ref{fig:resnet_decoder}残差块内部每个激活函数之前进行批处理归一化，译码器部分的参数量是之前的两倍，保留译码器之前编码器和特征连接结构不变。
+    根据图像分类领域深度学习的经验，残差层和批处理归一化都能有效的解决反向传播中梯度过小和消失的问题，且可以在此基础上增加网络深度，提高重建能力。
 
-\subsubsection{重建效果}
-\begin{figure}[!htb]
+\begin{figure}
     \centering
-    \includegraphics[width=.40\textwidth]{figs/chamfer-compare_roman.png}
-    \includegraphics[width=.40\textwidth]{figs/F-compare.png}
-    \caption{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.}
-    \label{fig:compare-Oracle-NN}
+    \begin{tabular}{c@{}}
+    \includegraphics[width=0.99\columnwidth]{figs/model/resnet_decoder.png}
+    \end{tabular}
+    \caption{Evaluation metrics of reconstruction.  chamfer distance and earth mover's distance per shape. Auto-encoder based methods perform consistently across different classes. }
+    \label{fig:resnet_decoder}
 \end{figure}
+
+\end{itemize}
+\subsection{实验结果与分析}
 
 \begin{table}
     \centering
@@ -379,6 +405,17 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     \hline
     \end{tabular}
 \end{table}
+
+
+\subsubsection{重建效果}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.40\textwidth]{figs/chamfer-compare_roman.png}
+    \includegraphics[width=.40\textwidth]{figs/F-compare.png}
+    \caption{\small This figure compares the performance of Oracle-NN to that of a standard ResNet auto-encoder based on FoldingNet. These two classifiers achieve almost exactly the same performance, despite the fact that Oracle-NN requires impractical oracle information unavailable during test time.}
+    \label{fig:compare-Oracle-NN}
+\end{figure}
+
 
 
 \begin{figure}
