@@ -180,6 +180,7 @@ where $\llbracket \cdot \rrbracket$ is the Iverson bracket.
 重建的准确度被精确度量化，用以测量重建的点集离标签点集有多近。重建的完整度被回忆度量化，用来测量标签点云多少部分被重建点云覆盖。
 所以，一个高的F-score显示了重建是准确且完整的[12]。
 \section{识别或重建}
+\label{sec:recog_or_recon}
 在这个部分，我们正式定义本文中研究的两种学习范式，被称为识别（\emph{recognition}）和重建（\emph{reconstruction}）
 
 \begin{theorem}\label{def:recognition}(识别)
@@ -240,9 +241,8 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
 我们还展示了在真实数据集ShapeNet上，即使是一个标准的三维重建深度神经网络也倾向于执行重建任务而不是识别任务。我们
 的结论基于两点观察：
 \begin{itemize}[\hspace{1cm}]
-    \item[1.] 首先，由标准的三维重建网络获得的量化结果如Chamfer Distance 和 F-score与基于Oracle-Nearest-Neighbor(Oracle-NN)
-    的重建方法所获得的结果相近。
-    \item[2.] 其次，由自编码训练获得的高维码字的2D T-SNE 可视化，和使用标签信息进行训练相比，并没有展示出明显的形成簇的趋势。
+    \item[1.] 标准的三维重建网络获得的重建结果在量化指标如Chamfer Distance和F-score上超过了基于识别机制的非深度学习方法Oracle-NN的重建结果。
+    \item[2.] 由自编码训练获得的高维码字的2D T-SNE 可视化，和使用标签信息进行训练相比，并没有展示出明显的形成簇的趋势。
     而且，没有标签的重建效果比有标签的重建效果要更好。
 \end{itemize}
 
@@ -370,7 +370,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 
 \FloatBarrier
 \section{模型优化}
-\subsection{架构优化}
+\subsection{架构优化}\label{sec:optimal_method}
 在这个部分，我们介绍用残差层改进译码器以及加入弱标签信息进行编码器初始化这两种方法的实现细节以及使用这两种方法的原因。
 \begin{itemize}
     \item 针对如何给网络参数提供良好的初始化，以及给编码器显性优化指导的问题，我们提出加入弱标签信息进行多任务训练以达到初始化的方法。
@@ -406,6 +406,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \end{itemize}
 \FloatBarrier
 \subsection{实验结果与分析}
+\label{sec:shapenet_result}
 在这个部分，我们展示了将上述两种方法分别应用于优化网络，会在Chamfer Distance\ref{sec:chamfer}和 F-score\ref{sec:fscore}两个指标上取得接近甚至超过Oracle-NN的重建效果。
 同时，我们进一步对深度神经网络的内在机制进行探究，展示了一个标准的三维重建深度神经网络在公开数据集ShapeNet上倾向于执行重建任务而不是识别任务。
 
@@ -451,9 +452,11 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 
 在平均重建效果之外，我们还考虑了每个类的重建效果的统计特性，如图\ref{fig:metric_per_class}。我们可以看到基于自编码器的三维重建神经网络在不同的类的
 重建效果一致，波动较小。而Oracle NN在一些类如tower，呈现出非常差的重建效果，出现了各个类重建效果不一致的情况。这个问题同样也在模型预测结果可视化中呈现出来，如图
-\ref{fig:visualize_KC}第四行，我们可以看到Oracle NN预测出了在三维形状层面上非常不合理的点云。结合ShapeNet数据集的分布TODO{附录}，我们可以看到有一些类的样本量很少，
+\ref{fig:visualize_KC}第四行，我们可以看到Oracle NN预测出了在三维形状层面上非常不合理的点云。结合ShapeNet数据集的分布\TODO{附录}，我们可以看到有一些类的样本量很少，
 Oracle NN在样本量少的类内进行搜索时，有很大概率无法找到与预测点云相近的训练点云，因此会在这些类出现比较差的重建效果。
 
+图\ref{fig:visualize_KC}展示了各个模型预测结果的可视化，从这些定性结果可以看出，在不同物体类别之间，标准自动编码器的重建性能比Oracle NN更稳定。
+更多的可视化结果提供在附录中。
 
 综上所述，我们可以看出基于识别机制的非深度学习模型的局限性，此类模型缺少对训练数据集分布的鲁棒性，当训练集无法在低维度层面解释测试集需要的形状特征时（即当训练集中没有和测试样本在损失距离上相近的点云时），
 该类模型的方法效果远差于深度学习模型。
@@ -509,12 +512,27 @@ Chamfer Distance \\
     	\includegraphics[width=0.22\columnwidth,height=2cm]{figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png}
     	\\
     \end{tabular}
-    \caption{\small 模型预测结果的可视化}
+    \caption{\small 各模型预测结果的可视化}
     \label{fig:visualize_KC}
 \end{figure}
 
 \FloatBarrier
 \subsubsection{机制探究}
+在这个部分，我们证明了在ShapeNet上训练的标准的神经网络执行一个重建任务而不是识别任务。论证理由如下：
+\begin{enumerate}
+    \item 根据上文部分\ref{sec:shapenet_result}展示的训练结果，由标准的三维重建网络获得的重建结果在量化指标如
+    Chamfer Distance和F-score上超过了基于识别机制的非深度学习方法Oracle-NN的重建结果。且Oracle-NN是基于识别机制的非深度学习方法的
+    理论极限,因此可以推理出在我们展示的实验中的三维重建网络并没有执行识别机制，且基于重建机制的模型在ShapeNet上的性能超越了基于识别机制的模型。
+    \item 我们展示了二维T-SNE（见图\ref{fig:TSNE-Chamfer})。图\ref{fig:T-SNE1}和图\ref{fig:T-SNE2}分别展示了在训练时有类标签监督和没有类标签监督
+    的两个神经网络的可视化结果（每个模型都训练了100个周期）。T-SNE图上的每个二维点都表示在测试时的一个码字。我们只选择了9个样本最多的类，
+    因此如果存在聚类效果的话那么这一效果会更明显。这两个神经网络有同样的结构如图\ref{fig:resnet_decoder}，并且他们使用同样的流程进行训练（100个周期，学习率0.003，
+    批处理大小32，权值衰减1E-6，并且都使用同样的学习率衰减步骤）。
+
+    在图\ref{fig:T-SNE1}，神经网络使用类标签监督训练，我们看到一个清楚的聚类特征同时网络有比较高的Chamfer Distance，也意味着比较差的重建效果。
+    相反图\ref{fig:T-SNE2}并没有展现出清楚的聚类特征但有比较低的Chamfer Distance。这个比较说明了分类信息并不总是对三维重建有效。T-SNE比较也是一个
+    能够证明标准训练不会导致神经网络执行识别任务的有力证据。
+\end{enumerate}
+
 \begin{figure}
 	\begin{subfigure}[t]{0.3\linewidth} \centering 
      \includegraphics[width=\columnwidth]{figs/T-SNE-class.png}
@@ -530,20 +548,58 @@ Chamfer Distance \\
     \caption{Chamfer loss}\label{fig:T-SNE3}
   \end{subfigure}
   \caption{\small T-SNE and Chamfer loss of the same network trained with or without label information. The network trained without label information does not show a clear tendency to form clusters while yielding smaller Chamfer loss.}\label{fig:T-SNE}
+  \label{fig:TSNE-Chamfer}
 \end{figure}
 
+
 \chapter{机制探究}
-\section{理论分析}
+在这个章节，我们首先理论分析了训练数据的聚类特性与训练后的神经网络在识别机制与重建机制之间偏倚的关联性（可以参考前文章节\ref{sec:recog_or_recon}的定义)。
+然后，我们使用一个合成数据集来支持理论分析（参考章节\TODO{3.2})
+\section{理论分析}\label{sec:thm}
+在这个子章节，我们分析了在三维重建任务中观察到的识别现象背后的直观理解。我们展示了，当训练点云集的聚类趋势比训练图片集的聚类趋势大时，训练后的模型
+更倾向于执行识别机制而不是重建机制。参考图\ref{fig:clustering_tendency}。
+
 \begin{figure}
     \centering
-    \includegraphics[width=.95\textwidth]{figs/drawing-1.pdf}
-    \caption{\small When the training images are less clustered than the training shapes (as shown in subfigure (a)), the learned model shows the tendency of recognition.}
+    \includegraphics[width=.95\textwidth]{figs/drawing.png}
+    \caption{\small 数据集聚类趋势关系}
     \label{fig:clustering_tendency}
 \end{figure}
-\section{实验设计与数据集生成}
+
+在图\ref{fig:clustering_tendency},我们展示了三种不同类别的训练数据。在子图\ref{fig:clustering_tendency}a,训练图片比训练形状聚类程度更小。在这种情况下，
+在这种类型数据上训练的模型展示出一个更明显的倾向去执行识别机制，比如形状预测集中在平均形状上，表示为虚线与y轴的交界处。
+在子图\ref{fig:clustering_tendency}b，训练图片和训练形状都没有展示出明显的强烈的聚类趋势。所以在这种类型的数据上训练的模型不会展示出聚类趋势。在子图\ref{fig:clustering_tendency}c,
+我们展示了另外一种情况，当图片和形状都成簇时，训练后的模型不会呈现一个强的聚类趋势。这也许违背直观认知，但是它确实符合我们在实验中观察的现象。
+
+总结一下，我们列举我们在从图片到点云形状重建实验中探索的三类数据情况。
+\label{sec:case}
+\begin{itemize}
+    \item 情况1\label{sec:case1}：训练形状集聚集成簇而训练图片集不成簇
+    \item 情况2\label{sec:case2}：训练图片集与训练形状集都不聚集成簇
+    \item 情况3\label{sec:case3}：训练图片集与训练形状集都聚集成簇
+\end{itemize}
+
+我们对于神经网络向识别还是重建偏倚的问题非正式的观点如下：
+
+\textbf{主要观点}：基于深度学习的单视角三维重建倾向于只在情况1进行识别，并且在情况2和情况3进行重建。
+
+
+\section{实验设计与数据集生成}\label{sec:dataset}
+
+为了证明上一子章节\ref{sec:thm}理论分析中提出的观点，我们需要实验数据集具备不同程度的聚类特征，因此我们需要制造自定义数据集。
+在这个子章节，我们提供了合成形状数据集的细节。我们使用软件Blender生成网格形式的基础形状。然后，我们使用“最近顶点”模式的Shrinkwrap
+modifier 来定义两个基础形状之间的形变，并且使用Blender Shape Keys面板控制这个插值过程。由此获得的基础数据集中的所有样本的三维形状在数据域中近似均匀分布且连续变化，
+这样方便我们采样出具有不同聚类特征的子数据集。在创建基础数据集后，我们渲染训练图片并且
+从网格上采样点云来形成能覆盖子章节\ref{sec:thm}提到的不同情况，称为情况1~3。
+
+\textbf{基础数据集 \#1}（正立方体-球）第一个基础数据集通过在一个正立方体和一个有相似大小的球之间插值获得。
+参考图\ref{fig:cube-sphere}。我们在两端之间插值1000个过渡形状。 对于每个过渡形状，我们从等距视角获得图片并且获得一个包含有
+1024个三维点的点云表示。1000个过渡形状被随机划分为700个训练形状，200个测试形状以及100个验证形状。
+
+
 \begin{figure}
 	\begin{tabular}{c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}}
-	    sphere & & & & & $\Longleftrightarrow$ & & & & & cube \\
+	    球   & & & & & $\Longleftrightarrow$ & & & & & 正立方体 \\
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric0.png} &
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric1.png} &
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric2.png} &
@@ -556,23 +612,70 @@ Chamfer Distance \\
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric9.png} &
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric10.png} \\    	
 	\end{tabular}
-	\caption{\small Base dataset \# 1: interpolation between a sphere and a cube.}
+	\caption{\small 基础数据集 \# 1: 在一个球和一个正立方体之间插值}
     \label{fig:cube-sphere} \vspace{-4mm}
 \end{figure}
+
+\textbf{二次采样数据集1.1 描述\ref{sec:case2}理论分析的情况2和情况3} 二次采样数据集1.1目的是覆盖从情况2到情况3的转化。这个数据集是一组7个二次采样数据集的集合1.1.n(n=1,2,...7)。
+每个二次采样数据集1.1.n包含了5个形状簇和相应的图片。从二次采样数据集1.1.1到二次采样数据集1.1.7，聚集趋势逐渐变低。
+更具体的是，二次采样数据集1.1.1五个分离的簇（参考图\ref{fig:five-clusters}第一列)，同时二次采样数据集1.1.7几乎
+连续覆盖了从球到正立方体的整个变化（参考\ref{fig:two-clusters})。需要注意的是全部的七个二次采样数据集包含了相同数量的训练图片，比如每个数据集
+包含五个簇，每个簇包含20个样本。但是每个二次采样数据集的测试集保持与基础数据集1的测试集一样。换句话说，我们只二次采样训练集，同时保持固定的
+测试集。
+
+\textbf{二次采样数据集1.2 描述\ref{sec:case1}理论分析的情况1和情况3} 二次采样数据集1.2是基础数据集1的另一个二次采样
+版本。这个数据集的目的是覆盖从情况1到情况3的转变。这个数据集是一个7个二次采样数据集1.2.n（n=1,2,$\ldots $7）的集合。每个数据集1.2.n包含了
+两个样本簇。但是，与二次采样数据集1.1不同，尽管二次采样数据集1.2中的每个训练对（图片，三维形状）有一个独特的二维图片，相对于的形状
+只能有个两个端点形状的其中一个（例如两个基础形状立方体和球），并且没有过渡形状存在。所以再这种情况下，训练形状的聚类趋势总是非常的高，同时
+从二次采样数据集1.2.1到二次采样数据集1.2.7训练图片的聚类趋势逐渐变低。与之前一样，二次采样数据集1.2.7的训练图片集几乎覆盖了从球到正立方体的整个
+变化。所以，二次采样数据集1.2.1表示了情况3的一个案例，同时1.2.7表示了情况1的一个案例并且数据集1.2.n（n = 1,2,$\ldots $7）表示了
+从情况3到情况1的转变。在每个数据集，训练图片的数量总是$2\times10$，2是簇的数量，以及10是每个簇的样本数量。与二次采样数据集1.1相似，
+二次采样数据集1.2的测试集依然是基础数据集1的测试集。
 
 \begin{figure}
 	\begin{subfigure}[t]{0.45\linewidth} \centering 
      \includegraphics[width=\columnwidth]{figs/five-clusters.png}
-     \caption{\small Dataset 1.1.n (n = 1, 2, $\ldots $7). Different subsampled datasets are generated to have different clustering tendencies. }\label{fig:five-clusters}
+     \caption{\small 数据集 1.1.n (n = 1, 2, $\ldots $7)。不同的二次采样数据集有不同的聚簇趋势。}\label{fig:five-clusters}
    \end{subfigure}\hspace{0.05\textwidth}
    \begin{subfigure}[t]{0.45\linewidth} \centering
      \includegraphics[width=\columnwidth]{figs/two-clusters.png}
-     \caption{Dataset 1.2.n (n = 1, 2, $\ldots $7). The dot markers represent image distribution, while the cross markers represent point cloud distribution.}\label{fig:two-clusters}
+     \caption{\small 数据集 1.2.n (n = 1, 2, $\ldots $7). 点标记代表图像分布，同时叉标记代表点云分布。}\label{fig:two-clusters}
    \end{subfigure}
-   \caption{\small Coverage of two subsampled data sets 1.1.n and 1.2.n.}
+   \caption{\small 二个二次采样的数据集 1.1.n and 1.2.n 覆盖基础数据集的程度}
 \end{figure}
 
+\textbf{基础数据集 \#2}（正立方体-正四面体-球）为了补充第一个数据集，我们生成了另外一个数据集，在三个基础形状之间插值，分别是
+正立方体，正四面体，球。这三个形状有相似的大小。在这三个基础形状之间，我们插值了10000过渡形状。与基础数据集\#1相似，我们从基础数据集\#2中创造了
+二次采样数据集来表现在章节\ref{sec:thm}中讨论的不同情况。具体来说，我们首先使用了正四面体和正立方体作为两个基础形状并生成了100个过渡
+形状$S_1,S_2,\ldots S_100$，与基础数据集\#1相似。然后，我们选择每个基础过渡形状$S_i$，并且在$S_i$和基础形状球之间线性插值100个形状。
+这个二维插值的过程总共给了我们$100 \times 100 = 10000$个过渡形状。这10000个形状再次被分为7000个训练样本，
+1000个验证样本和2000个测试样本。 
+
+\textbf{二次采样数据集2.1 描述\ref{sec:case2}理论分析的情况2和情况3} 二次采样数据集2.1的目的是覆盖从情况2到情况3的转化。这个数据集是一组6个二次采样数据集的集合2.1.n(n=1,2,...6)。
+从二次采样数据集2.1.1到二次采样数据集2.1.6，聚集趋势逐渐变低。
+更具体的是，二次采样数据集2.1.1有三个明显分离的簇，由在三个基础形状周围采样获得，同时二次采样数据集2.1.6几乎
+连续覆盖了从2.1.1到2.1.6的所有转变。每个二次采样数据集有三个簇，每个簇有30个样本。与正立方体-球数据集$\#$1相似，测试集保持固定（是基础数据集$\#$2的
+初始测试集）。但是，因为测试集里的形状数量非常多，我们对测试集通过随机选择300个测试样本进行了二次采样。当训练神经网络时，我们使用了验证数据集来选择最优的
+模型。
+
+\textbf{二次采样数据集2.2 描述\ref{sec:case1}理论分析的情况1和情况3} 二次采样数据集2.2的目的是覆盖从情况3到情况1的转变。它包含了六个数据集
+2.2.n（n=1,2,$\ldots$）。从二次采样数据集2.2.1到2.2.6，训练图片集的聚类趋势逐渐降低，同时训练点云集的聚类趋势保持在高水平。
+我们固定训练点云，比如对于每个样本对$(I,S)$，我们使得与每个训练图片$I$相关的训练点云$S$都是三个基础形状中的一个。
+所以，从二次采样数据集2.2.1到2.2.6的转变表示了从情况3到情况1的转变。在每个二次采样数据集中，我们生成接近三个基础
+形状的簇，并且每个簇有16个样本。当训练神经网络时，我们不使用验证集，并且简单的选择最后一个周期的模型参数。原因是在当前的设定下，
+从训练集（只有三个基础形状点云）到验证集（插值形状点云）存在一个域的转变。所以，验证数据集在训练时不能用于选择最优
+模型参数。
+
+
 \section{实验结果}
+在这个子章节，我们展示了实验结果来支持章节\ref{sec:thm}中的主要论点：识别机制只会在训练图片聚簇程度小于训练形状聚簇程度时才会发送，例如，情况1。
+为了证明这个论点，我们已经在章节\ref{sec:dataset}中创建了不同的数据集来覆盖情况1，2和3之间的过渡转变。
+关于神经网络模型，我们采用了在章节\ref{sec:optimal_method}中使用残差层优化过的自编码器架构\ref{fig:resnet_decoder},
+采用Chamfer Distance作为损失函数。对于二次采样数据集1.1，我们为从1.1.1到1.1.7的每个数据集都分别训练了一个单独的神经网络，进行了
+1500个周期的训练，以到达保证他们的学习能力饱和。对于子数据集1.2，我们在每个子数据集1.2.n上训练3000个周期，因为1.2.n每个数据集的样本量
+更小。在训练期间，我们使用Adam优化器，初始化学习率为0。003，学习率衰减为0.1。我们使用验证集来选择最好的模型用于预测而不是测试集。
+
+\subsection{数据集指标测量} 在这个
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-1.png}

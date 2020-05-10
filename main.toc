@@ -29,12 +29,13 @@
 \contentsline {subsubsection}{\numberline {3.2.2.2}机制探究}{16}{subsubsection.3.2.2.2}% 
 \contentsline {chapter}{\numberline {4}机制探究}{17}{chapter.4}% 
 \contentsline {section}{\numberline {4.1}理论分析}{17}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}实验设计与数据集生成}{17}{section.4.2}% 
-\contentsline {section}{\numberline {4.3}实验结果}{17}{section.4.3}% 
-\contentsline {chapter}{参考文献}{20}{chapter*.20}% 
+\contentsline {section}{\numberline {4.2}实验设计与数据集生成}{18}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}实验结果}{20}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}数据集指标测量}{20}{subsection.4.3.1}% 
+\contentsline {chapter}{参考文献}{23}{chapter*.20}% 
 \ttl@change@i {\@ne }{chapter}{0pt}{\vspace {.5\baselineskip }\normalfont \bfseries }{附录 \thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[10pt]{$\cdot $}\contentspage }\relax 
 \ttl@change@v {chapter}{}{}{}\relax 
-\contentsline {chapter}{\numberline {A}{\LaTeX }实验}{23}{appendix.A}% 
-\contentsline {chapter}{\numberline {B}MATLAB实验}{24}{appendix.B}% 
-\contentsline {chapter}{致\hspace *{2em}谢}{25}{section*.21}% 
+\contentsline {chapter}{\numberline {A}{\LaTeX }实验}{26}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}MATLAB实验}{27}{appendix.B}% 
+\contentsline {chapter}{致\hspace *{2em}谢}{28}{section*.21}% 
 \contentsfinish 
