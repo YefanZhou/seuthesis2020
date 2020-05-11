@@ -32,10 +32,12 @@
 \contentsline {section}{\numberline {4.2}实验设计与数据集生成}{18}{section.4.2}% 
 \contentsline {section}{\numberline {4.3}实验结果}{20}{section.4.3}% 
 \contentsline {subsection}{\numberline {4.3.1}数据集指标测量}{20}{subsection.4.3.1}% 
-\contentsline {chapter}{参考文献}{23}{chapter*.20}% 
+\contentsline {subsection}{\numberline {4.3.2}距离矩阵的可视化}{21}{subsection.4.3.2}% 
+\contentsline {chapter}{\numberline {5}总结}{25}{chapter.5}% 
+\contentsline {chapter}{参考文献}{26}{chapter*.22}% 
 \ttl@change@i {\@ne }{chapter}{0pt}{\vspace {.5\baselineskip }\normalfont \bfseries }{附录 \thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[10pt]{$\cdot $}\contentspage }\relax 
 \ttl@change@v {chapter}{}{}{}\relax 
-\contentsline {chapter}{\numberline {A}{\LaTeX }实验}{26}{appendix.A}% 
-\contentsline {chapter}{\numberline {B}MATLAB实验}{27}{appendix.B}% 
-\contentsline {chapter}{致\hspace *{2em}谢}{28}{section*.21}% 
+\contentsline {chapter}{\numberline {A}可视化结果}{29}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}MATLAB实验}{30}{appendix.B}% 
+\contentsline {chapter}{致\hspace *{2em}谢}{31}{section*.24}% 
 \contentsfinish 

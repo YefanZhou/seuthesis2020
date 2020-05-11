@@ -50,51 +50,46 @@
 
 \begin{abstract}{三维重建，点云，深度学习，数据挖掘}
 
-    单视角三维物体形状重建(Single-view 3D Reconstruction)是三维视觉领域一直以来的核心问题之一。由于拟合非线性方程和学习模式的有效性，深度神经网络被期望在重建三维非线性形状的任务中表现出色。本课题探究了深度神经网络在三维重建任务中的有效性和内在机制，主要的工作和创新如下：
+    单视角三维物体形状重建(Single-view 3D Reconstruction)是三维视觉领域一直以来的核心问题之一。
+    由于拟合非线性方程和学习模式的有效性，深度神经网络被期望在重建三维非线性形状的任务中表现出色。
+    本课题探究了深度神经网络在三维重建任务中的有效性和内在机制，主要的工作和创新如下：
         
         \begin{enumerate}
-            \item[1.] 针对基于自编码器结构的深度神经网络梯度过小等问题，提出采用多任务训练对编码器进行初始化，以及引入残差层这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了优于基于检索的非学习方法Oracle Nearest Neighbor的结果。
-            \item[2.] 为了衡量三维数据集的聚类程度，提出了基于affinity propagation和silhouette score的度量标准，该方法得到的量化结果与数据集降维后的可视化结果吻合。
-            \item[3.] 提出了影响三维重建任务中深度神经网络内在机制的主要因素是数据集的本质特征：当训练集中的三维形状集有相比于图片集更高的聚类程度的结构时，在这个数据集上训练的深度神经网络更有可能会执行识别机制而非重建机制，并定性和定量的证明了这一强相关性。
+            \item[1.] 为了验证基于自编码器架构的深度神经网络在三维重建任务中的有效性，提出采用多任务训练对编码器进行初始化，以及用残差层改进译码器这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了优于基于检索的非学习方法Oracle Nearest Neighbor的结果，并
+            证明了神经网络在这个大型数据集上倾向于执行重建机制而非识别机制。 
+            \item[2.] 为了衡量三维数据集的聚类程度，提出了基于affinity propagation和silhouette score的度量指标，该方法得到的量化结果与数据集降维后的可视化结果吻合。
+            \item[3.] 提出并通过实验证明了影响三维重建任务中深度神经网络内在机制的主要因素是数据集的本质特征：只有当训练集中的三维形状集有相比于图片集更高的聚类程度的结构时，在这个数据集上训练的深度神经网络才会执行识别机制而非重建机制。
         \end{enumerate}
     最后，本文分析了上述结论对三维重建任务中的数据收集和神经网络训练的指导意义。
     \end{abstract}
 
 \begin{englishabstract}{3D Reconstruction, Point Cloud, Deep Learning, Data mining}
-    Single-view 3D reconstruction is one of the elementary tasks in the field of 3D vision. Due to the effectiveness in learning and approximating non-linear function, deep neural networks are expected to perform well on the task of reconstructing 3D nonlinear shapes. This paper investigates the effectiveness and internal mechanism of deep neural network in 3D reconstruction task. The main contribution and innovation are summarized as follows:
+    Single-view 3D reconstruction is one of the elementary tasks in the field of 3D vision. 
+    Due to the effectiveness in learning and approximating non-linear function, deep neural networks are expected to perform well on the task of reconstructing 3D non-linear shapes.
+    This paper investigates the effectiveness and internal mechanism of deep neural network in 3D reconstruction task. 
+    The main contribution and innovation are summarized as follows:
     \begin{enumerate}
-        \item[1.] For the problem that the variance of multiple training results of deep neural network based on auto-encoder structure is too large, it proposes to leverage multi-task training to initiate the encoder and introduce residual layer to deepen the decoder in order to optimize network architecture. These methods are trained and tested on ShapeNet public dataset and they outperform the non-learning method based on retrieve, namely Oracle Nearest Neighbor. 
+        \item[1.] In order to verify the effectiveness of the deep neural network based on auto-encoder architecture in 3D reconstruction task, 
+        it proposes to leverage multi-task training to initiate the encoder and improve the decoder with residual layer in order to optimize network architecture. 
+        These methods are trained and tested on ShapeNet public dataset and they outperform the non-learning method based on retrieve, namely Oracle Nearest Neighbor, 
+        and it proves that neural network tend to do reconstruction task instead of recognition task in this dataset。
+
         \item[2.] Define novel way to measure clustering coefficient of 3D reconstruction dataset based on affinity propagation and silhouette score, the quantitative results of this metric is corresponding to qualitative results of visualization of dataset in low dimension.
-        \item[3.] It claims that the bias of internal mechanism of network is mainly affected by the intrinsic properties of dataset: when the training set of 3D shapes has a more clustered structure than images, the deep neural networks trained on this dataset become more likely to perform recognition than reconstruction, and it proves the strong correlation between the deep neural networks and dataset property both qualitatively and quantitatively.
+        \item[3.] It claims and proves by experiments that the bias of internal mechanism of network 
+        is mainly affected by the intrinsic properties of dataset: only when the training set of 3D shapes has a 
+        more clustered structure than images, the deep neural networks trained on this dataset become more likely 
+        to perform recognition than reconstruction.
     \end{enumerate}
     Finally, this paper analyzes the significance of the above conclusions for data collection and neural network training.
 \end{englishabstract}
 
 \tableofcontents
 
-% \begin{terminology}
-% \begin{table}[h]
-% \renewcommand\arraystretch{1.5}
-% %\Large
-% \begin{tabular}{>{\LARGE}m{0.2\textwidth} <{\centering}m{0.7\textwidth}}
-% a & 如同汉字起源于象形，拉丁字母表中的每个字母一开始都是描摹某种动物或物体形状的图画\\
-
-% b&和A一样，字母B也可以追溯到古代腓尼基。在腓尼基字母表中B叫beth,代表房屋，在希伯来语中B也叫beth，也含房屋之意。\\
-
-% c& 字母C在腓尼基人的文字中叫gimel，代表骆驼。它在字母表中的排列顺序和希腊字母Γ(gamma)相同，实际上其字形是从后者演变而来的。C在罗马数字中表示100。\\
-
-% d&D在古时是描摹拱门或门的形状而成的象形符号，在古代腓尼基语和希伯来语中叫做daleth，是“门”的意思，相当于希腊字母Δ（delta）。\\
-
-% \end{tabular}
-% %\caption{my table}
-% \end{table}
-% \end{terminology}
 
 
 \begin{Main} % 开始正文
 
 \chapter{绪论}
-%\emph{在泛函分析中，卷积、旋积或摺积(英语：Convolution)是通过两个函数f 和g 生成第三个函数的一种数学算子，表征函数f 与g经过翻转和平移的重叠部分的面积。}
 
 \section{课题的背景和意义}
 基于单视角二维图片输入进行三维物体形状重建是三维视觉领域的核心问题之一，它能有效解决现实世界中二维数据丰富而三维数据稀少的问题，满足无人驾驶，智能建造，机器人领域的需求。点云数据具有易处理，易存储，易获得的特点，因此成为重建任务中常用的三维数据表示之一。
@@ -137,7 +132,7 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
 \begin{itemize}[\hspace{2cm}]
     \item[第一章] 绪论，简要介绍了单视角三维重建任务的研究背景和意义，并对现行的相关理论，模型和数据集进行简单概述与分析。介绍本论文的研究思路、关键问题以及主要贡献。
     \item[第二章] 问题与定义，介绍了本论文探究的损失函数和算法的理论基础。给出了重建机制与识别机制的数学定义。
-    \item[第三章] 模型，详细介绍了基准模型，以及优化模型的架构，并给出了网络在ShapeNet大型数据集上训练的过程信息以及训练结果的分析比较。
+    \item[第三章] 模型方法，详细介绍了基准模型，以及优化模型的架构，并给出了网络在ShapeNet大型数据集上训练的过程信息以及训练结果的分析比较。
     \item[第四章] 机制分析，给出了机制探究的理论基础与实验设计，介绍了自定义数据集的制作，网络在自定义数据集上训练的过程信息以及训练结果的定性与定量分析。
     \item[第五章] 总结与展望，分析并总结本课题研究成果的总体优缺点，并提出未来的研究改进方向。
 \end{itemize}
@@ -675,19 +670,52 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 1500个周期的训练，以到达保证他们的学习能力饱和。对于子数据集1.2，我们在每个子数据集1.2.n上训练3000个周期，因为1.2.n每个数据集的样本量
 更小。在训练期间，我们使用Adam优化器，初始化学习率为0。003，学习率衰减为0.1。我们使用验证集来选择最好的模型用于预测而不是测试集。
 
-\subsection{数据集指标测量} 在这个
+\subsection{数据集指标测量} 
+
+\textbf{基础数据集\#1的实验结果}在这个部分，我们展示了基础数据集\#1的量化实验结果来支持章节\ref{sec:thm}中的主要观点。对于每个二次采样数据集，我们画出模型输入数据的聚类趋势与输出数据的聚类趋势、
+因为我们有两类输入数据，训练图片与训练形状，我们画出分别画出“输入图片-预测结果”和“输入形状-预测结果”这两个关系。结果展示在图\ref{fig:silhouette-dataset-1.png}。
+第一行的结果关于二次采样数据集1.1，即从情况3到情况2的转变，同时第二行的结果关于二次采样数据集1.2，即从情况3到情况1的转变。对于二次采样数据集1.1
+的结果，即使是输入的聚类趋势变化，输出的聚类趋势保持不变。这一结果证明了我们在\ref{fig:clustering_tendency}b和\ref{fig:clustering_tendency}c
+的理论分析，即在情况2和情况3下输出的聚类趋势比较低。但是，在图\ref{fig:silhouette-dataset-1.png}的第二行，我们可以看到当输入图片聚类趋势降低时，输出聚类趋势明显
+提升。这正是与我们在图\ref{fig:clustering_tendency}a中的理论分析一直，即初始形状的聚簇只会在训练图片不聚簇且训练形状聚簇的情况发生、
+注意在第二行，训练形状只包含两个端点形状（球和正立方体）。所以，训练形状的聚类趋势总是非常高（注意图\ref{fig:silhouette-dataset-1.png}第二行
+右边的图片）。
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-1.png}
-    \caption{\small Training-vs-prediction silhouette scores. Only Case 1 (the points with large dataset indices shown in the bottom-left figure) shows high tendency towards recognition.}
+    \caption{\small “训练图片/形状点云-输出形状”的silhouette scores. 只有情况1（左下角子图中大数据索引指向的点）展示出高的聚类趋势}
     \label{fig:silhouette-dataset-1.png}
 \end{figure}
+\FloatBarrier
+\textbf{基础数据集\#2的实验结果}在这个部分，我们展示了基础数据集\#2的量化实验结果，该实验结果由在每个二次采样数据集上（2.1.n以及2.2.n)
+进行训练和测试获得。具体来说，该量化结果为输入与输出的silhouette score，展示在图\ref{fig:silhouette-dataset-2.png}。从该图的第二行左侧的图
+可以看出只有在情况1预测结果才会呈现出明显的聚类趋势，与章节\ref{sec:thm}的结论一致。该图第一行的两张子图展示了在情况2和情况3下预测结果都不会呈现出
+高的聚类趋势。
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-2.png}
+    \caption{\small “训练图片/形状点云-输出形状”的silhouette scores. 只有情况1（左下角子图中大数据索引指向的点）展示出高的聚类趋势}
+    \label{fig:silhouette-dataset-2.png}
+\end{figure}
+
+\subsection{距离矩阵的可视化}
+
+\textbf{基础数据集\#1的实验结果}我们也可视化了不同情况下的距离矩阵来支持我们在章节\ref{sec:thm}中的主要观点。参考图\ref{fig:cluster_visualization}。在左侧子图，我们可视化了二次采样数据集
+1.1的结果，覆盖了情况3和情况2。在右侧子图，我们可视化了二次采样数据集1.2覆盖了情况3和情况1.左侧子图的七行对应二次采样数据集1.1.1到1.1.7。右侧子图
+的七行对应二次采样数据集1.2.1到1.2.7。在每个子图，左侧列表示输入图片的距离矩阵，中间列表示训练点云的距离矩阵以及右侧列表示测试时的预测点云
+的距离矩阵。对于训练图片，距离由图片的$\ell$1-距离。对于点云，距离为Chamfer Distance。
+
+在右侧子图，我们看到预测点云只在下方几行形成簇。这意味着，训练完的神经网络只在训练数据集接近情况1的时候执行识别机制。在其他两种情况（情况2和情况3），训练完的神经网络倾向于插值
+而不是集中在平均形状上，这导致了相似度矩阵连续的变化。
+
 
 \begin{figure}[ht!]
     \begin{centering}
         \begin{tabular}{cccc|cccc}
         \toprule
-         &Images & GT & Recons. & Images & GT & Recons.& \\
+         &输入图片 & 标签点云 & 重建点云 & 输入图片 & 标签点云 & 重建点云& \\
         \toprule
         1.1.1 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_1_1.png} &
         \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toyset_matrices/cluster_5by20_1_2.png} &
@@ -750,7 +778,78 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
         \label{fig:cluster_visualization}
     \end{centering}
     \end{figure}
+\FloatBarrier
+\textbf{基础数据集\#2的实验结果} 这里，我们展示了数据集\#2的距离矩阵可视化结果。参考图\ref{fig:triangle_cluster_visualization}。我们可以看到该图左起第六列
+的预测结果距离矩阵逐渐成簇，这意味着当数据集从情况3变化到情况1时，点云预测逐渐从重建转变为识别。这一定性结果与图\ref{fig:silhouette-dataset-2.png}左下角的子图
+展示定量结果silhouette scores的变化趋势一致，即预测点云结果从2.2.1（情况3）到2.2.6（情况1）有一个持续增大的silhouette score。相反，左起第三列并没有明显的变化，
+意味着情况2和情况3下预测结果都没有高的聚类趋势。这也与图\ref{fig:silhouette-dataset-2.png}第一行展示的silhouette scores没有明显的变化趋势一致。
 
+
+\begin{figure}[ht!]
+    \begin{centering}
+        \begin{tabular}{cccc|cccc}
+        \toprule
+         &Images & GT & Recons. & Images & GT & Recons.& \\
+        \toprule
+        2.1.1 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_1_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_1_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_1_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_1_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_1_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_1_3.png}& 2.2.1\\
+        %& DI = 1 & & & DI = 1 & \\
+        %\midrule
+        2.1.2 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_2_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_2_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_2_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_2_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_2_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_2_3.png}& 2.2.2\\
+        %& DI = 2 & & & DI = 2 & \\
+        %\midrule
+        2.1.3 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_3_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_3_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_3_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_3_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_3_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_3_3.png} & 2.2.3\\
+        %& DI = 3 & & & DI = 3 & \\
+        %\midrule
+        2.1.4 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_4_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_4_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_4_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_4_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_4_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_4_3.png} & 2.2.4\\
+        %& DI = 4 & & & DI = 4 & \\
+        %\midrule
+        2.1.5 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_5_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_5_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_5_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_5_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_5_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_5_3.png}& 2.2.5\\
+        %& DI = 5 & & & DI = 5 & \\
+        %\midrule
+        2.1.6 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_6_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_6_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_6_3.png} &  
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_6_1.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_6_2.png} &
+        \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by16_6_3.png}& 2.2.6\\
+        %& DI = 6 & & & DI = 6 & \\
+        %\midrule
+        \bottomrule  
+        \end{tabular}  \vspace{-2mm}
+        \caption{\small Distance matrices. Blue represents small distance and red represents large distance. {\bf (Left)} predicted shapes of subsampled dataset 2.1 are not clustered. {\bf (Right)} predicted shapes of subsampled dataset 2.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 6.}
+        \label{fig:triangle_cluster_visualization}
+    \end{centering}
+    \end{figure}
+
+\chapter{总结}
+在这篇文章中，我们研究了单视角三维重建神经网络是否倾向于执行识别（检索）机制或者重建机制（插值）。我们的结论是这一倾向取决于数据集的特征：训练样本的聚类趋势。
+在真实数据集中，我们确实发现了神经网络倾向于执行插值而非记忆。概括而言，识别现象是由于数据的复杂特征引发的，而不是源于深度神经网络模型。一个有意义的未来工作
+是从数据收集，网络架构，优化过程等角度研究深度学习技术，使得神经网络即使是在数据集特征偏倚于识别时依然能执行重建任务。
 
 \end{Main} % 结束正文
 
@@ -760,8 +859,64 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 
 %附录
 \begin{Appendix}{}
-    \chapter{{\LaTeX}实验}
-    技术实验结果在这里写
+    \chapter{可视化结果}
+    \begin{figure}[!h]
+        \centering
+            \begin{tabular}{c@{}c@{}c@{}c@{}c@{}}
+            Input & GT & \makecell[c]{Auto-encoder \\(weak label info)} & Auto-encoder & Oracle NN\\
+            \includegraphics[width=0.11\columnwidth,height=1.8cm]{figs/supp_real_dataset/Image/chair_fb8b45151900e6e016a0c57b9ceb6d01.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/chair_fb8b45151900e6e016a0c57b9ceb6d01_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/chair_fb8b45151900e6e016a0c57b9ceb6d01_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/chair_fb8b45151900e6e016a0c57b9ceb6d01_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/chair_fb8b45151900e6e016a0c57b9ceb6d01_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/mailbox_81f30bae0a1474fff601d2ded3aef05a.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/mailbox_81f30bae0a1474fff601d2ded3aef05a_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/mailbox_81f30bae0a1474fff601d2ded3aef05a_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/mailbox_81f30bae0a1474fff601d2ded3aef05a_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/mailbox_81f30bae0a1474fff601d2ded3aef05a_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.12\columnwidth,height=2cm]{figs/supp_real_dataset/Image/pillow_68131b4f51579263f7b57f419ab2620.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/pillow_68131b4f51579263f7b57f419ab2620_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/pillow_68131b4f51579263f7b57f419ab2620_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/pillow_68131b4f51579263f7b57f419ab2620_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/pillow_68131b4f51579263f7b57f419ab2620_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.11\columnwidth,height=2cm]{figs/supp_real_dataset/Image/pot_490e2e25da735cfd3df324363ca0723f.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/pot_490e2e25da735cfd3df324363ca0723f_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/pot_490e2e25da735cfd3df324363ca0723f_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/pot_490e2e25da735cfd3df324363ca0723f_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/pot_490e2e25da735cfd3df324363ca0723f_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/rocket_99314b704285c0ca16e3314677399d49.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/rocket_99314b704285c0ca16e3314677399d49_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/rocket_99314b704285c0ca16e3314677399d49_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/rocket_99314b704285c0ca16e3314677399d49_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/rocket_99314b704285c0ca16e3314677399d49_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.11\columnwidth,height=1.3cm]{figs/supp_real_dataset/Image/table_3942f02501161134c3bd24f986301745.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/table_3942f02501161134c3bd24f986301745_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/table_3942f02501161134c3bd24f986301745_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/table_3942f02501161134c3bd24f986301745_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/table_3942f02501161134c3bd24f986301745_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/tower_f584f1a14904b958ba9419f3b43eb3bd.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/tower_f584f1a14904b958ba9419f3b43eb3bd_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/tower_f584f1a14904b958ba9419f3b43eb3bd_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/tower_f584f1a14904b958ba9419f3b43eb3bd_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/tower_f584f1a14904b958ba9419f3b43eb3bd_oracle.png} \\
+            \vspace{-5mm}
+            \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/train_537decdce3079c857addcf2661f94d39.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/train_537decdce3079c857addcf2661f94d39_gt.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/train_537decdce3079c857addcf2661f94d39_label.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/train_537decdce3079c857addcf2661f94d39_pred.png} &
+            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/train_537decdce3079c857addcf2661f94d39_oracle.png} \\
+            \end{tabular}
+            \caption{\small More visualizations. Objects from top to bottom: chair, mailbox, pillow, pot, rocket, table, tower, train.}
+            \label{fig:visualize_KC_supplementary}
+        \end{figure}
+        \clearpage
+
     \chapter{MATLAB实验}
     技术实验结果在这里写
 \end{Appendix}
