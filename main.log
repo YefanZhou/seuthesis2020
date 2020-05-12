@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.11.7)  12 MAY 2020 15:51
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.11.7)  12 MAY 2020 23:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1298,19 +1298,20 @@ Package tocbasic Info: Using my definition of `\numberline' on input line 13.
 Package tocbasic Info: Using my definition of `\numberline' on input line 15.
 Package tocbasic Info: Using my definition of `\numberline' on input line 16.
 Package tocbasic Info: Using my definition of `\numberline' on input line 17.
-Package tocbasic Info: Using my definition of `\numberline' on input line 19.
+Package tocbasic Info: Using my definition of `\numberline' on input line 18.
 Package tocbasic Info: Using my definition of `\numberline' on input line 20.
-Package tocbasic Info: Using my definition of `\numberline' on input line 23.
+Package tocbasic Info: Using my definition of `\numberline' on input line 21.
 Package tocbasic Info: Using my definition of `\numberline' on input line 24.
 Package tocbasic Info: Using my definition of `\numberline' on input line 25.
 Package tocbasic Info: Using my definition of `\numberline' on input line 26.
-Package tocbasic Info: Using my definition of `\numberline' on input line 28.
+Package tocbasic Info: Using my definition of `\numberline' on input line 27.
 Package tocbasic Info: Using my definition of `\numberline' on input line 29.
 Package tocbasic Info: Using my definition of `\numberline' on input line 30.
 Package tocbasic Info: Using my definition of `\numberline' on input line 31.
 Package tocbasic Info: Using my definition of `\numberline' on input line 32.
-Package tocbasic Info: Using my definition of `\numberline' on input line 34.
+Package tocbasic Info: Using my definition of `\numberline' on input line 33.
 Package tocbasic Info: Using my definition of `\numberline' on input line 35.
+Package tocbasic Info: Using my definition of `\numberline' on input line 36.
 )
 \tf@toc=\write5
 \openout5 = `main.toc'.
@@ -1318,7 +1319,7 @@ Package tocbasic Info: Using my definition of `\numberline' on input line 35.
  [3
 
 
-]
+] [4]
 chapter 1.
 
 Class scrbook Warning: \float@addtolists detected!
@@ -1356,31 +1357,34 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 240.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 240.
- [5] [6]
+ [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6] [7]
 chapter 3.
-[7
+[8
 
 ]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 304.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 354.
 File: figs/model/ae_baseline_grid.png Graphic file (type bmp)
 <figs/model/ae_baseline_grid.png>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8] [9]
+ [9] [10]
 File: figs/model/ae_trainingloss.png Graphic file (type bmp)
 <figs/model/ae_trainingloss.png>
 File: figs//model/ae_testloss.png Graphic file (type bmp)
 <figs//model/ae_testloss.png>
- [10]
+ [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11]
+ [12]
 File: figs/model/ae_baseline_class.png Graphic file (type bmp)
 <figs/model/ae_baseline_class.png>
 File: figs/model/resnet_decoder.png Graphic file (type bmp)
 <figs/model/resnet_decoder.png>
- [12]
+ [13]
 File: figs/chamfer-compare_roman.png Graphic file (type bmp)
 <figs/chamfer-compare_roman.png>
 File: figs/F-compare_roman.png Graphic file (type bmp)
@@ -1388,11 +1392,11 @@ File: figs/F-compare_roman.png Graphic file (type bmp)
 
 Underfull \vbox (badness 1199) has occurred while \output is active []
 
- [13]
+ [14]
 File: figs/CD_per_shape_roman.png Graphic file (type bmp)
 <figs/CD_per_shape_roman.png>
 
-Overfull \hbox (1.1657pt too wide) in paragraph at lines 516--521
+Overfull \hbox (1.1657pt too wide) in paragraph at lines 566--571
  [][] 
  []
 
@@ -1457,25 +1461,25 @@ File: figs/real_dataset/AE/jar_d56098d4d83f5976a2c59a4d90e63212_fine.png Graphic
 File: figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png Graphic file (type bmp)
 <figs/real_dataset/oracle/jar_d56098d4d83f5976a2c59a4d90e63212_oracle.png>
 
-Overfull \hbox (1.16646pt too wide) in paragraph at lines 526--565
+Overfull \hbox (1.16646pt too wide) in paragraph at lines 576--615
 [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[14] [15]
+[15] [16]
 File: figs/T-SNE-class.png Graphic file (type bmp)
 <figs/T-SNE-class.png>
 File: figs/T-SNE-noclass.png Graphic file (type bmp)
 <figs/T-SNE-noclass.png>
 File: figs/label-or-not.png Graphic file (type bmp)
 <figs/label-or-not.png>
- [16]
+ [17]
 chapter 4.
 File: figs/drawing.png Graphic file (type bmp)
 <figs/drawing.png>
-[17
+[18
 
 ]
 File: figs/Isometric0.png Graphic file (type bmp)
@@ -1501,27 +1505,27 @@ File: figs/Isometric9.png Graphic file (type bmp)
 File: figs/Isometric10.png Graphic file (type bmp)
 <figs/Isometric10.png>
 
-Overfull \hbox (1.41267pt too wide) in paragraph at lines 655--669
+Overfull \hbox (1.41267pt too wide) in paragraph at lines 705--719
 [][] 
  []
 
-[18]
+[19]
 File: figs/five-clusters.png Graphic file (type bmp)
 <figs/five-clusters.png>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 692.
+(Font)              <10> on input line 742.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 692.
+(Font)              <7> on input line 742.
 File: figs/two-clusters.png Graphic file (type bmp)
 <figs/two-clusters.png>
- [19]
+ [20]
 File: figs/silhouette-dataset-1.png Graphic file (type bmp)
 <figs/silhouette-dataset-1.png>
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[20]
+[21]
 File: figs/silhouette-dataset-2.png Graphic file (type bmp)
 <figs/silhouette-dataset-2.png>
 
@@ -1531,7 +1535,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 1616) has occurred while \output is active []
 
- [21]
+ [22]
 File: figs/toyset_matrices/cluster_5by20_1_1.png Graphic file (type bmp)
 <figs/toyset_matrices/cluster_5by20_1_1.png>
 File: figs/toyset_matrices/cluster_5by20_1_2.png Graphic file (type bmp)
@@ -1617,11 +1621,11 @@ File: figs/toyset_matrices/cluster_2by10_7_2.png Graphic file (type bmp)
 File: figs/toyset_matrices/cluster_2by10_7_3.png Graphic file (type bmp)
 <figs/toyset_matrices/cluster_2by10_7_3.png>
 
-Overfull \hbox (4.75073pt too wide) in paragraph at lines 778--839
+Overfull \hbox (4.75073pt too wide) in paragraph at lines 828--889
  [][] 
  []
 
-[22]
+[23]
 File: figs/toy_triangle/cluster_converge_3by30_1_1.png Graphic file (type bmp)
 <figs/toy_triangle/cluster_converge_3by30_1_1.png>
 File: figs/toy_triangle/cluster_converge_3by30_1_2.png Graphic file (type bmp)
@@ -1695,18 +1699,18 @@ File: figs/toy_triangle/cluster_converge_3by16_6_2.png Graphic file (type bmp)
 File: figs/toy_triangle/cluster_converge_3by16_6_3.png Graphic file (type bmp)
 <figs/toy_triangle/cluster_converge_3by16_6_3.png>
 
-Overfull \hbox (4.75073pt too wide) in paragraph at lines 852--906
+Overfull \hbox (4.75073pt too wide) in paragraph at lines 902--956
  [][] 
  []
 
-[23] [24]
+[24] [25]
 chapter 5.
-[25
+[26
 
-] [26] (./main.bbl [27
+] [27] (./main.bbl [28
 
 
-] [28]) [29]
+] [29]) [30]
 chapter A.
 File: figs/supp_real_dataset/Image/chair_fb8b45151900e6e016a0c57b9ceb6d01.png Graphic file (type bmp)
 <figs/supp_real_dataset/Image/chair_fb8b45151900e6e016a0c57b9ceb6d01.png>
@@ -1788,25 +1792,25 @@ File: figs/supp_real_dataset/AE/train_537decdce3079c857addcf2661f94d39_pred.png 
 <figs/supp_real_dataset/AE/train_537decdce3079c857addcf2661f94d39_pred.png>
 File: figs/supp_real_dataset/oracle/train_537decdce3079c857addcf2661f94d39_oracle.png Graphic file (type bmp)
 <figs/supp_real_dataset/oracle/train_537decdce3079c857addcf2661f94d39_oracle.png>
-[30
+[31
 
 
 ]
 chapter B.
-[31
+[32
 
 
-] [32
+] [33
 
 
 
 ]
 No file main.ind.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1045.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1045.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1095.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1095.
 (./main.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1045.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1045.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1095.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1095.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
 
@@ -1814,17 +1818,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.12pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1045.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1095.
  )
 (\end occurred when \iftrue on line 66 was incomplete)
 (\end occurred when \iftrue on line 51 was incomplete) 
 Here is how much of TeX's memory you used:
- 31261 strings out of 492916
- 645001 string characters out of 6133345
- 820065 words of memory out of 5000000
- 34740 multiletter control sequences out of 15000+600000
+ 31278 strings out of 492916
+ 645941 string characters out of 6133345
+ 821065 words of memory out of 5000000
+ 34757 multiletter control sequences out of 15000+600000
  642435 words of font info for 212 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 63i,15n,77p,9174b,997s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,15n,77p,9174b,1001s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (37 pages).
+Output written on main.pdf (39 pages).
