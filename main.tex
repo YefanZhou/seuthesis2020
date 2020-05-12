@@ -55,9 +55,9 @@
     本课题探究了深度神经网络在三维重建任务中的有效性和内在机制，主要的工作和创新如下：
         
         \begin{enumerate}
-            \item[1.] 为了验证基于自编码器架构的深度神经网络在三维重建任务中的有效性，提出采用多任务训练对编码器进行初始化，以及用残差层改进译码器这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了优于基于检索的非学习方法Oracle Nearest Neighbor的结果，并
-            证明了神经网络在这个大型数据集上倾向于执行重建机制而非识别机制。 
-            \item[2.] 为了衡量三维数据集的聚类程度，提出了基于亲和传播（affinity propagation）和轮廓系数（silhouette score）的度量指标，该方法得到的量化结果与数据集降维后的可视化结果吻合。
+            \item[1.] 为了验证基于自编码器架构的深度神经网络在三维重建任务中的有效性，提出采用弱标签信息监督对编码器进行初始化，以及用残差层改进解码器这两种方法优化网络架构。在ShapeNet公开数据集上进行测试，取得了超过基于识别机制的非深度学习方法的理论极限的水平，并
+            证明了神经网络在此公开数据集上倾向于执行重建机制而非识别机制。 
+            \item[2.] 为了衡量三维数据集的聚类程度，提出了基于亲和传播（affinity propagation）和轮廓系数（silhouette score）的度量指标，该指标得到的量化结果与数据集降维后的可视化结果吻合。
             \item[3.] 提出并通过实验证明了影响三维重建任务中深度神经网络内在机制的主要因素是数据集的本质特征：只有当训练集中的三维形状集有相比于图片集更高的聚类程度的结构时，在这个数据集上训练的深度神经网络才会执行识别机制而非重建机制。
         \end{enumerate}
     最后，本文分析了上述结论对三维重建任务中的数据收集和神经网络训练的指导意义。
@@ -70,8 +70,8 @@
     The main contribution and innovation are summarized as follows:
     \begin{enumerate}
         \item[1.] In order to verify the effectiveness of the deep neural network based on auto-encoder architecture in 3D reconstruction task, 
-        it proposes to leverage multi-task training to initiate the encoder and improve the decoder with residual layer in order to optimize network architecture. 
-        These methods are trained and tested on ShapeNet public dataset and they outperform the non-learning method based on retrieve, namely Oracle Nearest Neighbor, 
+        it proposes to leverage supervision of weak class information to initiate the encoder and improve the decoder with residual layer in order to optimize network architecture. 
+        These methods are trained and tested on ShapeNet public dataset and they outperform theoretical limit of the non-learning method based on recognition, 
         and it proves that neural network tend to do reconstruction task instead of recognition task in this dataset。
 
         \item[2.] Define novel way to measure clustering coefficient of 3D reconstruction dataset based on affinity propagation and silhouette score, the quantitative results of this metric is corresponding to qualitative results of visualization of dataset in low dimension.
@@ -383,7 +383,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     \hline
     模型         & Chamfer Distance        \\ 
     \hline
-    Oracle NN  & 0.0719                  \\
+    Oracle-NN  & 0.0719                  \\
     自编码器（基准模型） & 0.0806 \\
     \hline
     \end{tabular}
@@ -461,10 +461,10 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \noindent
 \textbf{重建效果}
 
-表\ref{table:metric_optimal_baseline}汇报了基准模型，两种优化模型以及Oracle NN的最优平均重建损失（Chamfer Distance），
-数值越小说明重建效果越好，我们可以看到加入弱标签信息进行初始化后，基于自编码器的深度神经网络的重建水平（0.0716）优于Oracle NN（0.0719），使用残差层解码器后，
+表\ref{table:metric_optimal_baseline}汇报了基准模型，两种优化模型以及Oracle-NN的最优平均重建损失（Chamfer Distance），
+数值越小说明重建效果越好，我们可以看到加入弱标签信息进行初始化后，基于自编码器的深度神经网络的重建水平（0.0716）优于Oracle-NN（0.0719），使用残差层解码器后，
 神经网络的水平（0.0768）也得到了显著提高。特别的，我们将两个优化模型和Oracle-NN的Chamfer Distance表示在图\ref{fig:chamfer-compare},
-从该图可以直观的看出，标准的基于自编码器的深度神经网络模型与Oracle-NN呈现出近乎相同的重建效果，且Oracle NN（基于识别机制的非学习模型的理论极限）在测试时需要不应获得的标签信息。
+从该图可以直观的看出，标准的基于自编码器的深度神经网络模型与Oracle-NN呈现出近乎相同的重建效果，且Oracle-NN（基于识别机制的非学习模型的理论极限）在测试时需要不应获得的标签信息。
 
 除了Chamfer Distance这个指标外，我们还使用了F-score这个指标，将测试结果展现在\ref{fig:fscore-compare}，这个指标下的模型比较结果与Chamfer Distance的比较
 一致。因此，我们可以确定的得出结论：弱标签初始化与残差层改进都成功提高了深度神经网络在ShapeNet整体数据集的平均重建效果，
@@ -480,7 +480,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     自编码器（基准模型）            & 0.0806     \\
     自编码器（弱标签信息）           & 0.0716                             \\
     自编码器（残差层译码器）         & 0.0768                         \\
-    Oracle NN & 0.0719                           \\
+    Oracle-NN & 0.0719                           \\
     \hline
     \end{tabular}
     \label{table:metric_optimal_baseline}
@@ -503,7 +503,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 除了平均重建效果，我们还考虑了每个类的重建结果的统计特性，如图\ref{fig:metric_per_class}。我们可以看到基于自编码器的三维重建神经网络在不同的类的
 重建效果上下波动较小，近似一致。而Oracle-NN在一些类别如tower，呈现出非常差的重建效果，出现了各个类重建效果不一致的情况。这个问题同样也在模型预测结果可视化中呈现出来，如图
 \ref{fig:visualize_KC}第四行，我们可以看到Oracle-NN预测出了在三维形状层面上非常不合理的点云。结合ShapeNet数据集的分布\TODO{附录}，我们可以看到有一些类的样本量很少，
-Oracle NN在样本量少的类内进行搜索时，有很大概率无法找到与预测点云相近的训练点云，因此会在这些类出现比较差的重建效果。
+Oracle-NN在样本量少的类内进行搜索时，有很大概率无法找到与预测点云相近的训练点云，因此会在这些类出现比较差的重建效果。
 
 图\ref{fig:visualize_KC}展示了各个模型预测结果的可视化，从这些定性结果可以看出，在不同物体类别之间，标准自动编码器的重建性能比Oracle-NN更稳定。
 更多的可视化结果提供在附录\ref{fig:visualize_KC_supplementary}中。
@@ -524,7 +524,7 @@ Chamfer Distance \\
 
 \begin{figure}[!h]
     \begin{tabular}{c@{}c@{}c@{}c@{}c@{}}
-    输入图片 & 标签点云 & \makecell[c]{自编码器 \\(弱标签信息)} & \makecell[c]{自编码器 \\（残差层译码器)} & Oracle NN\\
+    输入图片 & 标签点云 & \makecell[c]{自编码器 \\(弱标签信息)} & \makecell[c]{自编码器 \\（残差层译码器)} & Oracle-NN\\
     	\includegraphics[width=0.11\columnwidth,height=2cm]{figs/real_dataset/Image/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0.png} &
     	\includegraphics[width=0.22\columnwidth,height=2cm]{figs/real_dataset/GT/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_gt.png} &
     	\includegraphics[width=0.22\columnwidth,height=2cm]{figs/real_dataset/AE_label/ashcan_ff2f13bc0b9d4ade19c52ba9902b5ab0_fine.png} &
@@ -581,7 +581,7 @@ Chamfer Distance \\
     因此如果存在聚类效果的话那么这一效果会更明显。这两个神经网络有同样的结构，都使用的是上文优化模型中使用残差层改进解码器后的基准模型\ref{sec:resnet_decoder}，并且他们使用同样的流程进行训练（100个周期，学习率0.003，
     批处理大小32，权值衰减1E-6，并且都使用同样的学习率衰减步骤）。
 
-    在图\ref{fig:T-SNE1}，神经网络使用类标签监督训练，我们看到一个清楚的聚类特征同时网络有比较高的Chamfer Distance，也意味着比较差的重建效果。
+    在图\ref{fig:T-SNE1}，神经网络使用类标签监督训练，我们看到清楚的聚类特征同时网络有比较高的Chamfer Distance，也意味着比较差的重建效果。
     相反图\ref{fig:T-SNE2}并没有展现出清楚的聚类特征但有比较低的Chamfer Distance。这个比较说明了分类信息并不总是对三维重建有提升作用。T-SNE比较也是一个
     能够证明标准训练不会导致神经网络执行识别任务的有力证据。
 \end{enumerate}
@@ -647,7 +647,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 获得聚类程度不同的小数据集，以覆盖子章节\ref{sec:thm}提到的情况1，2，3。
 
 \textbf{基础数据集 \#1}（正立方体-球）~第一个基础数据集通过在一个正立方体和一个有相似大小的球之间插值获得。
-参考图\ref{fig:cube-sphere}。我们在两端之间插值1000个过渡形状。 对于每个过渡形状，我们从等距视角获得图片并且获得一个包含有
+参考图\ref{fig:cube-sphere}。我们在两端之间插值1000个过渡形状。 对于每个过渡形状，我们从等距视角渲染一张图片并且采样获得一个包含有
 1024个三维点的点云表示。1000个过渡形状被随机划分为700个训练形状，200个测试形状以及100个验证形状。
 
 
@@ -670,20 +670,20 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
     \label{fig:cube-sphere} \vspace{-4mm}
 \end{figure}
 
-\textbf{二次采样数据集1.1 描述\ref{sec:case2}理论分析的情况2和情况3} ~二次采样数据集1.1目的是覆盖从情况2到情况3的转化。这个数据集是一组7个二次采样数据集的集合1.1.n(n=1,2,...7)。
+\textbf{二次采样数据集1.1 描述章节\ref{sec:case2}的情况2和情况3} ~创建二次采样数据集1.1目的是覆盖从情况2到情况3的转化。这个数据集是一组7个二次采样数据集的集合1.1.n（n=1,2,$\ldots$7）。
 每个二次采样数据集1.1.n包含了5个形状簇和相应的图片。从二次采样数据集1.1.1到二次采样数据集1.1.7，聚集趋势逐渐变低。
 更具体的是，二次采样数据集1.1.1五个分离的簇（参考图\ref{fig:five-clusters}第一列)，同时二次采样数据集1.1.7几乎
 连续覆盖了从球到正立方体的整个变化（参考\ref{fig:two-clusters})。需要注意的是全部的七个二次采样数据集包含了相同数量的训练图片，比如每个数据集
-包含五个簇，每个簇包含20个样本。但是每个二次采样数据集的测试集保持与基础数据集1的测试集一样。换句话说，我们只二次采样训练集，同时保持固定的
+包含五个簇，每个簇包含20个样本。但是每个二次采样数据集的测试集保持与基础数据集1的测试集一样。换句话说，我们只对训练集进行二次采样，同时保持固定的
 测试集。
 
-\textbf{二次采样数据集1.2 描述\ref{sec:case1}理论分析的情况1和情况3} ~二次采样数据集1.2是基础数据集1的另一个二次采样
-版本。这个数据集的目的是覆盖从情况1到情况3的转变。这个数据集是一个7个二次采样数据集1.2.n（n=1,2,$\ldots $7）的集合。每个数据集1.2.n包含了
-两个样本簇。但是，与二次采样数据集1.1不同，尽管二次采样数据集1.2中的每个训练对（图片，三维形状）有一个独特的二维图片，相对于的形状
-只能有个两个端点形状的其中一个（例如两个基础形状立方体和球），并且没有过渡形状存在。所以再这种情况下，训练形状的聚类趋势总是非常的高，同时
-从二次采样数据集1.2.1到二次采样数据集1.2.7训练图片的聚类趋势逐渐变低。与之前一样，二次采样数据集1.2.7的训练图片集几乎覆盖了从球到正立方体的整个
-变化。所以，二次采样数据集1.2.1表示了情况3的一个案例，同时1.2.7表示了情况1的一个案例并且数据集1.2.n（n = 1,2,$\ldots $7）表示了
-从情况3到情况1的转变。在每个数据集，训练图片的数量总是$2\times10$，2是簇的数量，以及10是每个簇的样本数量。与二次采样数据集1.1相似，
+\textbf{二次采样数据集1.2 描述章节\ref{sec:case1}的情况1和情况3} ~二次采样数据集1.2是基础数据集1的另一个二次采样
+版本。这个数据集的目的是覆盖从情况1到情况3的转变。这个数据集是一个7个二次采样数据集1.2.n（n=1,2,$\ldots$7）的集合。每个数据集1.2.n包含了
+两个样本簇。但是，与二次采样数据集1.1不同，尽管二次采样数据集1.2中的每个训练对（图片，三维形状）有一个独特的二维图片，相对应的三维形状
+只能为两个端点形状中的其中一个（例如两个基础形状正立方体和球），并且没有过渡形状存在。所以在这种情况下，训练形状的聚类趋势总是非常高，同时
+从二次采样数据集1.2.1到1.2.7的训练图片的聚类趋势逐渐变低。与之前一样，二次采样数据集1.2.7的训练图片集几乎覆盖了从球到正立方体的整个
+变化。所以，二次采样数据集1.2.1表示了情况3的一个案例，同时1.2.7表示了情况1的一个案例并且数据集1.2.n（n = 1,2,$\ldots$7）表示了
+从情况3到情况1的转变。在每个数据集，训练图片的数量总是$2\times10$，2是簇的数量，10是每个簇的样本数量。与二次采样数据集1.1相似，
 二次采样数据集1.2的测试集依然是基础数据集1的测试集。
 
 \begin{figure}
@@ -695,25 +695,25 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
      \includegraphics[width=\columnwidth]{figs/two-clusters.png}
      \caption{\small 数据集 1.2.n (n = 1, 2, $\ldots $7). 点标记代表图像分布，同时叉标记代表点云分布。}\label{fig:two-clusters}
    \end{subfigure}
-   \caption{\small 二个二次采样的数据集 1.1.n and 1.2.n 覆盖基础数据集的程度}
+   \caption{\small 二个二次采样的数据集 1.1.n and 1.2.n 在基础数据集上的分布}
 \end{figure}
 
-\textbf{基础数据集 \#2}（正立方体-正四面体-球）~为了补充第一个数据集，我们生成了另外一个数据集，在三个基础形状之间插值，分别是
-正立方体，正四面体，球。这三个形状有相似的大小。在这三个基础形状之间，我们插值了10000过渡形状。与基础数据集\#1相似，我们从基础数据集\#2中创造了
+\textbf{基础数据集 \#2}（正立方体-正四面体-球）~为了增加合成数据集的复杂度，增加实验验证的有效性，我们生成了一个比基础数据集\#1更复杂的数据集，在三个基础形状之间插值，分别是
+正立方体，正四面体，球。这三个形状有相似的大小。在这三个基础形状之间，我们插值了10000个过渡形状。与基础数据集\#1相似，我们从基础数据集\#2中创造了
 二次采样数据集来表现在章节\ref{sec:thm}中讨论的不同情况。具体来说，我们首先使用了正四面体和正立方体作为两个基础形状并生成了100个过渡
-形状$S_1,S_2,\ldots S_100$，与基础数据集\#1相似。然后，我们选择每个基础过渡形状$S_i$，并且在$S_i$和基础形状球之间线性插值100个形状。
+形状$S_1,S_2,\ldots S_{100}$，然后，我们选择每个基础过渡形状$S_i$，并且在$S_i$和基础形状球之间线性插值100个形状。
 这个二维插值的过程总共给了我们$100 \times 100 = 10000$个过渡形状。这10000个形状再次被分为7000个训练样本，
 1000个验证样本和2000个测试样本。 
 
-\textbf{二次采样数据集2.1 描述\ref{sec:case2}理论分析的情况2和情况3} ~二次采样数据集2.1的目的是覆盖从情况2到情况3的转化。这个数据集是一组6个二次采样数据集的集合2.1.n(n=1,2,...6)。
-从二次采样数据集2.1.1到二次采样数据集2.1.6，聚集趋势逐渐变低。
+\textbf{二次采样数据集2.1 描述章节\ref{sec:case2}的情况2和情况3} ~二次采样数据集2.1的目的是覆盖从情况2到情况3的变化。这个数据集是一组6个二次采样数据集的集合2.1.n（n=1,2,$\ldots$6）。
+从二次采样数据集2.1.1到2.1.6，聚集趋势逐渐变低。
 更具体的是，二次采样数据集2.1.1有三个明显分离的簇，由在三个基础形状周围采样获得，同时二次采样数据集2.1.6几乎
-连续覆盖了从2.1.1到2.1.6的所有转变。每个二次采样数据集有三个簇，每个簇有30个样本。与正立方体-球数据集$\#$1相似，测试集保持固定（是基础数据集$\#$2的
+连续覆盖了从2.1.1到2.1.6的所有变化。每个二次采样数据集有三个簇，每个簇有30个样本。与正立方体-球数据集$\#$1相似，测试集保持固定（是基础数据集$\#$2的
 初始测试集）。但是，因为测试集里的形状数量非常多，我们对测试集通过随机选择300个测试样本进行了二次采样。当训练神经网络时，我们使用了验证数据集来选择最优的
 模型。
 
-\textbf{二次采样数据集2.2 描述\ref{sec:case1}理论分析的情况1和情况3} ~二次采样数据集2.2的目的是覆盖从情况3到情况1的转变。它包含了六个数据集
-2.2.n（n=1,2,$\ldots$）。从二次采样数据集2.2.1到2.2.6，训练图片集的聚类趋势逐渐降低，同时训练点云集的聚类趋势保持在高水平。
+\textbf{二次采样数据集2.2 描述章节\ref{sec:case1}的情况1和情况3} ~二次采样数据集2.2的目的是覆盖从情况3到情况1的变化。它包含了六个数据集
+2.2.n（n=1,2,$\ldots$6）。从二次采样数据集2.2.1到2.2.6，训练图片集的聚类趋势逐渐降低，同时训练点云集的聚类趋势保持在高水平。
 我们固定训练点云，比如对于每个样本对$(I,S)$，我们使得与每个训练图片$I$相关的训练点云$S$都是三个基础形状中的一个。
 所以，从二次采样数据集2.2.1到2.2.6的转变表示了从情况3到情况1的转变。在每个二次采样数据集中，我们生成接近三个基础
 形状的簇，并且每个簇有16个样本。当训练神经网络时，我们不使用验证集，并且简单的选择最后一个周期的模型参数。原因是在当前的设定下，
@@ -722,47 +722,50 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 
 
 \section{实验结果}
-在这个子章节，我们展示了实验结果来支持章节\ref{sec:thm}中的主要论点：识别机制只会在训练图片聚簇程度小于训练形状聚簇程度时才会发送，例如，情况1。
+在这个子章节，我们展示了实验结果来论证\ref{sec:thm}中的主要论点：识别机制只会在训练图片聚簇程度小于训练形状聚簇程度时才会发生，例如，情况1。
 为了证明这个论点，我们已经在章节\ref{sec:dataset}中创建了不同的数据集来覆盖情况1，2和3之间的过渡转变。
 关于神经网络模型，我们采用了在章节\ref{sec:optimal_method}中使用残差层优化过的自编码器架构\ref{fig:resnet_decoder},
 采用Chamfer Distance作为损失函数。对于二次采样数据集1.1，我们为从1.1.1到1.1.7的每个数据集都分别训练了一个单独的神经网络，进行了
-1500个周期的训练，以到达保证他们的学习能力饱和。对于子数据集1.2，我们在每个子数据集1.2.n上训练3000个周期，因为1.2.n每个数据集的样本量
-更小。在训练期间，我们使用Adam优化器，初始化学习率为0。003，学习率衰减为0.1。我们使用验证集来选择最好的模型用于预测而不是测试集。
+1500个周期的训练，以到达保证他们的学习能力饱和。对于子数据集1.2，我们也分别在每个子数据集1.2.n上训练一个单独的神经网络，但训练周期更多，有3000个周期，因为1.2.n每个数据集的样本量
+更小。在训练期间，我们使用Adam优化器，初始化学习率为0.003，学习率衰减为0.1。我们使用验证集来选择最好的模型用于预测。
 
-\subsection{数据集指标测量} 
+\subsection{数据集指标测量}\label{sec:metric_result}
+在这个子章节，我们使用\ref{sec:metric_on_dataset}提出的衡量数据集聚类程度的指标来对我们机制探究实验中所有数据集以及网络预测结果的聚类程度进行测量。
 
-\textbf{基础数据集\#1的实验结果}~在这个部分，我们展示了基础数据集\#1的量化实验结果来支持章节\ref{sec:thm}中的主要观点。对于每个二次采样数据集，我们画出模型输入数据的聚类趋势与输出数据的聚类趋势、
-因为我们有两类输入数据，训练图片与训练形状，我们画出分别画出“输入图片-预测结果”和“输入形状-预测结果”这两个关系。结果展示在图\ref{fig:silhouette-dataset-1.png}。
+\textbf{基础数据集\#1的实验结果}~在这个部分，我们展示了基础数据集\#1的量化实验结果来支持章节\ref{sec:thm}中的主要观点。对于每个二次采样数据集，我们画出模型输入数据的聚类趋势与输出数据的聚类趋势，由\ref{sec:metric_on_dataset}我们
+提出的轮廓系数（silhouette score）表示。因为我们有两类输入数据——训练图片与训练形状，我们分别画出“输入图片-预测结果”和“输入形状-预测结果”这两个关系。结果展示在图\ref{fig:silhouette-dataset-1.png}。
 第一行的结果关于二次采样数据集1.1，即从情况3到情况2的转变，同时第二行的结果关于二次采样数据集1.2，即从情况3到情况1的转变。对于二次采样数据集1.1
 的结果，即使是输入的聚类趋势变化，输出的聚类趋势保持不变。这一结果证明了我们在\ref{fig:clustering_tendency}b和\ref{fig:clustering_tendency}c
-的理论分析，即在情况2和情况3下输出的聚类趋势比较低。但是，在图\ref{fig:silhouette-dataset-1.png}的第二行，我们可以看到当输入图片聚类趋势降低时，输出聚类趋势明显
-提升。这正是与我们在图\ref{fig:clustering_tendency}a中的理论分析一直，即初始形状的聚簇只会在训练图片不聚簇且训练形状聚簇的情况发生、
+的理论分析，即在情况2和情况3下输出的聚类趋势比较低，神经网络执行重建机制。但是，在图\ref{fig:silhouette-dataset-1.png}的第二行，我们可以看到当输入图片聚类趋势降低时，输出聚类趋势明显
+提升。这正是与我们在图\ref{fig:clustering_tendency}a中的理论分析一致，即重建形状的聚簇只会在训练图片不聚簇且训练形状聚簇的情况发生、
 注意在第二行，训练形状只包含两个端点形状（球和正立方体）。所以，训练形状的聚类趋势总是非常高（注意图\ref{fig:silhouette-dataset-1.png}第二行
 右边的图片）。
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-1.png}
-    \caption{\small “训练图片/形状点云-输出形状”的silhouette scores. 只有情况1（左下角子图中大数据索引指向的点）展示出高的聚类趋势}
+    \caption{\small “基础数据集\#1的训练图片/形状点云-输出形状”的轮廓系数（silhouette score）。只有情况1（左下角子图中大数据索引指向的点）展示出高的聚类趋势}
     \label{fig:silhouette-dataset-1.png}
 \end{figure}
 \FloatBarrier
 \textbf{基础数据集\#2的实验结果}~在这个部分，我们展示了基础数据集\#2的量化实验结果，该实验结果由在每个二次采样数据集上（2.1.n以及2.2.n)
-进行训练和测试获得。具体来说，该量化结果为输入与输出的silhouette score，展示在图\ref{fig:silhouette-dataset-2.png}。从该图的第二行左侧的图
+进行训练和测试获得。具体来说，该量化结果为输入与输出的轮廓系数（silhouette score），展示在图\ref{fig:silhouette-dataset-2.png}。从该图的第二行左侧的图
 可以看出只有在情况1预测结果才会呈现出明显的聚类趋势，与章节\ref{sec:thm}的结论一致。该图第一行的两张子图展示了在情况2和情况3下预测结果都不会呈现出
 高的聚类趋势。
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-2.png}
-    \caption{\small “训练图片/形状点云-输出形状”的silhouette scores. 只有情况1（左下角子图中大数据索引指向的点）展示出高的聚类趋势}
+    \caption{\small “基础数据集\#2的训练图片/形状点云-输出形状”的（silhouette score）。只有情况1（左下角子图中大数据索引指向的点）展示出高的聚类趋势}
     \label{fig:silhouette-dataset-2.png}
 \end{figure}
 
 \subsection{距离矩阵的可视化}
+在这个子章节，我们可视化了在不同情况的数据集上训练的神经网络的预测结果，一方面验证我们在\ref{sec:metric_on_dataset}提出的衡量数据集聚类程度的指标在上文展示\ref{sec:metric_result}的结果的准确性，
+另一方面进一步支持我们在章节\ref{sec:thm}中的主要观点。我们使用降维方法，对一个网络的一组数据（点云或图片）计算一个距离矩阵。
 
-\textbf{基础数据集\#1的实验结果}~我们也可视化了不同情况下的距离矩阵来支持我们在章节\ref{sec:thm}中的主要观点。参考图\ref{fig:cluster_visualization}。在左侧子图，我们可视化了二次采样数据集
-1.1的结果，覆盖了情况3和情况2。在右侧子图，我们可视化了二次采样数据集1.2覆盖了情况3和情况1.左侧子图的七行对应二次采样数据集1.1.1到1.1.7。右侧子图
+\textbf{基础数据集\#1的实验结果}~在这个部分，我们可视化了在基础数据集\#1上训练的神经网络得到的预测结果的距离矩阵。参考图\ref{fig:cluster_visualization}。在左侧子图，我们可视化了二次采样数据集
+1.1的结果，覆盖了情况3和情况2。在右侧子图，我们可视化了二次采样数据集1.2的结果，覆盖了情况3和情况1。左侧子图的七行对应二次采样数据集1.1.1到1.1.7。右侧子图
 的七行对应二次采样数据集1.2.1到1.2.7。在每个子图，左侧列表示输入图片的距离矩阵，中间列表示训练点云的距离矩阵以及右侧列表示测试时的预测点云
 的距离矩阵。对于训练图片，距离由图片的$\ell$1-距离。对于点云，距离为Chamfer Distance。
 
@@ -833,22 +836,22 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
         %& DI = 7 & & & DI = 7 & \\
         \bottomrule  
         \end{tabular}  \vspace{-2mm}
-        \caption{\small Distance matrices. Blue represents small distance and red represents large distance. {\bf (Left)} predicted shapes of subsampled dataset 1.1 are not clustered. {\bf (Right)} predicted shapes of subsampled dataset 1.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 7.}
+        \caption{\small 基础数据集\#1的距离矩阵。蓝色表示小距离以及红色代表大距离。（左侧三列）二次采样数据集1.1的预测形状不成簇。（右侧三列）如果数据集情况符合\ref{sec:case1}的情况1，二次采样数据集1.2的预测形状成簇。从上到下：数据集索引1到7。}
         \label{fig:cluster_visualization}
     \end{centering}
     \end{figure}
 \FloatBarrier
 \textbf{基础数据集\#2的实验结果} ~这里，我们展示了数据集\#2的距离矩阵可视化结果。参考图\ref{fig:triangle_cluster_visualization}。我们可以看到该图左起第六列
 的预测结果距离矩阵逐渐成簇，这意味着当数据集从情况3变化到情况1时，点云预测逐渐从重建转变为识别。这一定性结果与图\ref{fig:silhouette-dataset-2.png}左下角的子图
-展示定量结果silhouette scores的变化趋势一致，即预测点云结果从2.2.1（情况3）到2.2.6（情况1）有一个持续增大的silhouette score。相反，左起第三列并没有明显的变化，
-意味着情况2和情况3下预测结果都没有高的聚类趋势。这也与图\ref{fig:silhouette-dataset-2.png}第一行展示的silhouette scores没有明显的变化趋势一致。
+展示定量结果silhouette score的变化趋势一致，即预测点云结果从2.2.1（情况3）到2.2.6（情况1）有一个持续增大的silhouette score。相反，左起第三列并没有明显的变化，
+意味着情况2和情况3下预测结果都没有高的聚类趋势。这也与图\ref{fig:silhouette-dataset-2.png}第一行展示的silhouette score没有明显的变化趋势一致。
 
 
 \begin{figure}[ht!]
     \begin{centering}
         \begin{tabular}{cccc|cccc}
         \toprule
-         &Images & GT & Recons. & Images & GT & Recons.& \\
+         &输入图片 & 标签点云 & 重建点云 & 输入图片 & 标签点云 & 重建点云& \\
         \toprule
         2.1.1 &\includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_1_1.png} &
         \includegraphics[width=0.12\columnwidth,keepaspectratio]{figs/toy_triangle/cluster_converge_3by30_1_2.png} &
@@ -900,7 +903,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
         %\midrule
         \bottomrule  
         \end{tabular}  \vspace{-2mm}
-        \caption{\small Distance matrices. Blue represents small distance and red represents large distance. {\bf (Left)} predicted shapes of subsampled dataset 2.1 are not clustered. {\bf (Right)} predicted shapes of subsampled dataset 2.2 are clustered if the training images are not clustered (i.e., if the dataset belongs to Case 1). Top to bottom: dataset index from 1 to 6.}
+        \caption{\small 基础数据集\#2的距离矩阵。蓝色表示小距离以及红色代表大距离。（左侧三列）二次采样数据集2.1的预测形状不成簇。（右侧三列）如果数据集情况符合\ref{sec:case1}的情况1，二次采样数据集2.2的预测形状成簇。从上到下：数据集索引1到6。}
         \label{fig:triangle_cluster_visualization}
     \end{centering}
     \end{figure}
@@ -908,17 +911,50 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 \chapter{总结与展望}
 
 \section{工作总结}
-在这篇文章中，我们研究了单视角三维重建神经网络是否倾向于执行识别（检索）机制或者重建机制（插值）。我们的结论是这一倾向取决于数据集的特征：训练样本的聚类趋势。
-在真实数据集中，我们确实发现了神经网络倾向于执行插值而非记忆。概括而言，识别现象是由于数据的复杂特征引发的，而不是源于深度神经网络模型。一个有意义的未来工作
-是从数据收集，网络架构，优化过程等角度研究深度学习技术，使得神经网络即使是在数据集特征偏倚于识别时依然能执行重建任务。
-在这项工作中，我们定量和定性的展示了论文\cite{tatarchenko2019single}的结论不是通用的，而且这是一个不合适的数据集收集和不合理的数据使用导致的复杂结果。我们建议使用数据挖掘中确立已久的理论测量一个数据集的“聚类趋势”，
-称为affinity propagation\cite{wang2008adaptive}和silhouette score\cite{van2015using}, 
-并且我们展示了当用于训练三维重建任务的数据集不具有聚类特征时，训练后的神经网络可以更倾向于重建而不是识别。
-更重要的是，我们展示了即使是现实数据集如ShapeNet \cite{chang2015shapenet}, 在其上进行训练的神经网络依然呈现出重建机制，
-且通过优化网络架构和使用训练技巧，其重建效果接近并超过了基于检索的非深度学习方法。我们关于识别与重建这两种机制的理解更丰富，
-将三维重建的内在机制与数据以及训练过程相关联。之更具体的是，我们展示了训练集中的三维形状之间应该比训练集中的图片间呈现出更多的差异，
-以此来避免产生一个基于识别的机器学习模型。这一结论很实用，因为它为三维数据集的收集以及三维重建训练提供了指导。
+在这篇文章中，我们研究了深度神经网络在单视角三维重建任务中的应用。针对深度学习基准模型在训练中的问题，提出了引入弱标签信息监督以及用残差层改进解码器的模型优化方案，
+使其在公开数据集ShapeNet上的测试结果超过了基于识别机制的非深度学习方法的理论极限。在模型优化的基础上，我们进一步探究了神经网络在重建任务中的内在机制，
+即神经网络是否倾向于执行识别（检索）机制或者重建（插值）机制。我们的结论是这一倾向取决于数据集的特征——训练样本的聚类趋势。
+我们提出了基于亲和传播（affinity propagation）和轮廓系数（silhouette score）的数据集聚类趋势度量指标，并结合实验结果总结规律：
+只有当训练形状集的聚类程度高于训练图片集的聚类程度时，神经网络才会执行识别机制，在其他正常情况下，
+训练后的神经网络更倾向于重建而不是识别。概括而言，识别现象是不合适的数据集收集和数据使用导致的数据集复杂特征引发的，而不是源于深度神经网络模型。
+因此，我们建议训练集中的三维形状之间应该比训练集中的图片之间呈现出更多的差异，以此来避免产生一个基于识别的机器学习模型，这为三维数据集的收集以及三维重建训练提供了指导。
+
+\noindent
+\textbf{本课题具有如下创新点：}
+\begin{itemize}
+    \item[1.] 提出了单视角三维重建任务中行之有效的深度神经网络优化方案。
+    \item[2.] 提出了对深度神经网络内在机制的丰富理解，并设计了实验流程进行了成功的验证。
+    \item[3.] 提出了测量三维重建数据集聚类程度的度量指标。
+\end{itemize}
+
+\noindent
+\textbf{当前研究存在如下不足之处：}
+\begin{itemize}
+    \item[1.] 优化后的模型对算法需求过高，单个模型训练所需时间过长。
+    \item[2.] 优化后的模型重建的三维形状缺少复杂的局部细节（如飞机的机翼，椅子背上的凹槽等）。
+    \item[3.] 在自定义合成数据集上的机制探究实验尚未在大型公开数据集上进一步验证，因为没有解决计算大规模距离矩阵所需要的算力问题。
+\end{itemize}
+
+%在这篇文章中，我们研究了单视角三维重建神经网络是否倾向于执行识别（检索）机制或者重建机制（插值）。我们的结论是这一倾向取决于数据集的特征：训练样本的聚类趋势。在真实数据集中，我们确实发现了神经网络倾向于执行插值而非记忆。概括而言，识别现象是由于数据的复杂特征引发的，而不是源于深度神经网络模型。一个有意义的未来工作是从数据收集，网络架构，优化过程等角度研究深度学习技术，使得神经网络即使是在数据集特征偏倚于识别时依然能执行重建任务。在这项工作中，我们定量和定性的展示了论文[13]的结论不是通用的，而且这是一个不合适的数据集收集和不合理的数据使用导致的复杂结果。我们建议使用数据挖掘中确立已久的理论测量一个数据集的“聚类趋势”，称为affinitypropagation[38]和silhouette score[37],并且我们展示了当用于训练三维重建任务的数据集不具有聚类特征时，训练后的神经网络可以更倾向于重建而不是识别。更重要的是，我们展示了即使是现实数据集如ShapeNet[15],在其上进行训练的神经网络依然呈现出重建机制，且通过优化网络架构和使用训练技巧，其重建效果接近并超过了基于检索的非深度学习方法。我们关于识别与重建这两种机制的理解更丰富，将三维重建的内在机制与数据以及训练过程相关联。之更具体的是，我们展示了训练集中的三维形状之间应该比训练集中的图片间呈现出更多的差异，以此来避免产生一个基于识别的机器学习模型。这一结论很实用，因为它为三维数据集的收集以及三维重建训练提供了指导
 \section{工作展望}
+本课题仍有一些问题没有得到合理解决，未来将会在如下方面进行改进:
+
+\begin{itemize}
+    \item[1.] 应用并行计算等加速方法计算距离矩阵和训练神经网络，以提高验证猜想的效率并满足在大型数据集上验证的要求。
+    \item[2.] 采用神经网络剪枝和模型压缩等方法优化模型，减少网络训练所需的时间。
+\end{itemize}
+
+基于本课题的成果与结论，决定从如下方面进一步拓展工作：
+
+未来有意义的工作方向是从数据收集，网络架构，优化过程等角度研究深度学习技术，使得神经网络即使是在数据集特征偏倚于识别时依然能执行重建任务。
+
+我们考虑使用数据增强的方法在数据簇的周围增加数据点，增大簇的半径，以达到降低数据集聚类程度的目的。我们已经尝试使用了mixup以及manifold mixup的方法，但是因为
+暂时缺少方法对两个三维点云进行算术运算，因此只对图片和码字进行了mixup，而这种残缺的增强方法并没有起到提高重建效果的作用。与mixup的作者联系后，我们了解到mixup的方法需要作用于
+输入与标签，只在一端进行增强并不能达到目的。因此我们接下来需要考虑如何对两个三维点云进行算术运算，获取中间的过渡形状以实现数据增强，正在尝试的方案是训练一个基于三维点云输入的自编码器，
+用训练完的编码器输出的码字代表一个三维形状，并对码字进行算术运算，运算后的码字结果再经过解码器生成两个形状之间的过渡形状。
+
+目前还有一种正在探索的数据增强方法，源于图像领域AutoAugment以及Population-based Augmentation，即使用强化学习或者进化算法来学习数据增强的策略。我们的方案是，先设计对三维形状进行增强的基础策略，如
+旋转，不规则缩放，切断等，将这些基础策略应用于三维形状后，直接渲染出对应的单视角图片，将图片与形状输入神经网络进行训练，在此基础上结合策略学习的方法。
 
 \end{Main} % 结束正文
 
@@ -932,62 +968,62 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
     \begin{figure}[!h]
         \centering
             \begin{tabular}{c@{}c@{}c@{}c@{}c@{}}
-            Input & GT & \makecell[c]{Auto-encoder \\(weak label info)} & Auto-encoder & Oracle NN\\
+            输入图片 & 标签点云 & \makecell[c]{自编码器 \\(弱标签信息)} & \makecell[c]{自编码器 \\(残差层解码器)} & Oracle-NN\\
             \includegraphics[width=0.11\columnwidth,height=1.8cm]{figs/supp_real_dataset/Image/chair_fb8b45151900e6e016a0c57b9ceb6d01.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/chair_fb8b45151900e6e016a0c57b9ceb6d01_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/chair_fb8b45151900e6e016a0c57b9ceb6d01_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/chair_fb8b45151900e6e016a0c57b9ceb6d01_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/chair_fb8b45151900e6e016a0c57b9ceb6d01_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/chair_fb8b45151900e6e016a0c57b9ceb6d01_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/chair_fb8b45151900e6e016a0c57b9ceb6d01_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/chair_fb8b45151900e6e016a0c57b9ceb6d01_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/chair_fb8b45151900e6e016a0c57b9ceb6d01_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/mailbox_81f30bae0a1474fff601d2ded3aef05a.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/mailbox_81f30bae0a1474fff601d2ded3aef05a_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/mailbox_81f30bae0a1474fff601d2ded3aef05a_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/mailbox_81f30bae0a1474fff601d2ded3aef05a_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/mailbox_81f30bae0a1474fff601d2ded3aef05a_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/mailbox_81f30bae0a1474fff601d2ded3aef05a_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/mailbox_81f30bae0a1474fff601d2ded3aef05a_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/mailbox_81f30bae0a1474fff601d2ded3aef05a_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/mailbox_81f30bae0a1474fff601d2ded3aef05a_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.12\columnwidth,height=2cm]{figs/supp_real_dataset/Image/pillow_68131b4f51579263f7b57f419ab2620.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/pillow_68131b4f51579263f7b57f419ab2620_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/pillow_68131b4f51579263f7b57f419ab2620_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/pillow_68131b4f51579263f7b57f419ab2620_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/pillow_68131b4f51579263f7b57f419ab2620_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/pillow_68131b4f51579263f7b57f419ab2620_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/pillow_68131b4f51579263f7b57f419ab2620_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/pillow_68131b4f51579263f7b57f419ab2620_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/pillow_68131b4f51579263f7b57f419ab2620_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.11\columnwidth,height=2cm]{figs/supp_real_dataset/Image/pot_490e2e25da735cfd3df324363ca0723f.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/pot_490e2e25da735cfd3df324363ca0723f_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/pot_490e2e25da735cfd3df324363ca0723f_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/pot_490e2e25da735cfd3df324363ca0723f_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/pot_490e2e25da735cfd3df324363ca0723f_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/pot_490e2e25da735cfd3df324363ca0723f_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/pot_490e2e25da735cfd3df324363ca0723f_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/pot_490e2e25da735cfd3df324363ca0723f_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/pot_490e2e25da735cfd3df324363ca0723f_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/rocket_99314b704285c0ca16e3314677399d49.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/rocket_99314b704285c0ca16e3314677399d49_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/rocket_99314b704285c0ca16e3314677399d49_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/rocket_99314b704285c0ca16e3314677399d49_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/rocket_99314b704285c0ca16e3314677399d49_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/rocket_99314b704285c0ca16e3314677399d49_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/rocket_99314b704285c0ca16e3314677399d49_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/rocket_99314b704285c0ca16e3314677399d49_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/rocket_99314b704285c0ca16e3314677399d49_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.11\columnwidth,height=1.3cm]{figs/supp_real_dataset/Image/table_3942f02501161134c3bd24f986301745.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/table_3942f02501161134c3bd24f986301745_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/table_3942f02501161134c3bd24f986301745_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/table_3942f02501161134c3bd24f986301745_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/table_3942f02501161134c3bd24f986301745_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/table_3942f02501161134c3bd24f986301745_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/table_3942f02501161134c3bd24f986301745_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/table_3942f02501161134c3bd24f986301745_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/table_3942f02501161134c3bd24f986301745_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/tower_f584f1a14904b958ba9419f3b43eb3bd.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/tower_f584f1a14904b958ba9419f3b43eb3bd_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/tower_f584f1a14904b958ba9419f3b43eb3bd_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/tower_f584f1a14904b958ba9419f3b43eb3bd_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/tower_f584f1a14904b958ba9419f3b43eb3bd_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/tower_f584f1a14904b958ba9419f3b43eb3bd_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/tower_f584f1a14904b958ba9419f3b43eb3bd_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/tower_f584f1a14904b958ba9419f3b43eb3bd_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/tower_f584f1a14904b958ba9419f3b43eb3bd_oracle.png} \\
             \vspace{-5mm}
             \includegraphics[width=0.11\columnwidth,height=1.7cm]{figs/supp_real_dataset/Image/train_537decdce3079c857addcf2661f94d39.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/GT/train_537decdce3079c857addcf2661f94d39_gt.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/train_537decdce3079c857addcf2661f94d39_label.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/AE/train_537decdce3079c857addcf2661f94d39_pred.png} &
-            \includegraphics[width=0.22\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/train_537decdce3079c857addcf2661f94d39_oracle.png} \\
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/GT/train_537decdce3079c857addcf2661f94d39_gt.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE_label/train_537decdce3079c857addcf2661f94d39_label.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/train_537decdce3079c857addcf2661f94d39_pred.png} &
+            \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/train_537decdce3079c857addcf2661f94d39_oracle.png} \\
             \end{tabular}
-            \caption{\small More visualizations. Objects from top to bottom: chair, mailbox, pillow, pot, rocket, table, tower, train.}
+            \caption{\small 更多的可视化. 从上到下的物体类别：椅子，邮箱，枕头，壶，火箭，桌子，塔。}
             \label{fig:visualize_KC_supplementary}
         \end{figure}
         \clearpage
 
-    \chapter{MATLAB实验}
-    技术实验结果在这里写
+    \chapter{实验数据与结果}
+    \TODO{技术实验结果在这里写}
 \end{Appendix}
 
 \begin{Acknowledgement}{}
