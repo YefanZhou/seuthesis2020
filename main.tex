@@ -92,10 +92,39 @@
 \chapter{绪论}
 
 \section{课题的背景和意义}
-基于单视角二维图片输入进行三维物体形状重建是三维视觉领域的核心问题之一，它能有效解决现实世界中二维数据丰富而三维数据稀少的问题，满足无人驾驶，智能建造，机器人领域的需求。点云数据具有易处理，易存储，易获得的特点，因此成为重建任务中常用的三维数据表示之一。
+基于单视角二维图片输入进行三维物体形状重建是三维视觉领域的核心问题之一，它能有效解决现实世界中二维数据丰富而三维数据稀少的问题，满足无人驾驶，智能建造，机器人领域的需求。
+如图\ref{fig:civil-modeling}，在智能建造领域的城市三维建模中，大规模应用该技术将高清航拍获取的RGB图片数据\ref{fig:civil-plane-image}
+重建为三维立体数据\ref{fig:civil-recon}，结合雷达获取的遥感点云数据\ref{fig:civil-remotesense}，
+进行高精度的城市建模\ref{fig:civil-high}。点云数据具有易处理，易存储，易获得的特点，
+因此成为三维重建研究中常用的三维数据表示之一。
 
-使用深度学习来进行单视角三维重建持续受到人们的关注。
-尽管很多的文章已经展示了创新的深度学习框架来提高三维重建任务中的最高水平\cite{li2018point,park2019deepsdf,fan2017point,tatarchenko2017octree,groueix2018papier,yang2018foldingnet,wang2018pixel2mesh,sun2018pix3d,tulsiani2017multi,wu2017marrnet,yan2016perspective}，
+\begin{figure}
+	\begin{subfigure}[t]{0.30\linewidth} \centering 
+        \includegraphics[width=\columnwidth]{figs/app/image.png}
+        \caption{高清航拍图片}\label{fig:civil-plane-image}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.30\linewidth} \centering
+        \includegraphics[width=\columnwidth]{figs/app/recon.png}
+        \caption{单视角三维重建模型}\label{fig:civil-recon}
+    \end{subfigure}
+%    \hspace{0.05\linewidth}
+    \begin{subfigure}[t]{0.30\linewidth} \centering
+        \includegraphics[width=\columnwidth]{figs/app/remotesense.png}
+        \caption{遥感点云数据}\label{fig:civil-remotesense}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\linewidth} \centering
+        \includegraphics[width=\columnwidth]{figs/app/coarse_modeling.png}
+        \caption{低精度建模}\label{fig:civil-coarse} 
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\linewidth} \centering
+        \includegraphics[width=\columnwidth]{figs/app/high_modeling.png}
+        \caption{高精度建模}\label{fig:civil-high} 
+    \end{subfigure}
+  \caption{\small 应用单视角三维重建技术的城市建模 }\label{fig:civil-modeling}
+\end{figure}
+\FloatBarrier
+
+使用深度学习来进行单视角三维重建持续受到人们的关注。尽管很多的文章已经展示了创新的深度学习框架来提高三维重建任务中的最高水平\cite{li2018point,park2019deepsdf,fan2017point,tatarchenko2017octree,groueix2018papier,yang2018foldingnet,wang2018pixel2mesh,sun2018pix3d,tulsiani2017multi,wu2017marrnet,yan2016perspective}，
 但很少有文章来尝试探究这些任务的本质特性。不可否认的是，重建三维非常规形状的问题已经变成了一个新的机器学习范例, 
 并且从事者使用的处理数据和训练网络的方法与在常规数据上的学习使用的方法不同（比如，Adam\cite{kingma2014adam}的使用频率比SGD要高）。
 因此，这引发了研究者对其内在机制的思考，即神经网络在三维重建学习这个新范例上怎样进行学习？是否与传统的向量分类和回归问题不同？
@@ -111,6 +140,8 @@
 同时进一步探究深度神经网络在三维重建任务中的内在机制，分析导致其偏倚于识别或重建机制的因素，
 这一研究将会帮助当前应用于三维重建的深度学习方法避免陷入识别机制的误区，同时也探讨了深度学习的本质问题，
 即如何帮助神经网络进行更好的泛化。
+
+
 
 \section{研究现状}
 \subsection{相关模型}
@@ -260,7 +291,7 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
 
 \subsection{亲和传播}
 亲和传播（Affinity propagation）是一个基于数据点消息传播理论的聚类算法。亲和传播在运行算法之前不需要预先设定簇的数量，
-而是通过反复迭代从输入数据集中选出“典范（exemplars）”来代表一个簇。
+而是通过反复迭代从输入数据集中选出“示例（exemplars）”来代表一个簇。
 
 给定一组数据点从$x_1$到$x_n$，先根据预先定义的距离方程计算距离矩阵，再将距离矩阵取负后转化为相似度矩阵（Similarity matrix）。在这个基础定义处，我们
 使用欧式距离作为距离方程，相似度矩阵可以被写为：
@@ -272,19 +303,19 @@ $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验�
 在运行过程中我们需要考虑这几个矩阵：责任矩阵（Responsibility matrix），获取度矩阵（Availability matrix），
 规则矩阵（Criterion matrix）。算法在运行过程中对这几个矩阵进行如下更新：
 
-首先责任矩阵$r(i,k)$量化了第$k$个元素适合成为第$i$个元素的典范的程度，并考虑了最近的竞争者第$k^{'}$个元素可能成为第$i$个元素的典范这个因素。
+首先责任矩阵$r(i,k)$量化了第$k$个元素适合成为第$i$个元素的示例的程度，并考虑了最近的竞争者第$k^{'}$个元素可能成为第$i$个元素的示例这个因素。
 \begin{equation}\label{eqn:resp_matrix}
     r(i, k) \leftarrow s(i, k)-\max _{k^{\prime} \neq k}\left\{a\left(i, 
 k^{\prime}\right)+s\left(i, k^{\prime}\right)\right\}
 \end{equation}
 
-接着获取度矩阵的非对角线元素$a(i,k)$量化了第$i$个元素选择第$k$个元素作为典范的合适程度，考虑了其他元素支持k成为一个典范的程度。
+接着获取度矩阵的非对角线元素$a(i,k)$量化了第$i$个元素选择第$k$个元素作为示例的合适程度，考虑了其他元素支持k成为一个示例的程度。
 
 \begin{equation}\label{eqn:avail_matrix}
     a(i, k) \leftarrow \min \left(0, r(k, k)+\sum_{i^{\prime} \notin\{i, k\}} \max \left(0, r\left(i^{\prime}, k\right)\right)\right) \text { for } i \neq k
 \end{equation}
 
-获取度矩阵的对角线元素$a(k,k)$反映了第$k$个元素适合成为一个典范的累积证据，基于k对于其他元素的积极责任。
+获取度矩阵的对角线元素$a(k,k)$反映了第$k$个元素适合成为一个示例的累积证据，基于k对于其他元素的积极责任。
 \begin{equation}\label{eqn:avail_matrix_dia}
     a(k, k) \leftarrow \sum_{i^{\prime} \neq k} \max \left(0, r\left(i^{\prime}, k\right)\right)
 \end{equation}
@@ -415,7 +446,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     \item 神经网络训练状态不稳定，对初始化要求较高。首先可以看出，在使用Adam优化器的情况下，学习率从0.003到0.01仅增大了三倍，
         就使得网络陷入了与最优效果相差较大的局部最优，且Adam优化器也没有能使得网络跳出这个局部最优点。在正常情况下，网络不应该对超参数有如此高的敏感程度。这也说明重建任务对
         神经网络参数初始化有比较高的要求。
-    \item 当前深度神经网络架构学习能力弱，可能出现了梯度消失的问题使得损失更新困难。
+    \item 当前深度神经网络架构学习能力弱，一方面解码器较浅的网络深度可能不足以完成当前复杂的任务。另一方面可能出现了梯度消失的问题，
     如图\ref{fig:testloss}所示，两个网络分别在第30周期和第60周期过早收敛，
     但收敛后的损失仍处于较高水平，这说明当前的网络可能出现了训练过程中梯度消失的问题，导致网络权重难以更新。
     
@@ -489,9 +520,12 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 
 具体的实现方法为用残差层改进基准模型\ref{fig:ae_baseline}的译码器，将三层全连接层感知器改为
 由三个残差块组成的感知器，如图\ref{fig:resnet_decoder}。且残差块内部全连接层之间进行批处理归一化，改进后译码器的参数量是基准模型译码器的两倍，
-保留译码器之前编码器和特征连接结构不变。根据图像分类领域深度学习的经验，残差层和批处理归一化都能有效的解决反向传播中梯度消失的问题，
-且可以在此基础上增加网络深度，提高重建能力。
-\TODO{可以考虑增加一下残差层和BatchNorm的原理与公式}
+保留译码器之前编码器和特征连接结构不变。残差层对于解码器的优化在于，通过引入“捷径连接”的方式，一方面在反向传播时，增大梯度的绝对值，另一方面改变了学习目标，
+不再学习一个完整的输出，而是学习一个恒等映射，将网络部分的残差结果逼近于0，降低了网络学习的难度。批处理归一化通过
+将每个隐层神经元的输入分布强制拉回到均值为0方差为1的标准正态分布，使得非线性变换函数的输入值落入对输入比较敏感的区域，
+以此避免梯度消失的问题。
+
+
 \begin{figure}
     \centering
     \includegraphics[width=0.99\columnwidth]{figs/model/resnet_decoder.png}
@@ -552,7 +586,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 
 除了平均重建效果，我们还考虑了每个类的重建结果的统计特性，如图\ref{fig:metric_per_class}。我们可以看到基于自编码器的三维重建神经网络在不同的类的
 重建效果上下波动较小，近似一致。而Oracle-NN在一些类别如tower，呈现出非常差的重建效果，出现了各个类重建效果不一致的情况。这个问题同样也在模型预测结果可视化中呈现出来，如图
-\ref{fig:visualize_KC}第四行，我们可以看到Oracle-NN预测出了在三维形状层面上非常不合理的点云。结合ShapeNet数据集的分布\TODO{附录}，我们可以看到有一些类的样本量很少，
+\ref{fig:visualize_KC}第四行，我们可以看到Oracle-NN预测出了在三维形状层面上非常不合理的点云。结合附录\ref{fig:data-stats}展示的ShapeNet数据集的分布，我们可以看到有一些类的样本量很少，
 Oracle-NN在样本量少的类内进行搜索时，有很大概率无法找到与预测点云相近的训练点云，因此会在这些类出现比较差的重建效果。
 
 图\ref{fig:visualize_KC}展示了各个模型预测结果的可视化，从这些定性结果可以看出，在不同物体类别之间，标准自动编码器的重建性能比Oracle-NN更稳定。
@@ -716,7 +750,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric9.png} &
 		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/Isometric10.png} \\    	
 	\end{tabular}
-	\caption{\small 基础数据集 \# 1: 在一个球和一个正立方体之间插值}
+	\caption{\small 基础数据集 \# 1}
     \label{fig:cube-sphere} \vspace{-4mm}
 \end{figure}
 
@@ -745,7 +779,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
      \includegraphics[width=\columnwidth]{figs/two-clusters.png}
      \caption{\small 数据集 1.2.n (n = 1, 2, $\ldots $7). 点标记代表图像分布，同时叉标记代表点云分布。}\label{fig:two-clusters}
    \end{subfigure}
-   \caption{\small 二个二次采样的数据集 1.1.n and 1.2.n 在基础数据集上的分布}
+   \caption{\small 二个二次采样的数据集 1.1.n 和 1.2.n 在基础数据集上的分布}
 \end{figure}
 
 \textbf{基础数据集 \#2}（正立方体-正四面体-球）~为了增加合成数据集的复杂度，增加实验验证的有效性，我们生成了一个比基础数据集\#1更复杂的数据集，在三个基础形状之间插值，分别是
@@ -754,6 +788,39 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 形状$S_1,S_2,\ldots S_{100}$，然后，我们选择每个基础过渡形状$S_i$，并且在$S_i$和基础形状球之间线性插值100个形状。
 这个二维插值的过程总共给了我们$100 \times 100 = 10000$个过渡形状。这10000个形状再次被分为7000个训练样本，
 1000个验证样本和2000个测试样本。 
+
+\begin{figure}
+	\begin{tabular}{c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}}
+	    正立方体   & & & & & $\Longleftrightarrow$ & & & & & 正四面体 \\
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_0.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_1.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_2.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_3.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_4.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_5.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_6.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_7.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_8.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_9.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/cube_triangle/Isometric_10.png} \\    	
+    \end{tabular}
+    \begin{tabular}{c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}}
+	    球   & & & & & $\Longleftrightarrow$ & & & & & 插值形状 \\
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric0.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric1.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric2.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric3.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric4.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric5.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric6.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric7.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric8.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric9.png} &
+		\includegraphics[width=.09\textwidth,keepaspectratio]{figs/triangle/sphere_triangle/Isometric10.png} \\    	
+	\end{tabular}
+	\caption{\small 基础数据集 \# 2}
+    \label{fig:cube-sphere} \vspace{-4mm}
+\end{figure}
 
 \textbf{二次采样数据集2.1 描述章节\ref{sec:case2}的情况2和情况3} ~二次采样数据集2.1的目的是覆盖从情况2到情况3的变化。这个数据集是一组6个二次采样数据集的集合2.1.n（n=1,2,$\ldots$6）。
 从二次采样数据集2.1.1到2.1.6，聚集趋势逐渐变低。
@@ -1015,6 +1082,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 %附录
 \begin{Appendix}{}
     \chapter{可视化结果}
+    \section{各模型预测结果可视化}
     \begin{figure}[!h]
         \centering
             \begin{tabular}{c@{}c@{}c@{}c@{}c@{}}
@@ -1067,13 +1135,20 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
             \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/AE/train_537decdce3079c857addcf2661f94d39_pred.png} &
             \includegraphics[width=0.18\columnwidth,height=2cm]{figs/supp_real_dataset/oracle/train_537decdce3079c857addcf2661f94d39_oracle.png} \\
             \end{tabular}
-            \caption{\small 更多的可视化. 从上到下的物体类别：椅子，邮箱，枕头，壶，火箭，桌子，火车。}
+            \caption{\small 更多的可视化. 从上到下的物体类别：椅子，邮箱，枕头，壶，火箭，桌子，火车}
             \label{fig:visualize_KC_supplementary}
         \end{figure}
         \clearpage
 
     \chapter{实验数据与结果}
-    \TODO{技术实验结果在这里写}
+    \section{公开数据集统计}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.99\columnwidth]{figs/data_stats.png}
+        \caption{ShapeNet数据集每个类的样本量分布}
+        \label{fig:data-stats}
+    \end{figure}
+    
 \end{Appendix}
 
 \begin{Acknowledgement}{}
