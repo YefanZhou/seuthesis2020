@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: thuthesis.bst
 Database file #1: seuthesis.bib
 Warning--empty journal in poczos2013distribution
-You've used 40 entries,
+You've used 44 entries,
             2313 wiz_defined-function locations,
-            713 strings with 12770 characters,
-and the built_in function-call counts, 31714 in all, are:
-= -- 3320
-> -- 648
+            745 strings with 13773 characters,
+and the built_in function-call counts, 36111 in all, are:
+= -- 3777
+> -- 704
 < -- 27
-+ -- 304
-- -- 152
-* -- 2575
-:= -- 3945
-add.period$ -- 122
-call.type$ -- 40
-change.case$ -- 40
++ -- 330
+- -- 165
+* -- 3008
+:= -- 4482
+add.period$ -- 132
+call.type$ -- 44
+change.case$ -- 44
 chr.to.int$ -- 0
-cite$ -- 41
-duplicate$ -- 2570
-empty$ -- 3237
-format.name$ -- 192
-if$ -- 7331
+cite$ -- 45
+duplicate$ -- 2983
+empty$ -- 3718
+format.name$ -- 209
+if$ -- 8313
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 40
-newline$ -- 269
-num.names$ -- 40
-pop$ -- 193
+int.to.str$ -- 44
+missing$ -- 44
+newline$ -- 293
+num.names$ -- 44
+pop$ -- 210
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 669
+skip$ -- 697
 stack$ -- 0
-substring$ -- 4772
+substring$ -- 5578
 swap$ -- 281
 text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 291
-width$ -- 42
-write$ -- 504
+while$ -- 314
+width$ -- 46
+write$ -- 550
 (There was 1 warning)

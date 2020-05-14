@@ -111,6 +111,33 @@ Arpit D, Jastrz{\k{e}}bski S, Ballas N, et~al.
 \newblock  233--242
 \thudot
 
+\bibitem{Hming2010TheSR}
+H{\"a}ming K, Peters G.
+\newblock The structure-from-motion reconstruction pipeline - a survey with
+  focus on short image sequences[J].
+\newblock Kybernetika, 2010, 46:926--937
+\thudot
+
+\bibitem{10.1109/TPAMI.2008.132}
+Saxena A, Sun M, Ng A~Y.
+\newblock Make3d: Learning 3d scene structure from a single still image[J].
+\newblock IEEE Trans. Pattern Anal. Mach. Intell., 2009, 31(5):824–840
+\thudot
+
+\bibitem{Kar_2015}
+Kar A, Tulsiani S, Carreira J, et~al.
+\newblock Category-specific object reconstruction from a single image[J].
+\newblock 2015 IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR), 2015.
+\thudot
+
+\bibitem{Groueix_2018}
+Groueix T, Fisher M, Kim V~G, et~al.
+\newblock A papier-mache approach to learning 3d surface generation[J].
+\newblock 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition,
+  2018.
+\thudot
+
 \bibitem{chang2015shapenet}
 Chang A~X, Funkhouser T, Guibas L, et~al.
 \newblock Shapenet: An information-rich 3d model repository[J].
