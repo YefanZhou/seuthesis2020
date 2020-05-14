@@ -4,330 +4,288 @@
 Li C~L, Zaheer M, Zhang Y, et~al.
 \newblock Point cloud gan[J].
 \newblock arXiv preprint arXiv:1810.05795, 2018.
-\thudot
 
 \bibitem{park2019deepsdf}
 Park J~J, Florence P, Straub J, et~al.
 \newblock Deepsdf: Learning continuous signed distance functions for shape
-  representation.
+  representation[C].
 \newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
   Recognition, 2019.
-\newblock  165--174
-\thudot
+\newblock  165--174.
 
 \bibitem{fan2017point}
 Fan H, Su H, Guibas L~J.
 \newblock A point set generation network for 3d object reconstruction from a
-  single image.
+  single image[C].
 \newblock  Proceedings of the IEEE conference on computer vision and pattern
   recognition, 2017.
-\newblock  605--613
-\thudot
+\newblock  605--613.
 
 \bibitem{tatarchenko2017octree}
 Tatarchenko M, Dosovitskiy A, Brox T.
 \newblock Octree generating networks: Efficient convolutional architectures for
-  high-resolution 3d outputs.
+  high-resolution 3d outputs[C].
 \newblock  Proceedings of the IEEE International Conference on Computer Vision,
   2017.
-\newblock  2088--2096
-\thudot
+\newblock  2088--2096.
 
 \bibitem{groueix2018papier}
 Groueix T, Fisher M, Kim V~G, et~al.
-\newblock A papier-m{\^a}ch{\'e} approach to learning 3d surface generation.
+\newblock A papier-m{\^a}ch{\'e} approach to learning 3d surface generation[C].
 \newblock  Proceedings of the IEEE conference on computer vision and pattern
   recognition, 2018.
-\newblock  216--224
-\thudot
+\newblock  216--224.
 
 \bibitem{yang2018foldingnet}
 Yang Y, Feng C, Shen Y, et~al.
-\newblock Foldingnet: Point cloud auto-encoder via deep grid deformation.
+\newblock Foldingnet: Point cloud auto-encoder via deep grid deformation[C].
 \newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
   Recognition, 2018.
-\newblock  206--215
-\thudot
+\newblock  206--215.
 
 \bibitem{wang2018pixel2mesh}
 Wang N, Zhang Y, Li Z, et~al.
-\newblock Pixel2mesh: Generating 3d mesh models from single rgb images.
+\newblock Pixel2mesh: Generating 3d mesh models from single rgb images[C].
 \newblock  Proceedings of the European Conference on Computer Vision (ECCV),
   2018.
-\newblock  52--67
-\thudot
+\newblock  52--67.
 
 \bibitem{sun2018pix3d}
 Sun X, Wu J, Zhang X, et~al.
-\newblock Pix3d: Dataset and methods for single-image 3d shape modeling.
+\newblock Pix3d: Dataset and methods for single-image 3d shape modeling[C].
 \newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
   Recognition, 2018.
-\newblock  2974--2983
-\thudot
+\newblock  2974--2983.
 
 \bibitem{tulsiani2017multi}
 Tulsiani S, Zhou T, Efros A~A, et~al.
 \newblock Multi-view supervision for single-view reconstruction via
-  differentiable ray consistency.
+  differentiable ray consistency[C].
 \newblock  Proceedings of the IEEE conference on computer vision and pattern
   recognition, 2017.
-\newblock  2626--2634
-\thudot
+\newblock  2626--2634.
 
 \bibitem{wu2017marrnet}
 Wu J, Wang Y, Xue T, et~al.
-\newblock Marrnet: 3d shape reconstruction via 2.5 d sketches.
+\newblock Marrnet: 3d shape reconstruction via 25 d sketches[C].
 \newblock  Advances in neural information processing systems, 2017.
-\newblock  540--550
-\thudot
+\newblock  540--550.
 
 \bibitem{yan2016perspective}
 Yan X, Yang J, Yumer E, et~al.
 \newblock Perspective transformer nets: Learning single-view 3d object
-  reconstruction without 3d supervision.
+  reconstruction without 3d supervision[C].
 \newblock  Advances in neural information processing systems, 2016.
-\newblock  1696--1704
-\thudot
+\newblock  1696--1704.
 
 \bibitem{kingma2014adam}
 Kingma D~P, Ba J.
 \newblock Adam: A method for stochastic optimization[J].
 \newblock arXiv preprint arXiv:1412.6980, 2014.
-\thudot
 
 \bibitem{tatarchenko2019single}
 Tatarchenko M, Richter S~R, Ranftl R, et~al.
-\newblock What do single-view 3d reconstruction networks learn?
+\newblock What do single-view 3d reconstruction networks learn?[C].
 \newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
   Recognition, 2019.
-\newblock  3405--3414
-\thudot
+\newblock  3405--3414.
 
 \bibitem{arpit2017closer}
 Arpit D, Jastrz{\k{e}}bski S, Ballas N, et~al.
-\newblock A closer look at memorization in deep networks.
+\newblock A closer look at memorization in deep networks[C].
 \newblock  Proceedings of the 34th International Conference on Machine
   Learning-Volume 70. JMLR. org, 2017.
-\newblock  233--242
-\thudot
+\newblock  233--242.
 
 \bibitem{Hming2010TheSR}
 H{\"a}ming K, Peters G.
 \newblock The structure-from-motion reconstruction pipeline - a survey with
   focus on short image sequences[J].
-\newblock Kybernetika, 2010, 46:926--937
-\thudot
+\newblock Kybernetika, 2010, 46:926--937.
 
 \bibitem{10.1109/TPAMI.2008.132}
 Saxena A, Sun M, Ng A~Y.
 \newblock Make3d: Learning 3d scene structure from a single still image[J].
-\newblock IEEE Trans. Pattern Anal. Mach. Intell., 2009, 31(5):824–840
-\thudot
+\newblock IEEE Trans. Pattern Anal. Mach. Intell., 2009, 31(5):824–840.
 
 \bibitem{Kar_2015}
 Kar A, Tulsiani S, Carreira J, et~al.
 \newblock Category-specific object reconstruction from a single image[J].
 \newblock 2015 IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR), 2015.
-\thudot
 
 \bibitem{Groueix_2018}
 Groueix T, Fisher M, Kim V~G, et~al.
 \newblock A papier-mache approach to learning 3d surface generation[J].
 \newblock 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition,
   2018.
-\thudot
 
 \bibitem{chang2015shapenet}
 Chang A~X, Funkhouser T, Guibas L, et~al.
 \newblock Shapenet: An information-rich 3d model repository[J].
 \newblock arXiv preprint arXiv:1512.03012, 2015.
-\thudot
 
 \bibitem{Yi2017LargeScale3S}
 Yi L, Shao L, Savva M, et~al.
 \newblock Large-scale 3d shape reconstruction and segmentation from shapenet
   core55[J].
-\newblock ArXiv, 2017, abs/1710.06104
-\thudot
+\newblock ArXiv, 2017, abs/1710.06104.
 
 \bibitem{kanazawa2018learning}
 Kanazawa A, Tulsiani S, Efros A~A, et~al.
 \newblock Learning category-specific mesh reconstruction from image
-  collections.
+  collections[C].
 \newblock  Proceedings of the European Conference on Computer Vision (ECCV),
   2018.
-\newblock  371--386
-\thudot
+\newblock  371--386.
 
 \bibitem{pontes2018image2mesh}
 Pontes J~K, Kong C, Sridharan S, et~al.
-\newblock Image2mesh: A learning framework for single image 3d reconstruction.
+\newblock Image2mesh: A learning framework for single image 3d
+  reconstruction[C].
 \newblock  Asian Conference on Computer Vision. Springer, 2018.
-\newblock  365--381
-\thudot
+\newblock  365--381.
 
 \bibitem{kurenkov2018deformnet}
 Kurenkov A, Ji J, Garg A, et~al.
 \newblock Deformnet: Free-form deformation network for 3d shape reconstruction
-  from a single image.
+  from a single image[C].
 \newblock  2018 IEEE Winter Conference on Applications of Computer Vision
   (WACV). IEEE, 2018.
-\newblock  858--866
-\thudot
+\newblock  858--866.
 
 \bibitem{li2018single}
 Li K, Garg R, Cai M, et~al.
 \newblock Single-view object shape reconstruction using deep shape prior and
   silhouette[J].
 \newblock arXiv preprint arXiv:1811.11921, 2018.
-\thudot
 
 \bibitem{gwak2017weakly}
 Gwak J, Choy C~B, Chandraker M, et~al.
-\newblock Weakly supervised 3d reconstruction with adversarial constraint.
+\newblock Weakly supervised 3d reconstruction with adversarial constraint[C].
 \newblock  2017 International Conference on 3D Vision (3DV). IEEE, 2017.
-\newblock  263--272
-\thudot
+\newblock  263--272.
 
 \bibitem{sinha2017surfnet}
 Sinha A, Unmesh A, Huang Q, et~al.
-\newblock Surfnet: Generating 3d shape surfaces using deep residual networks.
+\newblock Surfnet: Generating 3d shape surfaces using deep residual
+  networks[C].
 \newblock  Proceedings of the IEEE conference on computer vision and pattern
   recognition, 2017.
-\newblock  6040--6049
-\thudot
+\newblock  6040--6049.
 
 \bibitem{wu2018learning}
 Wu J, Zhang C, Zhang X, et~al.
 \newblock Learning shape priors for single-view 3d completion and
-  reconstruction.
+  reconstruction[C].
 \newblock  Proceedings of the European Conference on Computer Vision (ECCV),
   2018.
-\newblock  646--662
-\thudot
+\newblock  646--662.
 
 \bibitem{yang20173d}
 Yang B, Wen H, Wang S, et~al.
 \newblock 3d object reconstruction from a single depth view with adversarial
-  learning.
+  learning[C].
 \newblock  Proceedings of the IEEE International Conference on Computer Vision
   Workshops, 2017.
-\newblock  679--688
-\thudot
+\newblock  679--688.
 
 \bibitem{yang2019pointflow}
 Yang G, Huang X, Hao Z, et~al.
 \newblock Pointflow: 3d point cloud generation with continuous normalizing
-  flows.
+  flows[C].
 \newblock  Proceedings of the IEEE International Conference on Computer Vision,
   2019.
-\newblock  4541--4550
-\thudot
+\newblock  4541--4550.
 
 \bibitem{wu2016learning}
 Wu J, Zhang C, Xue T, et~al.
 \newblock Learning a probabilistic latent space of object shapes via 3d
-  generative-adversarial modeling.
+  generative-adversarial modeling[C].
 \newblock  Advances in neural information processing systems, 2016.
-\newblock  82--90
-\thudot
+\newblock  82--90.
 
 \bibitem{girdhar2016learning}
 Girdhar R, Fouhey D~F, Rodriguez M, et~al.
 \newblock Learning a predictable and generative vector representation for
-  objects.
+  objects[C].
 \newblock  European Conference on Computer Vision. Springer, 2016.
-\newblock  484--499
-\thudot
+\newblock  484--499.
 
 \bibitem{tulsiani2017learning}
 Tulsiani S, Su H, Guibas L~J, et~al.
-\newblock Learning shape abstractions by assembling volumetric primitives.
+\newblock Learning shape abstractions by assembling volumetric primitives[C].
 \newblock  Proceedings of the IEEE Conference on Computer Vision and Pattern
   Recognition, 2017.
-\newblock  2635--2643
-\thudot
+\newblock  2635--2643.
 
 \bibitem{niu2018im2struct}
 Niu C, Li J, Xu K.
-\newblock Im2struct: Recovering 3d shape structure from a single rgb image.
+\newblock Im2struct: Recovering 3d shape structure from a single rgb image[C].
 \newblock  Proceedings of the IEEE conference on computer vision and pattern
   recognition, 2018.
-\newblock  4521--4529
-\thudot
+\newblock  4521--4529.
 
 \bibitem{sung2017complementme}
 Sung M, Su H, Kim V~G, et~al.
 \newblock Complementme: weakly-supervised component suggestions for 3d
   modeling[J].
-\newblock ACM Transactions on Graphics (TOG), 2017, 36(6):1--12
-\thudot
+\newblock ACM Transactions on Graphics (TOG), 2017, 36(6):1--12.
 
 \bibitem{sun2018pointgrow}
 Sun Y, Wang Y, Liu Z, et~al.
 \newblock Pointgrow: Autoregressively learned point cloud generation with
   self-attention[J].
 \newblock arXiv preprint arXiv:1810.05591, 2018.
-\thudot
 
 \bibitem{choy20163d}
 Choy C~B, Xu D, Gwak J, et~al.
 \newblock 3d-r2n2: A unified approach for single and multi-view 3d object
-  reconstruction.
+  reconstruction[C].
 \newblock  European conference on computer vision. Springer, 2016.
-\newblock  628--644
-\thudot
+\newblock  628--644.
 
 \bibitem{achlioptas2017learning}
 Achlioptas P, Diamanti O, Mitliagkas I, et~al.
 \newblock Learning representations and generative models for 3d point
   clouds[J].
 \newblock arXiv preprint arXiv:1707.02392, 2017.
-\thudot
 
 \bibitem{oliva2013distribution}
 Oliva J, P{\'o}czos B, Schneider J.
-\newblock Distribution to distribution regression.
+\newblock Distribution to distribution regression[C].
 \newblock  International Conference on Machine Learning, 2013.
-\newblock  1049--1057
-\thudot
+\newblock  1049--1057.
 
 \bibitem{poczos2013distribution}
 P{\'o}czos B, Rinaldo A, Singh A, et~al.
 \newblock Distribution-free distribution regression[J].
 \newblock 2013.
-\thudot
 
 \bibitem{knapitsch2017tanks}
 Knapitsch A, Park J, Zhou Q~Y, et~al.
 \newblock Tanks and temples: Benchmarking large-scale scene reconstruction[J].
-\newblock ACM Transactions on Graphics (ToG), 2017, 36(4):1--13
-\thudot
+\newblock ACM Transactions on Graphics (ToG), 2017, 36(4):1--13.
 
 \bibitem{van2015using}
 Van~Craenendonck T, Blockeel H.
 \newblock Using internal validity measures to compare clustering algorithms[J].
-\newblock Benelearn 2015 Poster presentations (online), 2015. 1--8
-\thudot
+\newblock Benelearn 2015 Poster presentations (online), 2015. 1--8.
 
 \bibitem{wang2008adaptive}
 Wang K, Zhang J, Li D, et~al.
 \newblock Adaptive affinity propagation clustering[J].
 \newblock arXiv preprint arXiv:0805.1096, 2008.
-\thudot
 
 \bibitem{10.1145/2816795.2818071}
 Li Y, Su H, Qi C~R, et~al.
 \newblock Joint embeddings of shapes and images via cnn image purification[J].
-\newblock ACM Trans. Graph., 2015, 34(6)
-\thudot
+\newblock ACM Trans. Graph., 2015, 34(6).
 
 \bibitem{He_2016}
 He K, Zhang X, Ren S, et~al.
 \newblock Deep residual learning for image recognition[J].
 \newblock 2016 IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR), 2016.
-\thudot
 
 \end{thebibliography}

@@ -1,48 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2019)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
-The style file: thuthesis.bst
+The style file: seuthesis.bst
 Database file #1: seuthesis.bib
 Warning--empty journal in poczos2013distribution
 You've used 44 entries,
-            2313 wiz_defined-function locations,
-            745 strings with 13773 characters,
-and the built_in function-call counts, 36111 in all, are:
-= -- 3777
+            2333 wiz_defined-function locations,
+            751 strings with 13806 characters,
+and the built_in function-call counts, 52417 in all, are:
+= -- 5591
 > -- 704
 < -- 27
 + -- 330
 - -- 165
-* -- 3008
-:= -- 4482
-add.period$ -- 132
+* -- 4847
+:= -- 6296
+add.period$ -- 176
 call.type$ -- 44
 change.case$ -- 44
 chr.to.int$ -- 0
 cite$ -- 45
-duplicate$ -- 2983
-empty$ -- 3718
+duplicate$ -- 4753
+empty$ -- 5540
 format.name$ -- 209
-if$ -- 8313
+if$ -- 11949
 int.to.chr$ -- 0
 int.to.str$ -- 44
 missing$ -- 44
-newline$ -- 293
+newline$ -- 249
 num.names$ -- 44
-pop$ -- 210
+pop$ -- 200
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
 skip$ -- 697
 stack$ -- 0
-substring$ -- 5578
+substring$ -- 9206
 swap$ -- 281
 text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 314
+while$ -- 340
 width$ -- 46
-write$ -- 550
+write$ -- 517
 (There was 1 warning)

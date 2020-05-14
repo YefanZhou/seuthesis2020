@@ -18,9 +18,13 @@
 \usepackage{makecell}
 \usepackage{graphicx,subcaption}
 \usepackage{booktabs}
-\newtheorem{theorem}{定义}
 \usepackage{xcolor}
-%\usepackage{algorithm,algpseudocode}
+\floatname{algorithm}{算法}
+\newtheorem{theorem}{定义}
+
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}
+\renewcommand{\algorithmicensure}{\textbf{输出:}}
+ % 这里是导言区
 
 \newcommand\TODO[1]{\textcolor{blue}{#1}}
 \newcommand\COMM[1]{\textcolor{red}{#1}}
@@ -29,8 +33,6 @@
 \floatname{algorithm}{算法}
 \renewcommand{\algorithmicrequire}{\textbf{输入:}}
 \renewcommand{\algorithmicensure}{\textbf{输出:}}
-
- % 这里是导言区
 
 \begin{document}
 \categorynumber{000} % 分类采用《中国图书资料分类法》
@@ -66,32 +68,31 @@
     最后，本文分析了上述结论对三维重建任务中的数据收集和神经网络训练的指导意义。
     \end{abstract}
 
-\begin{englishabstract}{3D Reconstruction, Point Cloud, Deep Learning, Data mining}
-    Single-view 3D reconstruction is one of the elementary tasks in the field of 3D vision. 
-    Due to the effectiveness in learning and approximating non-linear function, deep neural networks are expected to perform well on the task of reconstructing 3D non-linear shapes.
-    This paper investigates the effectiveness and internal mechanism of deep neural network in 3D reconstruction task. 
-    The main contribution and innovation are summarized as follows:
-    \begin{enumerate}
-        \item[1.] In order to verify the effectiveness of the deep neural network based on auto-encoder architecture in 3D reconstruction task, 
-        it proposes to leverage supervision of weak class information to initiate the encoder and improve the decoder with residual layer in order to optimize network architecture. 
-        These methods are trained and tested on ShapeNet public dataset and they outperform theoretical limit of the non-learning method based on recognition, 
-        and it proves that neural network tend to do reconstruction task instead of recognition task in this dataset。
-
-        \item[2.] Define novel way to measure clustering coefficient of 3D reconstruction dataset based on affinity propagation and silhouette score, the quantitative results of this metric is corresponding to qualitative results of visualization of dataset in low dimension.
-        \item[3.] It claims and proves by experiments that the bias of internal mechanism of network 
-        is mainly affected by the intrinsic properties of dataset: only when the training set of 3D shapes has a 
-        more clustered structure than images, the deep neural networks trained on this dataset become more likely 
-        to perform recognition than reconstruction.
-    \end{enumerate}
-    Finally, this paper analyzes the significance of the above conclusions for data collection and neural network training.
-\end{englishabstract}
+    \begin{englishabstract}{3D Reconstruction, Point Cloud, Deep Learning, Data mining}
+        Single-view 3D reconstruction is one of the elementary tasks in the field of 3D vision. 
+        Due to the effectiveness in learning and approximating non-linear function, deep neural networks are expected to perform well on the task of reconstructing 3D non-linear shapes.
+        This paper investigates the effectiveness and internal mechanism of deep neural network in 3D reconstruction task. 
+        The main contribution and innovation are summarized as follows:
+        \begin{enumerate}
+            \item[1.] In order to verify the effectiveness of the deep neural network based on auto-encoder architecture in 3D reconstruction task, 
+            it proposes to leverage supervision of weak class information to initiate the encoder and improve the decoder with residual layer in order to optimize network architecture. 
+            These methods are trained and tested on ShapeNet public dataset and they outperform theoretical limit of the non-learning method based on recognition, 
+            and it proves that neural network tend to do reconstruction task instead of recognition task in this dataset。
+    
+            \item[2.] Define novel way to measure clustering coefficient of 3D reconstruction dataset based on affinity propagation and silhouette score, the quantitative results of this metric is corresponding to qualitative results of visualization of dataset in low dimension.
+            \item[3.] It claims and proves by experiments that the bias of internal mechanism of network 
+            is mainly affected by the intrinsic properties of dataset: only when the training set of 3D shapes has a 
+            more clustered structure than images, the deep neural networks trained on this dataset become more likely 
+            to perform recognition than reconstruction.
+        \end{enumerate}
+        Finally, this paper analyzes the significance of the above conclusions for data collection and neural network training.
+    \end{englishabstract}
 
 \tableofcontents
 
 
 
 \begin{Main} % 开始正文
-
 \chapter{绪论}
 
 \section{课题的背景和意义}
@@ -104,7 +105,7 @@
 因此成为三维重建研究中常用的三维数据表示之一。
 
 \begin{figure}
-	\begin{subfigure}[t]{0.30\linewidth} \centering 
+    \begin{subfigure}[t]{0.30\linewidth} \centering 
         \includegraphics[width=\columnwidth]{figs/app/image.png}
         \caption{高清航拍图片}\label{fig:civil-plane-image}
     \end{subfigure}
@@ -126,7 +127,7 @@
         \includegraphics[width=\columnwidth]{figs/app/high_modeling.png}
         \caption{高精度建模}\label{fig:civil-high} 
     \end{subfigure}
-  \caption{\small 应用单视角三维重建技术的城市建模 }\label{fig:civil-modeling}
+    \caption{\small 应用单视角三维重建技术的城市建模 }\label{fig:civil-modeling}
 \end{figure}
 
 \FloatBarrier
@@ -490,8 +491,8 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
         就使得网络陷入了与最优效果相差较大的局部最优，且Adam优化器也没有能使得网络跳出这个局部最优点，如图\ref{fig:lossplot}蓝色线。在正常情况下，网络不应该对超参数有如此高的敏感程度。这也说明重建任务对
         神经网络参数初始化有比较高的要求。
     \item 当前深度神经网络架构学习能力弱，一方面解码器较浅的网络深度可能不足以完成当前复杂的任务。另一方面可能出现了梯度消失的问题，
-    如图\ref{fig:testloss}橙色线所示，网络在第20周期到第40个周期之间停止了损失更新，
-    且收敛后的损失仍处于较高水平，这说明当前的网络可能出现了训练过程中梯度消失的问题，导致网络权重难以更新。
+    如图\ref{fig:testloss}橙色线所示，网络在第10周期到第40个周期之间停止了损失更新，
+    且收敛后的损失仍处于较高水平，这说明当前的网络在训练过程中可能出现了梯度消失的问题，导致网络权重难以更新。
     \item 神经网络的编码器缺少显性的训练指导。从理论角度来说，网络损失函数仅描述两个三维点云的相似程度，因此有理由怀疑该函数传播的梯度并不能给予对二维图片进行处理的
     编码器足够的优化指导，使其提取需要的图片特征。从实验角度来说，我们将编码器输出的码字进行了二维T-SNE降维可视化，如图\ref{fig:T-SNE2},可以看出
     编码器提取的码字并不具有区分图像类别的特征，虽然这不能证明编码器完全没有提取有助于三维重建的图像信息。
@@ -1121,11 +1122,9 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 
 目前还有一种正在探索的数据增强方法，源于图像领域AutoAugment以及Population-based Augmentation，即使用强化学习或者进化算法来学习数据增强的策略。我们的方案是，先设计对三维形状进行增强的基础策略，如
 旋转，不规则缩放，切断等，将这些基础策略应用于三维形状后，直接渲染出对应的单视角图片，将图片与形状输入神经网络进行训练，在此基础上结合策略学习的方法。
-
 \end{Main} % 结束正文
 
 % 参考文献
-
 \bibliography{seuthesis}
 
 %附录
@@ -1197,7 +1196,6 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
         \caption{ShapeNet数据集每个类的样本量分布}
         \label{fig:data-stats}
     \end{figure}
-    
 \end{Appendix}
 
 \begin{Acknowledgement}{}
