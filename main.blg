@@ -3,46 +3,47 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: seuthesis.bst
 Database file #1: seuthesis.bib
+Warning--I didn't find a database entry for "Groueix_2018"
 Warning--empty journal in poczos2013distribution
-You've used 44 entries,
+You've used 43 entries,
             2333 wiz_defined-function locations,
-            751 strings with 13806 characters,
-and the built_in function-call counts, 52417 in all, are:
-= -- 5591
-> -- 704
-< -- 27
-+ -- 330
-- -- 165
-* -- 4847
-:= -- 6296
-add.period$ -- 176
-call.type$ -- 44
-change.case$ -- 44
+            746 strings with 13629 characters,
+and the built_in function-call counts, 51886 in all, are:
+= -- 5541
+> -- 695
+< -- 28
++ -- 326
+- -- 163
+* -- 4785
+:= -- 6217
+add.period$ -- 171
+call.type$ -- 43
+change.case$ -- 43
 chr.to.int$ -- 0
-cite$ -- 45
-duplicate$ -- 4753
-empty$ -- 5540
-format.name$ -- 209
-if$ -- 11949
+cite$ -- 44
+duplicate$ -- 4680
+empty$ -- 5478
+format.name$ -- 206
+if$ -- 11850
 int.to.chr$ -- 0
-int.to.str$ -- 44
-missing$ -- 44
-newline$ -- 249
-num.names$ -- 44
-pop$ -- 200
+int.to.str$ -- 43
+missing$ -- 43
+newline$ -- 246
+num.names$ -- 43
+pop$ -- 199
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 697
+skip$ -- 711
 stack$ -- 0
-substring$ -- 9206
-swap$ -- 281
-text.length$ -- 27
+substring$ -- 9111
+swap$ -- 298
+text.length$ -- 28
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 340
-width$ -- 46
-write$ -- 517
-(There was 1 warning)
+while$ -- 339
+width$ -- 45
+write$ -- 508
+(There were 2 warnings)

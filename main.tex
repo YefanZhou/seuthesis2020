@@ -155,10 +155,10 @@
 \subsection{相关模型}
 \COMM{问题2：在1.2节要适当介绍传统的经典重建方法有哪些？存在什么问题？你研究的方法目前国际上已有哪些进展？还存在什么问题？所以你想解决它的哪些问题。后面就是1.3节，本文的研究内容。}
  
-早期进行三维重建的经典方法是基于多目几何的重建比如从运动恢复结构模型\cite{Hming2010TheSR}（Structure From Motion），通过相机的移动获取三维物体各个视角的信息，
-也有少量基于学习的方法如Make3D\cite{10.1109/TPAMI.2008.132}使用了马尔科夫随机场（Markov Random Field）来将单目线索与图片各部分的关系进行建模，能够重建基础
-简单的几何机构。文章\cite{Kar_2015}的研究者采用了非刚性从运动恢复结构模型（NRSfM）并结合现有的目标检测数据集中的二维标注来重建三维模型。
-尽管这些工作在三维重建领域做出了从无到有的伟大进展，但是这些方法依然不能具有强鲁棒性的从单张图片重建完整和高水平的形状，他们的方法依然缺少
+早期进行三维重建的经典方法是基于多目几何的重建比如从运动恢复结构模型\cite{Hming2010TheSR}（Structure From Motion），通过相机的移动获取三维物体各个视角的信息。
+也有少量基于学习的方法如Make3D\cite{10.1109/TPAMI.2008.132}使用了马尔可夫随机场（Markov Random Field）来将单目线索与图片各部分的关系进行建模，能够重建基础
+简单的几何形状。文章\cite{7298807}的研究者采用了非刚性从运动恢复结构模型（NRSfM）并结合现有的目标检测数据集中的二维标注来重建三维模型。
+尽管这些工作在三维重建领域做出了从无到有的伟大进展，但是这些方法依然不能强鲁棒性的从单张图片重建完整和高水平的三维形状，他们的方法依然缺少
 较强的形状先验。
 
 近年来，因为三维数据集规模的增长以及计算能力的提高，使用深度学习方法来完成单视角三维重建受到了广泛关注，且涌现了大量工作。
@@ -169,8 +169,8 @@ PSGN\cite{fan2017point}的作者首次提出了采用基于自编码器架构的
 FoldingNet\cite{yang2018foldingnet}的作者提出了以三维点云作为输入的三维点云重建深度自编码器的架构，
 虽然该模型的输入为三维点云，但是文章却提出了通用的将码字与二维规则点云解码为三维点云形状的基于多层感知器的解码器，并用“折纸”的理论来
 支持这一网络，根据该思想实现的解码器仅使用了全连接层解码器的7\%的参数量，却在重建效果上超过当时的基准模型。
-令人惊讶的是，同年的CVPR，还有一篇文章AltasNet\cite{Groueix_2018}，提出了从单张图片重建三维网格的深度神经网络模型，
-且其核心部分解码器架构与FoldingNet\cite{yang2018foldingnet}解码器的架构思想十分相似，且该模型至今仍保持了当前单视角三维重建的最优
+令人惊讶的是，同年的CVPR，还有一篇文章AltasNet\cite{groueix2018papier}，提出了从单张图片重建三维网格的深度神经网络模型，
+且其核心部分解码器架构与FoldingNet\cite{yang2018foldingnet}解码器的架构思想十分相似，且该模型至今仍保持了当前单视角三维重建任务的最优
 水平。这两篇工作都证明了基于“折纸”思想的多层感知器重建三维形状的优越性。
 
 虽然以上工作已经使得三维重建领域逐渐成熟，且在数据丰富的条件下，将三维重建水平提高到了难以超过的高度。
@@ -246,7 +246,7 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
     \label{fig:pro_state}
 \end{figure}
 
-一个神经网络模型从输入图片$l$预测以点云表示的形状$\widehat{S}$，在训练中通过减小特定的损失函数定义的经验损失$l$，使得$\widehat{S}$的形状接近标签点云$S$。来该过程的数学定义为:
+一个神经网络模型从输入图片$l$预测以点云表示的形状$\widehat{S}$，在训练中通过减小特定的损失函数定义的经验损失$l$，使得$\widehat{S}$的形状接近标签点云$S$。该过程的数学定义为:
 \begin{equation}
     \min_f \sum_{i=0}^{n-1} {l(f(I_i), S_i)}.
 \end{equation}
@@ -309,7 +309,7 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
 定义\ref{def:reconstruction}。
 \section{数据集的聚类趋势}
 \label{sec:metric_on_dataset}
-在这个部分，我们定义用来测量数据集聚类趋势的指标。具体来说，我们使用silhouette score\cite{van2015using}来测量聚类趋势。
+在这个部分，我们定义用来测量数据集聚类趋势的指标。具体来说，我们使用silhouette score\cite{scikit-learn}来测量聚类趋势。
 给定一个数据集$D = \{x_i\}_{i=0}^{N-1}$和一个随机距离$d(x,y)$方程\footnote[1]{我们考虑满足下面三个属性的任何距离方程，
 $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验中，我们使用Chamfer Distance作为点云的距离指标。
 我们使用$\ell$-1距离作为图片之间的距离。}。我们能通过明确一个聚类特性方程$C(\cdot)$来确定一个数据集的簇。对于每个样本$x_i$，
@@ -461,7 +461,7 @@ k^{\prime}\right)+s\left(i, k^{\prime}\right)\right\}
 \end{figure}
 根据论文PSGN\cite{fan2017point}提出的基于自编码器架构\footnote[1]{实际为“编码器-解码器”架构，因为输入输出分别是同一个物体的图片与三维点云形状所以简称为自编码器架构}的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
 \begin{itemize}
-\item 编码器：采用ResNet-18\cite{He_2016}的卷积层架构作为接受二维图像输入并提取图像特征的编码器, 具体来说，移除ResNet-18最后一层用来分类的全连接层，将一维特征层直接输出作为码字。
+\item 编码器：采用ResNet-18\cite{7780459}的卷积层架构作为接受二维图像输入并提取图像特征的编码器, 具体来说，移除ResNet-18最后一层用来分类的全连接层，将一维特征层直接输出作为码字。
 \item 特征连接：模型中存储有一个预先初始化好的二维正方形网格点云，长宽在[-1,1]之间，由$m \times 2$的矩阵表示。在将码字输入解码器之前，
 我们先将其复制$m$次，然后将$m \times 512$矩阵（码字）与$m \times 2$矩阵（二维网格）连接起来，连接的结果是大小为$m \times 514$的矩阵。
 \item 解码器：采用FoldingNet解码器\cite{yang2018foldingnet}作为从码字恢复到点云结构的解码器，具体来说，这个解码器由两个感知器构成，每个感知器由三层全连接层构成。
@@ -612,6 +612,20 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
     \end{tabular}
     \label{table:metric_optimal_baseline}
 \end{table}
+
+\begin{figure}[!htb]
+    \centering
+       \begin{subfigure}[t]{0.49\linewidth} \centering 
+         \includegraphics[width=\columnwidth]{figs/model/ae_optimal_trainloss.png}
+         \caption{训练集损失}\label{fig:trainingloss}
+       \end{subfigure}
+      \begin{subfigure}[t]{0.49\linewidth} \centering
+          \includegraphics[width=\columnwidth]{figs//model/ae_optimal_testloss.png}
+          \caption{测试集损失}\label{fig:testloss}
+      \end{subfigure}
+       \caption{\small 深度神经网络基准/优化模型的训练过程。红色指非深度学习基准模型的量化结果}
+    \label{fig:lossplot}
+\end{figure}
 
 \begin{figure}[!htb]
     \centering
@@ -903,7 +917,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-1.png}
+    \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-1_roman.png}
     \caption{\small “基础数据集\#1的训练图片/形状点云-输出形状”的轮廓系数（silhouette score）。只有情况1（左下角子图中较大的数据集索引指向的点）展示出高的聚类趋势}
     \label{fig:silhouette-dataset-1.png}
 \end{figure}
@@ -915,7 +929,7 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-2.png}
+    \includegraphics[width=.95\textwidth]{figs/silhouette-dataset-2_roman.png}
     \caption{\small “基础数据集\#2的训练图片/形状点云-输出形状”的（silhouette score）。只有情况1（左下角子图中较大的数据集索引指向的点）展示出高的聚类趋势}
     \label{fig:silhouette-dataset-2.png}
 \end{figure}
@@ -1084,14 +1098,15 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 \noindent
 \textbf{本课题具有如下创新点：}
 \begin{itemize}
-    \item[1.] 提出了单视角三维重建任务中行之有效的深度神经网络优化方案。提出两种创新的优化方法，一是创造性的使用残差层改进基于“折纸”思想的解码器的架构，二是引入弱标签监督来进行编码器初始化。
-    从整个数据集平均重建指标上来看，用残差层改进解码器的方法使得基准模型获得了更稳定的学习能力以及对超参数调参的鲁棒性，缩小了与基于识别机制的模型的理论极限（Oracle-NN）的差距。
+    \item[1.] 提出了单视角三维重建任务中行之有效的深度神经网络优化方案。提出两种创新的优化方法，一是使用残差层改进基于“折纸”思想的解码器的架构，二是创造性的引入弱标签监督来进行编码器初始化。
+    从整个数据集平均重建指标上来看，用残差层改进解码器的方法使得基准模型获得了更稳定的学习能力以及对超参数调参的鲁棒性，缩小了与基于识别机制的模型的理论极限（Oracle-NN）之间的差距。
     使用弱标签监督的方法使得基准模型超过了Oracle-NN。从类重建指标统计特性上来看，两种方法优化后的基准模型对于类间数据量不平衡的鲁棒性明显优于Oracle-NN。这两种方法都可以被推广到三维重建领域除点云外其他三维表示的重建，如体素，网格等。
     \item[2.] 提出了测量三维重建数据集聚类程度的度量指标。该度量指标借鉴了亲和传播（affinity propagation）以及轮廓系数（silhouette score）的方法，
     衡量得出的数据集聚类程度与数据集降维可视化结果吻合，有希望成为三维重建数据集公开权威的度量指标。
-    \item[3.] 提出了对深度神经网络内在机制的丰富理解，并设计了实验流程进行了成功的验证。提出的主要观点为：影响三维重建深度神经网络在
-    识别机制与重建机制之间偏倚的主要因素为数据集的本质特征——聚类程度。并且基于计算机图形学算法创造性的创建了有不同聚类特征的形状插值数据集，并在此基础上
-    进行了大规模的神经网络训练与测试，并利用自定义的度量指标以及数据集降维可视化分别定量与定性的验证了猜想。
+    \item[3.] 提出了对深度神经网络内在机制的丰富理解，并设计了实验流程进行了成功的验证。提出的新颖观点为：影响三维重建深度神经网络在
+    识别机制与重建机制之间偏倚的主要因素为数据集的本质特征。并且基于计算机图形学算法创造性的创建了有不同聚类特征的形状插值数据集，并在此基础上
+    进行了大规模的神经网络训练与测试，并利用自定义的度量指标以及数据集降维可视化分别定量与定性的验证了猜想。这一观点的提出与成功验证有望带给三维重建的研究者们关于该问题全新的认识，
+    并启发更多与数据相关的模型方法。
 \end{itemize}
 
 \noindent

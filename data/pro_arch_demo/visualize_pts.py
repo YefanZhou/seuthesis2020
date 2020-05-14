@@ -381,15 +381,16 @@ def main(args):
 
         ax_c = plt.subplot(111, projection='3d')
         ax_c.view_init(-4,-5)
-        clr = 0.2*np.ones((1024,3))
+        #clr = 0.2*np.ones((1024,3))
+        clr = colormap2d(nx=32, ny=32)
         #origin fineptcloud
-        ptcloud = origin[t]
+        ptcloud = primptcloud[t]
 
         draw_pts(ptcloud,clr,None,ax=ax_c)
 #        draw_pts(origin[t],clr,None,ax=ax_c)
         plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
 #        plt.show()
-        plt.savefig('../../figs/pro_state_demo/pro_state_origin.png')
+        plt.savefig('../../figs/pro_state_demo/pro_state_prim_clr.png')
         #ax_c.set_title('fineptlcloud')
 
 if __name__ == '__main__':

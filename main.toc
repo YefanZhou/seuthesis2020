@@ -25,21 +25,21 @@
 \contentsline {section}{\numberline {3.2}模型优化}{14}{section.3.2}% 
 \contentsline {subsection}{\numberline {3.2.1}架构优化}{14}{subsection.3.2.1}% 
 \contentsline {subsection}{\numberline {3.2.2}实验结果与分析}{16}{subsection.3.2.2}% 
-\contentsline {chapter}{\numberline {4}机制探究}{20}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}理论分析}{20}{section.4.1}% 
-\contentsline {section}{\numberline {4.2}实验设计与数据集生成}{21}{section.4.2}% 
-\contentsline {section}{\numberline {4.3}实验结果}{23}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}数据集指标测量}{23}{subsection.4.3.1}% 
-\contentsline {subsection}{\numberline {4.3.2}距离矩阵的可视化}{25}{subsection.4.3.2}% 
-\contentsline {chapter}{\numberline {5}总结与展望}{28}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}工作总结}{28}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}工作展望}{29}{section.5.2}% 
-\contentsline {chapter}{参考文献}{30}{chapter*.25}% 
+\contentsline {chapter}{\numberline {4}机制探究}{21}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}理论分析}{21}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}实验设计与数据集生成}{22}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}实验结果}{24}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}数据集指标测量}{24}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}距离矩阵的可视化}{26}{subsection.4.3.2}% 
+\contentsline {chapter}{\numberline {5}总结与展望}{29}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}工作总结}{29}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}工作展望}{30}{section.5.2}% 
+\contentsline {chapter}{参考文献}{31}{chapter*.26}% 
 \ttl@change@i {\@ne }{chapter}{0pt}{\vspace {.5\baselineskip }\normalfont \bfseries }{附录 \thecontentslabel \quad }{}{\hspace {.5em}\titlerule *[10pt]{$\cdot $}\contentspage }\relax 
 \ttl@change@v {chapter}{}{}{}\relax 
-\contentsline {chapter}{\numberline {A}可视化结果}{33}{appendix.A}% 
-\contentsline {section}{\numberline {A.1}各模型预测结果可视化}{33}{section.A.1}% 
-\contentsline {chapter}{\numberline {B}实验数据与结果}{34}{appendix.B}% 
-\contentsline {section}{\numberline {B.1}公开数据集统计}{34}{section.B.1}% 
-\contentsline {chapter}{致\hspace *{2em}谢}{35}{section*.28}% 
+\contentsline {chapter}{\numberline {A}可视化结果}{34}{appendix.A}% 
+\contentsline {section}{\numberline {A.1}各模型预测结果可视化}{34}{section.A.1}% 
+\contentsline {chapter}{\numberline {B}实验数据与结果}{35}{appendix.B}% 
+\contentsline {section}{\numberline {B.1}公开数据集统计}{35}{section.B.1}% 
+\contentsline {chapter}{致\hspace *{2em}谢}{36}{section*.29}% 
 \contentsfinish 

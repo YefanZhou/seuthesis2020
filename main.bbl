@@ -108,17 +108,12 @@ Saxena A, Sun M, Ng A~Y.
 \newblock Make3d: Learning 3d scene structure from a single still image[J].
 \newblock IEEE Trans. Pattern Anal. Mach. Intell., 2009, 31(5):824–840.
 
-\bibitem{Kar_2015}
-Kar A, Tulsiani S, Carreira J, et~al.
-\newblock Category-specific object reconstruction from a single image[J].
-\newblock 2015 IEEE Conference on Computer Vision and Pattern Recognition
+\bibitem{7298807}
+{Kar} A, {Tulsiani} S, {Carreira} J, et~al.
+\newblock Category-specific object reconstruction from a single image[C].
+\newblock  2015 IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR), 2015.
-
-\bibitem{Groueix_2018}
-Groueix T, Fisher M, Kim V~G, et~al.
-\newblock A papier-mache approach to learning 3d surface generation[J].
-\newblock 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition,
-  2018.
+\newblock  1966--1974.
 
 \bibitem{chang2015shapenet}
 Chang A~X, Funkhouser T, Guibas L, et~al.
@@ -267,10 +262,10 @@ Knapitsch A, Park J, Zhou Q~Y, et~al.
 \newblock Tanks and temples: Benchmarking large-scale scene reconstruction[J].
 \newblock ACM Transactions on Graphics (ToG), 2017, 36(4):1--13.
 
-\bibitem{van2015using}
-Van~Craenendonck T, Blockeel H.
-\newblock Using internal validity measures to compare clustering algorithms[J].
-\newblock Benelearn 2015 Poster presentations (online), 2015. 1--8.
+\bibitem{scikit-learn}
+Pedregosa F, Varoquaux G, Gramfort A, et~al.
+\newblock Scikit-learn: Machine learning in {P}ython[J].
+\newblock Journal of Machine Learning Research, 2011, 12:2825--2830.
 
 \bibitem{wang2008adaptive}
 Wang K, Zhang J, Li D, et~al.
@@ -282,10 +277,11 @@ Li Y, Su H, Qi C~R, et~al.
 \newblock Joint embeddings of shapes and images via cnn image purification[J].
 \newblock ACM Trans. Graph., 2015, 34(6).
 
-\bibitem{He_2016}
-He K, Zhang X, Ren S, et~al.
-\newblock Deep residual learning for image recognition[J].
-\newblock 2016 IEEE Conference on Computer Vision and Pattern Recognition
+\bibitem{7780459}
+{He} K, {Zhang} X, {Ren} S, et~al.
+\newblock Deep residual learning for image recognition[C].
+\newblock  2016 IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR), 2016.
+\newblock  770--778.
 
 \end{thebibliography}
