@@ -19,9 +19,12 @@
 \usepackage{graphicx,subcaption}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{pifont} 
+\usepackage[perpage]{footmisc}  %每页脚注重新编号
+
 \floatname{algorithm}{算法}
 \newtheorem{theorem}{定义}
-
+\renewcommand{\thefootnote}{\ding{\numexpr191+\value{footnote}}} 
 \renewcommand{\algorithmicrequire}{\textbf{输入:}}
 \renewcommand{\algorithmicensure}{\textbf{输出:}}
  % 这里是导言区
@@ -307,7 +310,7 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
 \section{数据集的聚类趋势}
 \label{sec:metric_on_dataset}
 在这个部分，我们定义用来测量数据集聚类趋势的指标。具体来说，我们使用silhouette score\cite{scikit-learn}来测量聚类趋势。
-给定一个数据集$D = \{x_i\}_{i=0}^{N-1}$和一个随机距离$d(x,y)$方程\footnote[1]{我们考虑满足下面三个属性的任何距离方程，
+给定一个数据集$D = \{x_i\}_{i=0}^{N-1}$和一个随机距离$d(x,y)$方程\footnote{我们考虑满足下面三个属性的任何距离方程，
 $d(x_1,x_2)=d(x_2,x_1)$, $d(x_1,x_2)\ge 0$, 和 $d(x,x)=0$。在我们的实验中，我们使用Chamfer Distance作为点云的距离指标。
 我们使用$\ell$-1距离作为图片之间的距离。}。我们能通过明确一个聚类特性方程$C(\cdot)$来确定一个数据集的簇。对于每个样本$x_i$，
 聚类方程会给出一个聚类标签$C(x_i)$。我们使用$C(x_i)$来指示包含有$x_i$的簇，比如说，聚类标签$C_i$等价于$C(x_i)$。有时候，数据集
@@ -412,7 +415,7 @@ k^{\prime}\right)+s\left(i, k^{\prime}\right)\right\}
     三维形状，接着训练一个基于输入图片预测特定集群的分类器，将集群的平均三维形状作为预测结果。
     \item \textit{Retrieval}:借鉴了现有的基于图片检索对应物体的三维形状的方法\cite{10.1145/2816795.2818071},在测试
     时，根据输入图片检索训练集中对应的三维点云，直接提取出来作为预测结果。
-    \item \textit{Oracle-Nearest-Neighbor\footnote[1]{下文缩写为Oracle-NN}}：该模型在预测时，在训练集中直接搜索与标签点云损失最小的训练点云，将其
+    \item \textit{Oracle-Nearest-Neighbor\footnote{下文缩写为Oracle-NN}}：该模型在预测时，在训练集中直接搜索与标签点云损失最小的训练点云，将其
     作为预测结果。因为该模型在进行搜索时需要提供不应该获得的标签点云，而实际测试时只有对应的二维图片作为输入，所以在实践中是不可能
     应用的。
 \end{itemize}
@@ -456,7 +459,7 @@ k^{\prime}\right)+s\left(i, k^{\prime}\right)\right\}
     \caption{基于自编码器架构的深度神经网络基准模型}
     \label{fig:ae_baseline}
 \end{figure}
-根据论文PSGN\cite{fan2017point}提出的基于自编码器架构\footnote[1]{实际为“编码器-解码器”架构，因为输入输出分别是同一个物体的图片与三维点云形状所以简称为自编码器架构}的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
+根据论文PSGN\cite{fan2017point}提出的基于自编码器架构\footnote{实际为“编码器-解码器”架构，因为输入输出分别是同一个物体的图片与三维点云形状所以简称为自编码器架构}的深度神经网络模型，我们进行了如图\ref{fig:ae_baseline}的实现。网络的主要架构如下：
 \begin{itemize}
 \item 编码器：采用ResNet-18\cite{7780459}的卷积层架构作为接受二维图像输入并提取图像特征的编码器, 具体来说，移除ResNet-18最后一层用来分类的全连接层，将一维特征层直接输出作为码字。
 \item 特征连接：模型中存储有一个预先初始化好的二维正方形网格点云，长宽在[-1,1]之间，由$m \times 2$的矩阵表示。在将码字输入解码器之前，
@@ -540,11 +543,11 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 在这个部分，我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并指出深度学习基准模型的问题。
 
 对于非深度学习基准模型Oracle-NN, 我们展示了所有重建样本的损失平均值作为量化的评估结果。
-对于基于自编码器架构的深度学习基准模型，我们以Chamfer Distance\footnote[2]{Chamfer Distance数值越小说明重建效果越好}作为损失函数，使用Adam优化器，训练了100个周期，使其达到收敛，并对超参数进行调参，总共进行了8次训练，最终展示了
+对于基于自编码器架构的深度学习基准模型，我们以Chamfer Distance\footnote{Chamfer Distance数值越小说明重建效果越好}作为损失函数，使用Adam优化器，训练了100个周期，使其达到收敛，并对超参数进行调参，总共进行了8次训练，最终展示了
 由所有重建样本的损失平均值表示的最优重建效果。两个模型的最优结果展示在表\ref{table:metric_per_baseline}。从这个结果中我们可以看出，在最优平均损失方面，Oracle-NN
 优于深度神经网络，这一结果与论文\cite{tatarchenko2019single}中展示的两者之间的差距相吻合，而且正如前文所展示的，Oracle-NN是一个理论上的基于识别机制的基准模型，
 无法应用于实际任务，所以这一优越结果是被预计的。但是，在训练的过程中，我们发现了神经网络基准模型暴露出的问题，这意味着有可能通过一些架构优化或者训练技巧来继续缩小这一差距。
-结合图\ref{fig:lossplot}展示的在不同学习率下深度神经网络的两次训练过程的损失变化\footnote[1]{其他所有超参数如权重损失，动量等均相同}, 对这些问题的分析如下：
+结合图\ref{fig:lossplot}展示的在不同学习率下深度神经网络的两次训练过程的损失变化\footnote{其他所有超参数如权重损失，动量等均相同}, 对这些问题的分析如下：
 \begin{itemize}
     \item 神经网络训练状态不稳定，对初始化要求较高。首先可以看出，在使用Adam优化器的情况下，学习率从0.003到0.01仅增大了三倍，
         就使得网络陷入了与最优效果相差较大的局部最优，且Adam优化器也没有能使得网络跳出这个局部最优点，如图\ref{fig:lossplot}蓝色线。在正常情况下，网络不应该对超参数有如此高的敏感程度。这也说明重建任务对
@@ -647,7 +650,7 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \noindent
 \textbf{重建效果}
 
-如图\ref{fig:optimal_lossplot}展示了基准模型与优化后的模型的训练过程，三次训练的初始学习率相同\footnote[1]{基准模型训练过程学习率衰减为第30，60，90周期降低10倍，
+如图\ref{fig:optimal_lossplot}展示了基准模型与优化后的模型的训练过程，三次训练的初始学习率相同\footnote{基准模型训练过程学习率衰减为第30，60，90周期降低10倍，
 优化模型学习率衰减为第40，80周期降低10倍，其余超参数相同。}。可以看出两种方法优化后的模型（蓝色线，橙色线）展示出了稳定的训练过程，训练损失收敛正常且没有出现梯度消失导致损失停止更新
 的问题（如绿色线）。表\ref{table:metric_optimal_baseline}汇报了基准模型，两种优化模型以及Oracle-NN的最优平均重建损失（Chamfer Distance），
 数值越小说明重建效果越好，我们可以看到加入弱标签信息进行初始化后，基于自编码器的深度神经网络的重建水平（0.0716）优于Oracle-NN（0.0719），使用残差层解码器后，
