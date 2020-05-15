@@ -39,7 +39,7 @@ def draw_pts(pts, clr, cmap, ax=None,sz=20):
     pts -= np.mean(pts,axis=0) #demean
 
     ax.set_alpha(255)
-    ax.set_aspect('equal')
+#    ax.set_aspect('equal')
     min_lim = pts.min()
     max_lim = pts.max()
     ax.set_xlim3d(min_lim,max_lim)
@@ -73,7 +73,7 @@ def draw_pts(pts, clr, cmap, ax=None,sz=20):
             edgecolors=(0.5, 0.5, 0.5)
         )
 
-    #ax.set_axis_off()
+    ax.set_axis_off()
     ax.set_facecolor("white")
     return ax,sct
 
@@ -180,14 +180,14 @@ def interactive_render_interploation(interp_file):
 
 def main(args): 
 
-    datalist = open(args.test_json,'r')
-    datalist = json.load(datalist)
-    interp_key = []
-    for item in datalist:
-        interp_key.append(round(100 * item["shapekey_value"]))
+#    datalist = open(args.test_json,'r')
+#    datalist = json.load(datalist)
+#    interp_key = []
+#    for item in datalist:
+#        interp_key.append(round(100 * item["shapekey_value"]))
 
-    interp_key.sort(reverse=False)
-    
+#    interp_key.sort(reverse=False)
+    '''
     for i in interp_key:
         i = str(int(i)).zfill(2)
         print(i)
@@ -218,8 +218,8 @@ def main(args):
         ax_d.set_title('interp_percentage_{}%'.format(i))
         plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
         plt.show()
-    
     '''
+    
     for epoch in range(5, 305, 5):
         epoch = str(int(epoch)).zfill(3)
         interp = args.pt1_dir[-2:].zfill(3)
@@ -237,7 +237,20 @@ def main(args):
 
         imge = np.transpose(img[0],(1,2,0))
         imge_1 = np.transpose(img_1[0],(1,2,0))
+#        clr = colormap2d(nx=32, ny=32)
+        clr = 0.2*np.ones((1024,3))
+        plt.figure(figsize=(5, 5))
+        #ax_a = plt.subplot(111, projection='3d')
+        #ax_a.view_init(15,50)
+        #draw_pts(origin[0],clr,None,ax=ax_a)
+        plt.imshow(imge)
+        plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
+        print(epoch)
+    #    plt.show()
+        plt.savefig('../../figs/baseline_vis/cube_image_{}'.format(epoch))
 
+        break
+        '''
         clr = colormap2d(32,32)
         plt.figure(figsize=(17, 10))
         ax_a = plt.subplot(242, projection='3d')
@@ -270,10 +283,10 @@ def main(args):
         draw_pts(primptcloud_1[0],clr,None,ax=ax_f)
         draw_pts(fineptcloud_1[0],clr,None,ax=ax_g)
         ax_h.imshow(imge_1)
-
-        plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
-        plt.show()
-    '''
+        '''
+#        plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
+ #       plt.show()
+    
 
 
 
@@ -285,9 +298,9 @@ if __name__ == '__main__':
                         help='test json file')
     parser.add_argument('--pt-dir',type=str,default ='final_vis',  #onehot_only 91 96 95 94   #GAN_only  GAN_onehot
                         help='first folder to be evaluate')
-    parser.add_argument('--pt1-dir',type=str,default ='../results/interp_99',  #onehot_only 91 96 95 94   #GAN_only  GAN_onehot
+    parser.add_argument('--pt1-dir',type=str,default ='interp_99',  #onehot_only 91 96 95 94   #GAN_only  GAN_onehot
                         help='second folder to be evaluate')
-    parser.add_argument('--pt2-dir',type=str,default ='../results/interp_01',  #onehot_only 91 96 95 94   #GAN_only  GAN_onehot
+    parser.add_argument('--pt2-dir',type=str,default ='interp_01',  #onehot_only 91 96 95 94   #GAN_only  GAN_onehot
                         help='second folder to be evaluate')
     parser.add_argument('-n', '--num', type=int,default = 300,
                         help='num of data')

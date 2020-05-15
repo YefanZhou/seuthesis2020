@@ -16,6 +16,9 @@ import os
 import tqdm
 #import seaborn as sns
 import math
+from PIL import Image
+
+
 
 def colormap2d(nx=45, ny=45):
     x = np.linspace(-3., 3., nx)
@@ -304,30 +307,8 @@ def load_pred(args, results_path, results_name, target_classnum = 10, total_num 
 
 
 def main(args): 
-    '''
-    exp_list = ["mixup_alpha1", 'foldingnet', "mixup_alpha0", "label5_ae"]
-    logs_list = ['results_label5ae_0','results']
-    log = logs_list[0]
-    exp_list = [exp_list[3]]
-    results_list = ['codeword_','fineptcloud_','img_','oriptcloud_','primiptcloud_',]
-    
-    results_name = results_list[0]
-
-    fig, ax = plt.subplots(figsize=(30 * len(exp_list), 30))
-    for idx, exp_name in enumerate(exp_list):
-        plt.subplot(1, len(exp_list), idx+1)
-        results_pth = '../experiment/{0}/{1}/final_vis'.format(exp_name, log)
-        codewords, colors ,target_id, class_label, target_id_dic = load_pred(args, results_pth, results_name, target_classnum = 9, total_num = 10432, origin_test_batch = 200)
-        #print(codewords.shape)
-        tsne(codewords, colors, exp_name, args.save_path, target_id, target_id_dic, cdscore = 0.0716)   # label5_ae 1 0.0716
-
-
-    plt.savefig(os.path.join(args.save_path,'tsne_label5ae_1.png'))
-    '''
-
-    
-
-
+  
+    args.num = 20
     for i in range(0,args.num,1):
         idx = str(args.num-1-i)
         print(int(idx))
@@ -340,58 +321,48 @@ def main(args):
         origin = np.load(os.path.join(args.results_path, 'oriptcloud_{}.npy'.format(idx)))
         img = np.load(os.path.join(args.results_path, 'img_{}.npy'.format(idx)))
         fineptcloud  = np.load(os.path.join(args.results_path, 'fineptcloud_{}.npy'.format(idx)))
-
-
-        '''
-        for t in range(fineptcloud.shape[0]):
-    #        t = 8
-            fig = plt.figure(figsize=(15,5))
-            imge = np.transpose(img[t],(1,2,0))
-
-            cv2.imshow('color',imge)
-            clr = 0.3*np.ones((1024,3))
-            ax_a = plt.subplot(131, projection='3d')
-            ax_a.view_init(15,50)
-            ax_b = plt.subplot(132, projection='3d')
-            ax_b.view_init(15,50)
-            ax_c = plt.subplot(133, projection='3d')
-            ax_c.view_init(15,50)
-
-
-            draw_pts(origin[t],clr,None,ax=ax_a)
-            ax_a.set_title('GT_ptclpud')
-    #        draw_pts(noise[0],clr,None,ax=ax_i)
-    #        ax_i.set_title('cube')
-            draw_pts(primptcloud[t],clr,None,ax=ax_b)
-            ax_b.set_title('primptcloud')
-            draw_pts(fineptcloud[t],clr,None,ax=ax_c)
-            ax_c.set_title('fineptlcloud')
-            plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
-            plt.show()
-            print(t)
-        
-#            break 
-#        break
-        '''
-        t = 16
     #    fineptcloud[t]
-        imge = np.transpose(img[t],(1,2,0))
-        fig = plt.figure(figsize=(10,10))
-        cv2.imshow('color',imge)
+        
+        for t in range(fineptcloud.shape[0]):
+        
+            fig = plt.figure(figsize=(10,10))
+            imge = np.transpose(img[t],(1,2,0))
+            plt.imshow(imge)
+            plt.axis('off')
+            plt.savefig('../../figs/folding_demo/image_{}_num_{}.png'.format(idx,t))
 
-        ax_c = plt.subplot(111, projection='3d')
-        ax_c.view_init(-4,-5)
-        #clr = 0.2*np.ones((1024,3))
-        clr = colormap2d(nx=32, ny=32)
-        #origin fineptcloud
-        ptcloud = primptcloud[t]
+#            ax_a = plt.subplot(111, projection='3d')
+#            ax_a.view_init(-4,-5)
+#            ax_b = plt.subplot(111, projection='3d')
+#            ax_b.view_init(-4,-5)
+#            ax_t = plt.subplot(111, projection='3d')
+#            ax_t.view_init(-4,-5)
+            #clr = 0.2*np.ones((1024,3))
+            
+            #origin fineptcloud
+            #fig = plt.figure(figsize=(10,10))
+            clr = colormap2d(nx=32, ny=32)
+            ax_c = plt.subplot(111, projection='3d')
+            ax_c.view_init(-4,-5)
+            draw_pts(fineptcloud[t],clr,None,ax=ax_c)
+            plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
+            plt.savefig('../../figs/folding_demo/recon_{}_num_{}.png'.format(idx,t))
+            clr = colormap2d(nx=32, ny=32)
+            ax_b = plt.subplot(111, projection='3d')
+            ax_b.view_init(-4,-5)
+            draw_pts(primptcloud[t],clr,None,ax=ax_b)
+            plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
+            plt.savefig('../../figs/folding_demo/prim_{}_num_{}.png'.format(idx,t))
+            
+            #clr = 0.2*np.ones((1024,3))
+            #ax_u = plt.subplot(111, projection='3d')
+            #ax_u.view_init(-4,-5)
+            #draw_pts(origin[t],clr,None,ax=ax_u)
+            #plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
+            #plt.savefig('../../figs/folding_demo/origin_{}_num_{}.png'.format(idx,t))
+        
+        
 
-        draw_pts(ptcloud,clr,None,ax=ax_c)
-#        draw_pts(origin[t],clr,None,ax=ax_c)
-        plt.subplots_adjust(left=0,right=1,bottom=0,top=1,wspace=0,hspace=0)
-#        plt.show()
-        plt.savefig('../../figs/pro_state_demo/pro_state_prim_clr.png')
-        #ax_c.set_title('fineptlcloud')
 
 if __name__ == '__main__':
 

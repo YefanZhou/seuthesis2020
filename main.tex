@@ -96,7 +96,6 @@
 \chapter{绪论}
 
 \section{课题的背景和意义}
-\COMM{问题1：在1.1节中要说明你研究的基于单视角二维图片进行三维物体形状重建的重要用途，可以举1-2个较生动的例子，并配以图形说明。}
 
 基于单视角二维图片输入进行三维物体形状重建是三维视觉领域的核心问题之一，它能有效解决现实世界中二维数据丰富而三维数据稀少的问题，满足无人驾驶，智能建造，机器人领域的需求。
 如图\ref{fig:civil-modeling}，在智能建造领域的城市三维建模中，大规模应用该技术将高清航拍获取的RGB图片数据\ref{fig:civil-plane-image}
@@ -153,8 +152,7 @@
 
 \section{研究现状}
 \subsection{相关模型}
-\COMM{问题2：在1.2节要适当介绍传统的经典重建方法有哪些？存在什么问题？你研究的方法目前国际上已有哪些进展？还存在什么问题？所以你想解决它的哪些问题。后面就是1.3节，本文的研究内容。}
- 
+
 早期进行三维重建的经典方法是基于多目几何的重建比如从运动恢复结构模型\cite{Hming2010TheSR}（Structure From Motion），通过相机的移动获取三维物体各个视角的信息。
 也有少量基于学习的方法如Make3D\cite{10.1109/TPAMI.2008.132}使用了马尔可夫随机场（Markov Random Field）来将单目线索与图片各部分的关系进行建模，能够重建基础
 简单的几何形状。文章\cite{7298807}的研究者采用了非刚性从运动恢复结构模型（NRSfM）并结合现有的目标检测数据集中的二维标注来重建三维模型。
@@ -234,7 +232,6 @@ ShapeNet\cite{chang2015shapenet}是一个注释丰富且规模较大的三维形
 
 \chapter{问题与定义}
 \section{问题描述}
-\COMM{问题3：第2章的问题描述，不能马上就写一串数学公式，2.1节就要给出一个从二维到三维重建的形象示意图，或框图，生动地说明你要解决的问题。后面再写数学公式，读者就容易理解了。}
 
 我们探究的问题是基于单张图片输入重建一个三维形状。输入$I$是一张二维RGB图片，输出$S$是一个点云，如图\ref{fig:pro_state}。我们在本文中不考虑基于体素的体积表达。对于基于点云的表达，
 每个形状$S$是一个包含三维点的点集。
@@ -472,10 +469,72 @@ k^{\prime}\right)+s\left(i, k^{\prime}\right)\right\}
 二维网格点。用$U_i$表示$U$的第$i$行，用$\theta$表示编码器输出的码字。然后，在特征连接之后，解码器的输入矩阵的
 第$i$行为$[u_i,\theta]$,由于感知器并行应用于输入矩阵的每一行，因此输出矩阵的第$i$行可以写成$f([u_i,\theta])$,其中
 $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$的参数化高维函数，码字$\theta$是指导功能结构（折叠操作）的参数。由于多层感知器
-擅长拟合非线性函数，因此它们可以在二维网格上执行精细的折叠操作。本文使用的解码器架构包含有两个感知器模块，第一个模块将二维网格折叠到三维空间，
+擅长拟合非线性函数，因此它们可以在二维网格上执行精细的折叠操作。这一折叠操作的可视化展示在图\ref{fig:folding_demo}。本文使用的解码器架构包含有两个感知器模块，第一个模块将二维网格折叠到三维空间，
 第二个模块在三维空间内继续折叠网格，使其接近标签形状。
 
-\TODO{可以考虑增加深度神经基准模型的预测结果可视化}
+图\ref{fig:training_process_vis}展示了随着训练周期的增加，这一深度神经网络基准模型逐渐学会折叠操作的过程。
+
+
+\begin{figure}[ht!]
+    \begin{centering}
+        \begin{tabular}{ccccc}
+        \toprule
+         输入图片  & 二维网格点 & 第一次折叠 & 第二次折叠   \\
+        \toprule
+        \includegraphics[width=0.23\columnwidth,keepaspectratio]{figs/folding_demo/image_019_num_177.png} &
+        &
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/prim_019_num_177.png} &  
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/recon_019_num_177.png} \\
+        %& DI = 1 & & & DI = 1 & \\
+        %\midrule
+        \includegraphics[width=0.23\columnwidth,keepaspectratio]{figs/folding_demo/image_040_num_21.png} &
+        \includegraphics[width=0.15\columnwidth,keepaspectratio]{figs/folding_demo/2D_grid.png} &
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/prim_040_num_21.png} &  
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/recon_040_num_21.png} \\
+        %& DI = 2 & & & DI = 2 & \\
+        %\midrule
+        \includegraphics[width=0.23\columnwidth,keepaspectratio]{figs/folding_demo/image_025_num_84.png} &
+         &
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/prim_025_num_84.png} &  
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/recon_025_num_84.png} \\
+        %& DI = 3 & & & DI = 3 & \\
+        %\midrule
+        \includegraphics[width=0.23\columnwidth,keepaspectratio]{figs/folding_demo/image_019_num_144.png} &
+         &
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/prim_019_num_144.png} &  
+        \includegraphics[width=0.28\columnwidth,keepaspectratio]{figs/folding_demo/recon_019_num_144.png} \\
+        \bottomrule  
+        \end{tabular}  \vspace{-2mm}
+        \caption{\small 两步折叠解码的展示}
+        \label{fig:folding_demo}
+    \end{centering}
+    \end{figure}
+
+
+
+\vspace{5mm}
+\begin{figure}
+    \begin{centering}
+    \begin{tabular}{cccccccc}
+        \toprule
+        输入图片    & 周期5  & 周期15&  周期25& 周期35 & 周期45&  周期80 & 周期100 \\
+        \toprule
+		\includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_image_005.png} &
+		\includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_005.png} &
+		\includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_015.png} &
+		\includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_025.png} &
+		\includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_045.png} &
+		\includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_055.png} &
+        \includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_200.png} &
+        \includegraphics[width=.11\textwidth,keepaspectratio]{figs/baseline_vis/cube_recon_300.png} \\
+        \bottomrule
+    \end{tabular}
+	\caption{\small 训练过程中测试结果的展示。训练中的神经网络逐渐学会将随机的二维平面折叠为三维形状的表面。}
+    \label{fig:training_process_vis} \vspace{-4mm}
+\end{centering}
+\end{figure}
+\FloatBarrier
+
 \subsection{实验结果与分析}
 
 在这个部分，我们展示了上述的深度学习基准模型和非深度学习基准模型在ShapeNet上的实验效果，并指出深度学习基准模型的问题。
@@ -588,7 +647,9 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
 \noindent
 \textbf{重建效果}
 
-表\ref{table:metric_optimal_baseline}汇报了基准模型，两种优化模型以及Oracle-NN的最优平均重建损失（Chamfer Distance），
+如图\ref{fig:optimal_lossplot}展示了基准模型与优化后的模型的训练过程，三次训练的初始学习率相同\footnote[1]{基准模型训练过程学习率衰减为第30，60，90周期降低10倍，
+优化模型学习率衰减为第40，80周期降低10倍，其余超参数相同。}。可以看出两种方法优化后的模型（蓝色线，橙色线）展示出了稳定的训练过程，训练损失收敛正常且没有出现梯度消失导致损失停止更新
+的问题（如绿色线）。表\ref{table:metric_optimal_baseline}汇报了基准模型，两种优化模型以及Oracle-NN的最优平均重建损失（Chamfer Distance），
 数值越小说明重建效果越好，我们可以看到加入弱标签信息进行初始化后，基于自编码器的深度神经网络的重建水平（0.0716）优于Oracle-NN（0.0719），使用残差层解码器后，
 神经网络的水平（0.0768）也得到了显著提高。特别的，我们将两个优化模型和Oracle-NN的Chamfer Distance表示在图\ref{fig:chamfer-compare},
 从该图可以直观的看出，标准的基于自编码器的深度神经网络模型与Oracle-NN呈现出近乎相同的重建效果，且Oracle-NN（基于识别机制的非学习模型的理论极限）在测试时需要不应获得的标签信息。
@@ -623,8 +684,8 @@ $f$表示感知器进行的功能。可以将该函数视为带有码字$\theta$
           \includegraphics[width=\columnwidth]{figs//model/ae_optimal_testloss.png}
           \caption{测试集损失}\label{fig:testloss}
       \end{subfigure}
-       \caption{\small 深度神经网络基准/优化模型的训练过程。红色指非深度学习基准模型的量化结果}
-    \label{fig:lossplot}
+       \caption{\small 深度神经网络基准（绿色）/优化模型（蓝色和橙色）的训练过程。三次神经网络训练的初始学习率相同。红色线指非深度学习基准模型Oracle-NN的量化结果}
+    \label{fig:optimal_lossplot}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -648,7 +709,7 @@ Oracle-NN在样本量少的类内进行搜索时，有很大概率无法找到�
 
 图\ref{fig:visualize_KC}展示了各个模型预测结果的可视化，从这些定性结果可以看出，在不同物体类别之间，标准自动编码器的重建性能比Oracle-NN更稳定。
 更多的可视化结果提供在附录\ref{fig:visualize_KC_supplementary}中。
-
+ 
 综上所述，我们可以看出基于识别机制的非深度学习模型的局限性，此类模型缺少对训练数据集分布的鲁棒性，当训练集无法在低维度层面解释测试集需要的形状特征时（即当训练集中没有和测试样本在损失距离上相近的点云时），
 该类模型的方法效果远差于深度学习模型。
 
@@ -1092,8 +1153,6 @@ modifier 来定义两个基础形状之间的形变，并且使用Blender Shape 
 只有当训练形状集的聚类程度高于训练图片集的聚类程度时，神经网络才会执行识别机制，在其他正常情况下，
 训练后的神经网络更倾向于重建而不是识别。概括而言，识别现象是不合适的数据集收集和数据使用导致的数据集复杂特征引发的，而不是源于深度神经网络模型。
 因此，我们建议训练集中的三维形状之间应该比训练集中的图片之间呈现出更多的差异，以此来避免产生一个基于识别的机器学习模型，这为三维数据集的收集以及三维重建训练提供了指导。
-
-\COMM{问题4：第5.1节的工作总结，各项工作再指明自己创新点之后可以再展开描述一下，类似于摘要中的各条描述，还可以更详细些，因为你已经有实验和验证结果了。}
 
 \noindent
 \textbf{本课题具有如下创新点：}
